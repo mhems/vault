@@ -1,3 +1,5 @@
+@echo off
+
 kiota generate                      ^
   --language csharp                 ^
   --openapi ..\api\openapi.json     ^

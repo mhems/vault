@@ -1,3 +1,5 @@
+#!/bin/bash
+
 kiota generate                      \
   --language csharp                 \
   --openapi ../api/openapi.json     \
