@@ -12,13 +12,21 @@ var options = new DbContextOptionsBuilder<AppDbContext>()
 
 await using var db = new AppDbContext(options);
 
-// Read CSV...
-// Construct domain objects...
-// db.Players.Add(...);
+var assassin = new PlayerClass("Assassin");
+var soldier = new PlayerClass("Soldier");
+var siren = new PlayerClass("Siren");
+var gunzerker = new PlayerClass("Gunzerker");
 
-db.Players.Add(new Player("Assassin", "Zer0"));
-db.Players.Add(new Player("Soldier", "Axton"));
-db.Players.Add(new Player("Siren", "Maya"));
-db.Players.Add(new Player("Gunzerker", "Salvador"));
+db.PlayerClasses.Add(assassin);
+db.PlayerClasses.Add(soldier);
+db.PlayerClasses.Add(siren);
+db.PlayerClasses.Add(gunzerker);
+
+db.Players.Add(new Player(assassin, "Zer0"));
+db.Players.Add(new Player(soldier, "Axton"));
+db.Players.Add(new Player(siren, "Maya"));
+db.Players.Add(new Player(gunzerker, "Salvador"));
+
+db.Rarities.Add(new Rarity("common", "white", (255, 255, 255)));
 
 await db.SaveChangesAsync();

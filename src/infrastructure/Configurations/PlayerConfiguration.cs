@@ -10,10 +10,9 @@ namespace Vault.Infrastructure
         {
             builder.HasKey(p => p.Id);
 
-            builder.Property(p => p.Class)
-                .IsRequired()
-                .HasMaxLength(32)
-                .UseCollation("NOCASE");
+            builder.HasOne(p => p.Class)
+                .WithMany()
+                .HasForeignKey(p => p.PlayerClassId);
 
             builder.Property(p => p.Name)
                 .IsRequired()
@@ -31,6 +30,18 @@ namespace Vault.Infrastructure
             builder.HasMany(p => p.Equipment)
                 .WithOne(e => e.Player)
                 .HasForeignKey(e => e.Id);
+
+            builder.OwnsMany(p => p.SkillTree,
+                element =>
+                {
+                    element.HasOne(e => e.Skill)
+                        .WithMany()
+                        .HasForeignKey(e => e.SkillId)
+                        .IsRequired();
+
+                    element.Property(e => e.Amount)
+                        .IsRequired();
+                });
         }
     }
 }

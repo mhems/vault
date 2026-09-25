@@ -18,20 +18,20 @@ namespace Vault.Infrastructure
         public Task<List<PlayerDto>> GetPlayersByClassAsync(string @class, CancellationToken ct)
         {
             return db.Players
-                .Where(player => player.Class == @class)
+                .Where(player => player.Class.Name == @class)
                 .Select(player => ToDto(player))
                 .ToListAsync(ct);
         }
 
-        private PlayerDto ToDto(Player player)
+        private static PlayerDto ToDto(Player player)
         {
             return new PlayerDto(
                     player.Id,
-                    player.Class,
+                    player.Class.Name,
                     player.Name,
                     player.Level,
-                    (int)player.Experience,
-                    (int)player.Money);
+                    (int?)player.Experience,
+                    (int?)player.Money);
         }
     }
 }

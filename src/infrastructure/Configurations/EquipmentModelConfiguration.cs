@@ -4,18 +4,23 @@ using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
-    public sealed class EquipableInstanceConfiguration : IEntityTypeConfiguration<EquipableInstance>
+    public sealed class EquipmentModelConfiguration : IEntityTypeConfiguration<EquipmentModel>
     {
-        public void Configure(EntityTypeBuilder<EquipableInstance> builder)
+        public void Configure(EntityTypeBuilder<EquipmentModel> builder)
         {
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(128)
+                .HasMaxLength(64)
                 .UseCollation("NOCASE");
 
             builder.Property(e => e.Category)
+                .IsRequired()
+                .HasMaxLength(32)
+                .UseCollation("NOCASE");
+
+            builder.Property(e => e.SubCategory)
                 .IsRequired()
                 .HasMaxLength(32)
                 .UseCollation("NOCASE");
@@ -25,24 +30,11 @@ namespace Vault.Infrastructure
                 .HasMaxLength(32)
                 .UseCollation("NOCASE");
 
-            builder.Property(e => e.Level)
-                .IsRequired();
-
             builder.Property(e => e.Unique)
                 .IsRequired();
 
-            builder.Property(e => e.BuyPrice);
-
-            builder.Property(e => e.SellPrice);
-
             builder.Property(e => e.FlavorText)
-                .HasMaxLength(256)
-                .UseCollation("NOCASE");
-
-            builder.HasOne(e => e.Player)
-                .WithMany(p => p.Equipment)
-                .HasForeignKey(e => e.PlayerId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasMaxLength(256);
         }
     }
 }

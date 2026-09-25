@@ -5,7 +5,7 @@
         string Class,
         string Name,
         byte Level,
-        int Experience,
-        int Money
+        int? Experience,
+        int? Money
         );
 }
