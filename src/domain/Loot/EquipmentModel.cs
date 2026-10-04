@@ -115,7 +115,8 @@
     }
 
     public class RaritySet(bool white, bool green, bool blue, bool purple,
-        bool legendary, bool effervescent, bool pearlescent, bool seraph, bool eTech)
+        bool legendary, bool effervescent, bool pearlescent, bool seraph, bool eTech,
+        string? description = null)
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public bool ComesInWhite { get; set; } = white;
@@ -127,11 +128,13 @@
         public bool ComesInPearlescent { get; set; } = pearlescent;
         public bool ComesInSeraph { get; set; } = seraph;
         public bool ComesInETech { get; set; } = eTech;
+        public string? Description { get; set; } = description;
 
         private RaritySet() : this(false, false, false, false, false, false, false, false, false) { }
     }
 
-    public class ElementSet(bool none, bool incendiary, bool shock, bool corrosive, bool slag, bool explosive)
+    public class ElementSet(bool none, bool incendiary, bool shock, bool corrosive, bool slag, bool explosive,
+        string? description = null)
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public bool ComesWithoutElement { get; set; } = none;
@@ -140,8 +143,8 @@
         public bool ComesInCorrosive { get; set; } = corrosive;
         public bool ComesInSlag { get; set; } = slag;
         public bool ComesInExplosive { get; set; } = explosive;
+        public string? Description { get; set; } = description;
 
         private ElementSet() : this(false, false, false, false, false, false) { }
-
     }
 }
