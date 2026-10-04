@@ -1,0 +1,321 @@
+name,manufacturer,subcategory,dlc,unique,rarity,none,incendiary,shock,corrosive,explosive,slag
+mashine gun,bandit,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+rifle,dahl,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+rifle,jakobs,assaultrifle,basegame,FALSE,white+,x,,,,,
+rifle,torgue,assaultrifle,basegame,FALSE,white+,,,,,x,
+rifle,vladof,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+carbene,bandit,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+carbine,dahl,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+scarab,jakobs,assaultrifle,basegame,FALSE,white+,x,,,,,
+root,torgue,assaultrifle,basegame,FALSE,white+,,,,,x,
+renegade,vladof,assaultrifle,basegame,FALSE,white+,x,x,x,x,,x
+ass beeter!,bandit,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+defender,dahl,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+lance,torgue,assaultrifle,basegame,FALSE,green+,,,,,x,
+guerilla,vladof,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+rokets!,bandit,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+grenadier,dahl,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+cannon,jakobs,assaultrifle,basegame,FALSE,green+,x,,,,,
+torpedo,torgue,assaultrifle,basegame,FALSE,green+,,,,,x,
+rocketeer,vladof,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+spinigun,bandit,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+minigun,dahl,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+gatling gun,jakobs,assaultrifle,basegame,FALSE,green+,x,,,,,
+spitter,torgue,assaultrifle,basegame,FALSE,green+,,,,,x,
+spinigun,vladof,assaultrifle,basegame,FALSE,green+,x,x,x,x,,x
+blasster,bandit,assaultrifle,basegame,FALSE,e-tech,x,x,x,x,,x
+blaster,dahl,assaultrifle,basegame,FALSE,e-tech,x,x,x,x,,x
+blaster,vladof,assaultrifle,basegame,FALSE,e-tech,x,x,x,x,,x
+pistal,bandit,pistol,basegame,FALSE,white+,x,x,x,x,,x
+hed shoter!,bandit,pistol,basegame,FALSE,green+,x,x,x,x,,x
+ass beeter!,bandit,pistol,basegame,FALSE,green+,x,x,x,x,,x
+magamum!,bandit,pistol,basegame,FALSE,white+,x,x,x,x,,x
+ratatater!,bandit,pistol,basegame,FALSE,green+,x,x,x,x,,x
+repeater,dahl,pistol,basegame,FALSE,white+,x,x,x,x,,x
+anaconda,dahl,pistol,basegame,FALSE,green+,x,x,x,x,,x
+peacemaker,dahl,pistol,basegame,FALSE,green+,x,x,x,x,,x
+magnum,dahl,pistol,basegame,FALSE,white+,x,x,x,x,,x
+negotiator,dahl,pistol,basegame,FALSE,green+,x,x,x,x,,x
+apparatus,hyperion,pistol,basegame,FALSE,white+,x,x,x,x,,x
+vision,hyperion,pistol,basegame,FALSE,green+,x,x,x,x,,x
+leverage,hyperion,pistol,basegame,FALSE,green+,x,x,x,x,,x
+impact,hyperion,pistol,basegame,FALSE,white+,x,x,x,x,,x
+synergy,hyperion,pistol,basegame,FALSE,green+,x,x,x,x,,x
+revolver wheelgun,jakobs,pistol,basegame,FALSE,white+,x,,,,,
+longarm,jakobs,pistol,basegame,FALSE,green+,x,,,,,
+iron,jakobs,pistol,basegame,FALSE,green+,x,,,,,
+widow maker,jakobs,pistol,basegame,FALSE,white+,x,,,,,
+pepperbox,jakobs,pistol,basegame,FALSE,green+,x,,,,,
+aegis,maliwan,pistol,basegame,FALSE,white+,,x,x,x,,x
+phobia,maliwan,pistol,basegame,FALSE,green+,,x,x,x,,x
+torment,maliwan,pistol,basegame,FALSE,green+,,x,x,x,,x
+animosity,maliwan,pistol,basegame,FALSE,white+,,x,x,x,,x
+umbrage,maliwan,pistol,basegame,FALSE,green+,,x,x,x,,x
+handgun,tediore,pistol,basegame,FALSE,white+,x,x,x,x,,x
+aimshot,tediore,pistol,basegame,FALSE,green+,x,x,x,x,,x
+power shot,tediore,pistol,basegame,FALSE,green+,x,x,x,x,,x
+biggun,tediore,pistol,basegame,FALSE,white+,x,x,x,x,,x
+quickshot,tediore,pistol,basegame,FALSE,green+,x,x,x,x,,x
+hand cannon,torgue,pistol,basegame,FALSE,white+,,,,,x,
+hole puncher,torgue,pistol,basegame,FALSE,green+,,,,,x,
+rod,torgue,pistol,basegame,FALSE,green+,,,,,x,
+slapper,torgue,pistol,basegame,FALSE,white+,,,,,x,
+injector,torgue,pistol,basegame,FALSE,green+,,,,,x,
+TMP,vladof,pistol,basegame,FALSE,white+,x,x,x,x,,x
+assassin,vladof,pistol,basegame,FALSE,green+,x,x,x,x,,x
+fighter,vladof,pistol,basegame,FALSE,green+,x,x,x,x,,x
+troublemaker,vladof,pistol,basegame,FALSE,white+,x,x,x,x,,x
+anarchist,vladof,pistol,basegame,FALSE,green+,x,x,x,x,,x
+launcher,bandit,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+area effect,bandit,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+zooka!,bandit,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+bombabarbardeer,bandit,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+prazma canon,bandit,rocketlauncher,basegame,FALSE,e-tech,,x,x,x,,x
+projectile,maliwan,rocketlauncher,basegame,FALSE,white+,,x,x,x,,x
+panorama,maliwan,rocketlauncher,basegame,FALSE,white+,,x,x,x,,x
+punishment,maliwan,rocketlauncher,basegame,FALSE,white+,,x,x,x,,x
+prowler,maliwan,rocketlauncher,basegame,FALSE,white+,,x,x,x,,x
+PBFG,maliwan,rocketlauncher,basegame,FALSE,e-tech,,x,x,x,,x
+launcher,tediore,rocketlauncher,basegame,FALSE,e-tech,,x,x,x,x,x
+spread,tediore,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+bazooka,tediore,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+dispatch,tediore,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+launcher,tediore,rocketlauncher,basegame,FALSE,e-tech,,x,x,x,,x
+boom,torgue,rocketlauncher,basegame,FALSE,white+,,,,,x,
+blaaa,torgue,rocketlauncher,basegame,FALSE,white+,,,,,x,
+duuurp!,torgue,rocketlauncher,basegame,FALSE,white+,,,,,x,
+deee!,torgue,rocketlauncher,basegame,FALSE,white+,,,,,x,
+RPG,vladof,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+glory,vladof,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+hero,vladof,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+vanquisher,vladof,rocketlauncher,basegame,FALSE,white+,,x,x,x,x,x
+topneaa,vladof,rocketlauncher,basegame,FALSE,e-tech,,x,x,x,,x
+longer ragne kilier,bandit,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+skatergun,bandit,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+stret sweper,bandit,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+room clener,bandit,shotgun,basegame,FALSE,green+,x,x,x,x,,x
+oberkil!,bandit,shotgun,basegame,FALSE,blue+,x,x,x,x,,x
+thinking,hyperion,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+projectile diversification,hyperion,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+face time,hyperion,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+crowdsourcing,hyperion,shotgun,basegame,FALSE,green+,x,x,x,x,,x
+development,hyperion,shotgun,basegame,FALSE,blue+,x,x,x,x,,x
+longrider,jakobs,shotgun,basegame,FALSE,white+,x,,,,,
+scattergun,jakobs,shotgun,basegame,FALSE,white+,x,,,,,
+coach gun,jakobs,shotgun,basegame,FALSE,white+,x,,,,,
+bushwack,jakobs,shotgun,basegame,FALSE,green+,x,,,,,
+quad,jakobs,shotgun,basegame,FALSE,blue+,x,,,,,
+sportsman,tediore,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+home security,tediore,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+double barrels!,tediore,shotgun,basegame,FALSE,white+,x,x,x,x,,x
+triple barrels!,tediore,shotgun,basegame,FALSE,green+,x,x,x,x,,x
+shotgun supreme!,tediore,shotgun,basegame,FALSE,blue+,x,x,x,x,,x
+stalker,torgue,shotgun,basegame,FALSE,white+,,,,,x,
+bangstick,torgue,shotgun,basegame,FALSE,white+,,,,,x,
+pounder,torgue,shotgun,basegame,FALSE,white+,,,,,x,
+hulk,torgue,shotgun,basegame,FALSE,green+,,,,,x,
+ravager,torgue,shotgun,basegame,FALSE,blue+,,,,,x,
+sniper,dahl,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+strike,dahl,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+terror,dahl,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+scout,dahl,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+sniper rifle,hyperion,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+transaction,hyperion,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+policy,hyperion,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+competition,hyperion,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+callipeen,jakobs,sniperrifle,basegame,FALSE,white+,x,,,,,
+chinook,jakobs,sniperrifle,basegame,FALSE,white+,x,,,,,
+muckamuck,jakobs,sniperrifle,basegame,FALSE,white+,x,,,,,
+diaub,jakobs,sniperrifle,basegame,FALSE,white+,x,,,,,
+snider,maliwan,sniperrifle,basegame,FALSE,white+,,x,x,x,,x
+jericho,maliwan,sniperrifle,basegame,FALSE,white+,,x,x,x,,x
+corinthian,maliwan,sniperrifle,basegame,FALSE,white+,,x,x,x,,x
+rakehell,maliwan,sniperrifle,basegame,FALSE,white+,,x,x,x,,x
+pooshka,vladof,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+bratchny,vladof,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+horrorshow,vladof,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+droog,vladof,sniperrifle,basegame,FALSE,white+,x,x,x,x,,x
+smig,bandit,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+rokgun,bandit,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+acurate smgg,bandit,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+barfy,bandit,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+burny,bandit,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+shoky,bandit,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+slagy,bandit,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+SMG,dahl,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+fox,dahl,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+falcon,dahl,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+scorpion,dahl,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+beetle,dahl,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+eel,dahl,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+jackal,dahl,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+projectile convergence,hyperion,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+presence,hyperion,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+transmurdera,hyperion,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+weisenheimer,hyperion,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+backburner,hyperion,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+storm,hyperion,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+wellness,hyperion,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+submalevolent grace,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+trance,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+gospel,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+venom,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+provacateur,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+vexation,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+revenant,maliwan,submachinegun,basegame,FALSE,white+,,x,x,x,,x
+subcompact MG,tediore,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+special,tediore,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+ace,tediore,submachinegun,basegame,FALSE,white+,x,x,x,x,,x
+green,tediore,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+kindle,tediore,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+spark,tediore,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+chaff,tediore,submachinegun,basegame,FALSE,green+,x,x,x,x,,x
+bad touch,maliwan,submachinegun,basegame,TRUE,blue,,,,x,,
+bane,hyperion,submachinegun,basegame,TRUE,blue,,x,x,x,,x
+bone shredder,bandit,submachinegun,basegame,TRUE,blue,x,x,x,x,,x
+chulainn,maliwan,submachinegun,basegame,TRUE,blue,,,,,,x
+commerce,hyperion,submachinegun,basegame,TRUE,blue,,,x,,,
+crit,maliwan,submachinegun,tinytina,TRUE,blue,,,x,,,
+good touch,maliwan,submachinegun,basegame,TRUE,blue,,x,,,,
+lascaux,dahl,submachinegun,basegame,TRUE,blue,x,,,,,
+orc,bandit,submachinegun,tinytina,TRUE,blue,x,x,x,x,,x
+sand hawk,dahl,submachinegun,captainscarlett,TRUE,blue,x,x,x,x,,x
+yellow jacket,hyperion,submachinegun,sirhammerlocks,TRUE,e-tech,,,x,,,
+plasma caster,bandit,submachinegun,basegame,FALSE,e-tech,,x,x,x,,x
+plasma caster,dahl,submachinegun,basegame,FALSE,e-tech,,x,x,x,,x
+plasma caster,hyperion,submachinegun,basegame,FALSE,e-tech,,x,x,x,,x
+plasma caster,maliwan,submachinegun,basegame,FALSE,e-tech,,x,x,x,,x
+plasma caster,tediore,submachinegun,basegame,FALSE,e-tech,,x,x,x,,x
+baby maker,tediore,submachinegun,basegame,FALSE,legendary,x,x,x,x,,x
+bitch,hyperion,submachinegun,basegame,FALSE,legendary,x,x,x,x,,x
+emperor,dahl,submachinegun,basegame,FALSE,legendary,x,x,x,x,,x
+hellfire,maliwan,submachinegun,basegame,FALSE,legendary,,x,,,,
+slagga,bandi,submachinegun,basegame,FALSE,legendary,,,,,,x
+actualizer,hyperion,submachinegun,captainscarlett,FALSE,seraph,x,x,x,x,,x
+florentine,maliwan,submachinegun,tinytina,FALSE,seraph,,,,,,x
+tattler,bandit,submachinegun,captainscarlett,FALSE,seraph,x,x,x,x,,x
+avenger,tediore,submachinegun,ultimate,FALSE,pearlescent,x,x,x,x,,x
+infection cleaner,tediore,submachinegun,commander,FALSE,effervescent,,x,,,,
+nirvana,maliwan,submachinegun,commander,FALSE,effervescent,,x,,,,
+buffalo,jakobs,sniperrifle,basegame,TRUE,blue,x,,,,,
+chere-amie,maliwan,sniperrifle,basegame,TRUE,blue,,x,x,x,,x
+cobra,jakobs,sniperrifle,mrtorgue,TRUE,blue,x,,,,,
+elephant gun,jakobs,sniperrifle,sirhammerlocks,TRUE,blue,x,,,,,
+fremington's edge,hyperion,sniperrifle,basegame,TRUE,blue,x,x,x,x,,x
+morningstar,hyperion,sniperrifle,basegame,TRUE,blue,x,x,x,x,,x
+pimpernel,maliwan,sniperrifle,captainscarlett,TRUE,blue,,x,x,x,,x
+sloth,dahl,sniperrifle,basegame,TRUE,blue,x,x,x,x,,x
+trespasser,jakobs,sniperrifle,basegame,TRUE,blue,x,,,,,
+hybridification,hyperion,sniperrifle,basegame,FALSE,e-tech,,x,x,x,,x
+moloko,vladof,sniperrifle,basegame,FALSE,e-tech,,x,x,x,,x
+railer,dahl,sniperrifle,basegame,FALSE,e-tech,,x,x,x,,x
+railer,maliwan,sniperrifle,basegame,FALSE,e-tech,,x,x,x,,x
+amigo sincero,jakobs,sniperrifle,commander,TRUE,legendary,x,,,,,
+invader,hyperion,sniperrifle,basegame,FALSE,legendary,x,x,x,x,,x
+longbow,hyperion,sniperrifle,basegame,FALSE,legendary,,x,,,,
+lyudmila,vladof,sniperrifle,basegame,FALSE,legendary,x,x,x,x,,x
+pitchfork,dahl,sniperrifle,basegame,FALSE,legendary,x,x,x,x,,x
+skullmasher,jakobs,sniperrifle,basegame,FALSE,legendary,x,,,,,
+volcano,maliwan,sniperrifle,basegame,FALSE,legendary,,x,,,,
+hawk eye,jakobs,sniperrifle,sirhammerlocks,FALSE,seraph,x,,,,,
+patriot,vladof,sniperrifle,captainscarlett,FALSE,seraph,x,x,x,x,,x
+godfinger,jakobs,sniperrifle,ultimate,FALSE,pearlescent,x,,,,,
+storm,maliwan,sniperrifle,basegame,FALSE,effervescent,,,x,,,
+hot mama,jakobs,sniperrifle,commander,FALSE,effervescent,,x,,,,
+blockhead,tediore,shotgun,basegame,TRUE,blue,,x,,,,
+dog,bandit,shotgun,basegame,TRUE,blue,x,x,x,x,,x
+heart breaker,hyperion,shotgun,basegame,TRUE,blue,,x,,,,
+hydra,jakobs,shotgun,sirhammerlocks,TRUE,blue,x,,,,,
+jolly roger,bandit,shotgun,captainscarlett,TRUE,blue,x,x,x,x,,x
+landscaper,torgue,shotgun,basegame,TRUE,blue,,,,,x,
+octo,tediore,shotgun,basegame,TRUE,blue,x,x,x,x,,x
+orphan maker,jakobs,shotgun,captainscarlett,TRUE,blue,x,,,,,
+roksalt,bandit,shotgun,basegame,TRUE,blue,x,x,x,x,,x
+swordsplosion!!!,torgue,shotgun,tinytina,TRUE,e-tech,,,,,x,
+shotgun 1340,hyperion,shotgun,basegame,TRUE,blue,x,,,,,
+slow hand,hyperion,shotgun,mrtorgue,TRUE,e-tech,,x,x,x,,x
+teeth of terramorphous,bandit,shotgun,basegame,TRUE,blue,,x,,,,
+tidal wave,jakobs,shotgun,basegame,TRUE,blue,x,,,,,
+triquetra,jakobs,shotgun,basegame,TRUE,blue,x,,,,,
+twister,jakobs,shotgun,sirhammerlocks,TRUE,blue,,,x,,,
+conference call,hyperion,shotgun,basegame,FALSE,legendary,x,x,x,x,,x
+deliverance,tediore,shotgun,basegame,FALSE,legendary,x,x,x,x,,x
+flakker,torgue,shotgun,basegame,FALSE,legendary,,,,,x,
+overcompensator,hyperion,shotgun,commander,TRUE,legendary,x,x,x,x,,x
+sledge's shotgun,bandit,shotgun,basegame,FALSE,legendary,x,x,x,x,,x
+striker,jakobs,shotgun,basegame,FALSE,legendary,x,,,,,
+interfacer,hyperion,shotgun,sirhammerlocks,FALSE,seraph,x,x,x,x,,x
+omen,tediore,shotgun,tinytina,FALSE,seraph,x,x,x,x,,x
+retcher,tediore,shotgun,captainscarlett,FALSE,seraph,,,,x,,
+butcher,hyperion,shotgun,ultimate,FALSE,pearlescent,x,x,x,x,,x
+carnage,torgue,shotgun,ultimate,FALSE,pearlescent,,,,,x,
+unicornsplosion,torgue,shotgun,commander,FALSE,effervescent,,,,,x,
+12 pounder,torgue,rocketlauncher,captainscarlett,TRUE,blue,,,,,x,
+creamer,torgue,rocketlauncher,creature,TRUE,blue,,,,,x,
+hive,maliwan,rocketlauncher,basegame,TRUE,blue,,,,x,,
+roaster,bandit,rocketlauncher,basegame,TRUE,blue,,x,x,x,x,x
+badaboom,bandit,rocketlauncher,basegame,FALSE,legendary,,x,x,x,x,x
+bunny,tediore,rocketlauncher,basegame,FALSE,legendary,,x,x,x,x,x
+mongol,vladof,rocketlauncher,basegame,FALSE,legendary,,x,x,x,x,x
+norfleet,maliwan,rocketlauncher,basegame,TRUE,legendary,,x,x,x,,x
+nukem,torgue,rocketlauncher,basegame,FALSE,legendary,,,,,x,
+pyrophobia,maliwan,rocketlauncher,basegame,FALSE,legendary,,x,,,,
+ahab,torgue,rocketlauncher,captainscarlett,FALSE,seraph,,,,,x,
+tunguska,torgue,rocketlauncher,ultimate,FALSE,pearlescent,,,,,x,
+world burn,torgue,rocketlauncher,commander,FALSE,effervescent,,x,,,,
+basic repeater,dahl,pistol,basegame,TRUE,white,x,,,,,
+dahlminator,dahl,pistol,basegame,TRUE,e-tech,,,,x,,
+fibber,hyperion,pistol,basegame,TRUE,blue,x,x,x,x,,x
+greed,jakobs,pistol,captainscarlett,TRUE,blue,,x,,,,
+grog nozzle,maliwan,pistol,tinytina,TRUE,blue,,,,,,x
+gwen's head,dahl,pistol,basegame,TRUE,blue,x,x,x,x,,x
+judge,jakobs,pistol,basegame,TRUE,blue,x,,,,,
+lady fist,hyperion,pistol,basegame,TRUE,blue,x,x,x,x,,x
+law,jakobs,pistol,basegame,TRUE,blue,x,,,,,
+little evie,maliwan,pistol,captainscarlett,TRUE,blue,,,x,,,
+pocket rocket,torgue,pistol,mrtorgue,TRUE,blue,,,,,x,
+rex,jakobs,pistol,sirhammerlocks,TRUE,blue,x,,,,,
+rubi,maliwan,pistol,basegame,TRUE,blue,,x,x,x,,x
+teapot,dahl,pistol,basegame,TRUE,blue,,,,x,,
+tinderbox,bandit,pistol,basegame,TRUE,blue,,x,,,,
+veritas,vladof,pistol,basegame,TRUE,blue,x,x,x,x,,x
+infinity,vladof,pistol,basegame,FALSE,legendary,x,x,x,x,,
+gub,bandit,pistol,basegame,FALSE,legendary,,,,x,,
+gunerang,tediore,pistol,basegame,FALSE,legendary,x,x,x,x,,x
+hector's paradise,dahl,pistol,commander,TRUE,legendary,,,x,,,
+hornet,dahl,pistol,basegame,FALSE,legendary,,,,x,,
+logan's gun,hyperion,pistol,basegame,FALSE,legendary,,x,,,,
+maggie,jakobs,pistol,basegame,FALSE,legendary,x,,,,,
+thunderball fists,maliwan,pistol,basegame,FALSE,legendary,,,x,,,
+unkempt harold,torgue,pistol,basegame,FALSE,legendary,,,,,x,
+devastator,torgue,pistol,captainscarlett,FALSE,seraph,,,,,x,
+infection,maliwan,pistol,sirhammerlocks,FALSE,seraph,,,,x,,
+stinger,vladof,pistol,tinytina,FALSE,seraph,x,x,x,x,,x
+stalker,vladof,pistol,ultimate,FALSE,pearlescent,x,x,x,x,,x
+unforgiven,jakobs,pistol,ultimate,FALSE,pearlescent,x,,,,,
+wanderlust,maliwan,pistol,ultimate,FALSE,pearlescent,,x,x,x,,x
+boom puppy,torgue,assaultrifle,mrtorgue,TRUE,blue,,,,,x,
+chopper,bandit,assaultrifle,sirhammerlocks,TRUE,blue,x,x,x,x,,x
+damned cowboy,jakobs,assaultrifle,sirhammerlocks,TRUE,blue,x,,,,,
+evil smasher,torgue,assaultrifle,basegame,TRUE,blue,,,,,x,
+hail,vladof,assaultrifle,basegame,TRUE,blue,,x,x,x,,x
+kitten,vladof,assaultrifle,mrtorgue,TRUE,blue,,x,x,x,,x
+rapier,vladof,assaultrifle,captainscarlett,TRUE,blue,x,x,x,x,,x
+scorpio,dahl,assaultrifle,basegame,TRUE,blue,x,x,x,x,,x
+stinkpot,jakobs,assaultrifle,captainscarlett,TRUE,blue,,,,x,,
+stomper,jakobs,assaultrifle,basegame,TRUE,blue,x,,,,,
+hammer buster,jakobs,assaultrifle,basegame,FALSE,legendary,x,,,,,
+kerblaster,torgue,assaultrifle,basegame,FALSE,legendary,,,,,x,
+m2828 thumpson,jakobs,assaultrifle,commander,FALSE,legendary,x,,,,,
+madhous!,bandit,assaultrifle,basegame,FALSE,legendary,x,x,x,x,,x
+ogre,torgue,assaultrifle,tinytina,FALSE,legendary,,,,,x,
+shredifier,vladof,assaultrifle,basegame,FALSE,legendary,x,x,x,x,,x
+veruc,dahl,assaultrifle,basegame,FALSE,legendary,x,x,x,x,,x
+lead storm,vladof,assaultrifle,sirhammerlocks,FALSE,seraph,x,x,x,x,,x
+seeker,torgue,assaultrifle,tinytina,FALSE,seraph,,,,,x,
+seraphim,dahl,assaultrifle,captainscarlett,FALSE,seraph,,x,,,,
+bearcat,dahl,assaultrifle,ultimate,FALSE,pearlescent,,x,x,x,x,x
+bekah,jakobs,assaultrifle,ultimate,FALSE,pearlescent,x,,,,,
+sawbar,bandit,assaultrifle,ultimate,FALSE,pearlescent,,x,,,,
+peak opener,torgue,assaultrifle,commander,FALSE,effervescent,,,x,,,
+toothpick,dahl,assaultrifle,commander,FALSE,effervescent,,x,,,,

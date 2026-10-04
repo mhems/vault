@@ -1,0 +1,99 @@
+name,class,manufacturer,dlc,rarity
+engineer,soldier,dahl,basegame,white+
+grenadier,soldier,torgue,basegame,white+
+gunner,soldier,vladof,basegame,white+
+pointman,soldier,pangolin,basegame,white+
+ranger,soldier,dahl,tinytina,white+
+rifleman,soldier,dahl,basegame,white+
+shock trooper,soldier,maliwan,basegame,white+
+specialist,soldier,hyperion,basegame,white+
+tactician,soldier,anshin,basegame,white+
+veteran,soldier,dahl,basegame,white+
+legendary engineer,soldier,dahl,ultimate,legendary
+legendary pointman,soldier,pangolin,ultimate,legendary
+legendary ranger,soldier,anshin,ultimate,legendary
+legendary soldier,soldier,dahl,basegame,legendary
+slayer of terramorphous,soldier,dahl,basegame,legendary
+slayer of terramorphous,mechromancer,maliwan,mechromancer,legendary
+slayer of terramorphous,psycho,maliwan,psycho,legendary
+slayer of terramorphous,siren,maliwan,basegame,legendary
+slayer of terramorphous,gunzerker,bandit,basegame,legendary
+slayer of terramorphous,assassin,jakobs,basegame,legendary
+anarchist,mechromancer,vladof,mechromancer,white+
+catalyst,mechromancer,maliwan,mechromancer,white+
+jill of all trades,mechromancer,tediore,mechromancer,white+
+necromancer,mechromancer,tediore,"mechromancer
+tinytina",white+
+prodigy,mechromancer,dahl,mechromancer,white+
+punk,mechromancer,bandit,mechromancer,white+
+roboteer,mechromancer,hyperion,mechromancer,white+
+sweetheart,mechromancer,anshin,mechromancer,white+
+technophile,mechromancer,pangolin,mechromancer,white+
+zapper,mechromancer,maliwan,mechromancer,white+
+legendary anarchist,mechromancer,vladof,"mechromancer
+ultimate",legendary
+legendary catalyst,mechromancer,maliwan,"mechromancer
+ultimate",legendary
+legendary mechromancer,mechromancer,hyperion,mechromancer,legendary
+legendary roboteer,mechromancer,hyperion,"mechromancer
+ultimate",legendary
+barbarian,psycho,bandit,"psycho
+tinytina",white+
+blister,psycho,bandit,psycho,white+
+crunch,psycho,bandit,psycho,white+
+meat,psycho,bandit,psycho,white+
+reaper,psycho,bandit,psycho,white+
+sickle,psycho,bandit,psycho,white+
+slab,psycho,bandit,psycho,white+
+toast,psycho,bandit,psycho,white+
+torch,psycho,bandit,psycho,white+
+wound,psycho,bandit,psycho,white+
+legendary psycho,psycho,bandit,psycho,legendary
+legendary reaper,psycho,bandit,"psycho
+ultimate",legendary
+legendary sickle,psycho,bandit,"psycho
+ultimate",legendary
+legendary torch,psycho,bandit,"psycho
+ultimate",legendary
+banshee,siren,bandit,basegame,white+
+binder,siren,maliwan,basegame,white+
+cat,siren,hyperion,basegame,white+
+cleric,siren,bandit,tinytina,white+
+fox,siren,maliwan,basegame,white+
+matriarch,siren,pangolin,basegame,white+
+nurse,siren,anshin,basegame,white+
+trickster,siren,vladof,basegame,white+
+warder,siren,anshin,basegame,white+
+witch,siren,maliwan,basegame,white+
+legendary binder,siren,maliwan,ultimate,legendary
+legendary cat,siren,hyperion,ultimate,legendary
+legendary nurse,siren,anshin,ultimate,legendary
+legendary siren,siren,maliwan,basegame,legendary
+beast,gunzerker,torgue,basegame,white+
+berserker,gunzerker,torgue,basegame,white+
+devastator,gunzerker,bandit,basegame,white+
+monk,gunzerker,vladof,tinytina,white+
+hoarder,gunzerker,vladof,basegame,white+
+raider,gunzerker,bandit,basegame,white+
+renegade,gunzerker,jakobs,basegame,white+
+tank,gunzerker,pangolin,basegame,white+
+titan,gunzerker,anshin,basegame,white+
+war dog,gunzerker,dahl,basegame,white+
+legendary berserker,gunzerker,bandit,basegame,legendary
+legendary gunzerker,gunzerker,torgue,ultimate,legendary
+legendary hoarder,gunzerker,vladof,ultimate,legendary
+legendary titan,gunzerker,anshin,ultimate,legendary
+infiltrator,assassin,dahl,basegame,white+
+killer,assassin,hyperion,basegame,white+
+ninja,assassin,maliwan,basegame,white+
+professional,assassin,dahl,basegame,white+
+rogue,assassin,maliwan,tinytina,white+
+shot,assassin,hyperion,basegame,white+
+sniper,assassin,jakobs,basegame,white+
+spy,assassin,maliwan,basegame,white+
+stalker,assassin,vladof,basegame,white+
+survivor,assassin,bandit,basegame,white+
+legendary hunter,assassin,jakobs,basegame,legendary
+legendary killer,assassin,hyperion,ultimate,legendary
+legendary ninja,assassin,maliwan,ultimate,legendary
+legendary sniper,assassin,jakobs,ultimate,legendary

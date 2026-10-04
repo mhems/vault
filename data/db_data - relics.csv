@@ -1,0 +1,30 @@
+subcategory,manufacturer,dlc,unique,rarity
+vitality,eridian,basegame,FALSE,white+
+allegiance,eridian,basegame,FALSE,white+
+stockpile,eridian,basegame,FALSE,white+
+protection,eridian,basegame,FALSE,white+
+aggression,eridian,basegame,FALSE,white+
+resistance,eridian,basegame,FALSE,white+
+tenacity,eridian,basegame,FALSE,white+
+elemental,eridian,basegame,FALSE,white+
+proficiency,eridian,basegame,FALSE,white+
+strength,eridian,basegame,FALSE,white+
+afterburner,eridian,basegame,TRUE,blue
+blood of terrapmorphous,eridian,basegame,FALSE,legendary
+captain blade's otto idol,eridian,captainscarlett,TRUE,blue
+moxxi's endowment,eridian,basegame,TRUE,blue
+sheriff's badge,eridian,basegame,TRUE,blue
+deputy's badge,eridian,basegame,TRUE,blue
+vault hunter's relic,eridian,collector,TRUE,blue
+lucrative opportunity,eridian,basegame,TRUE,blue
+blood of the seraphs,eridian,captainscarlett,FALSE,seraph
+might of the seraphs,eridian,mrtorgue,FALSE,seraph
+breath of the seraphs,eridian,sirhammerlocks,FALSE,seraph
+shadow of the seraphs,eridian,tinytina,FALSE,seraph
+mysterious amulet,eridian,tinytina,TRUE,blue
+hard carry,eridian,commander,FALSE,effervescent
+mouthwash,eridian,commander,TRUE,effervescent
+blood of the ancients,eridian,ultimate,FALSE,e-tech
+bone of the ancients,eridian,ultimate,FALSE,e-tech
+heart of the ancients,eridian,ultimate,FALSE,e-tech
+skin of the ancients,eridian,ultimate,FALSE,e-tech

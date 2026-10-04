@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddScoped<IPlayerQueries, PlayerQueries>();
+builder.Services.AddScoped<IAccountApi, AccountApi>();
+builder.Services.AddScoped<IPlayerApi, PlayerApi>();
+builder.Services.AddScoped<IPlayerClassApi, PlayerClassApi>();
+builder.Services.AddScoped<ISkillApi, SkillApi>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -25,7 +28,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.MapOpenApi("/api");
 }
 
 app.UseHttpsRedirection();

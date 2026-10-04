@@ -6,6 +6,7 @@
     <Project Path="src/domain/domain.csproj" />
     <Project Path="src/importer/importer.csproj" />
     <Project Path="src/infrastructure/infrastructure.csproj" />
+    <Project Path="src/poster/poster.csproj" />
   </Folder>
   <Folder Name="/test/" />
 </Solution>

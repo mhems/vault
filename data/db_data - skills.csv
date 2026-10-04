@@ -1,0 +1,197 @@
+class,name,onepointmax,tree,tier,column
+assassin,headshot,FALSE,sniping,1,1
+assassin,optics,FALSE,sniping,1,3
+assassin,killer,FALSE,sniping,2,1
+assassin,precision,FALSE,sniping,2,3
+assassin,one shot one kill,FALSE,sniping,3,1
+assassin,bore,TRUE,sniping,3,2
+assassin,velocity,FALSE,sniping,3,3
+assassin,kill confirmed,FALSE,sniping,4,2
+assassin,at one with the gun,FALSE,sniping,5,2
+assassin,critical ascension,TRUE,sniping,6,2
+assassin,fast hands,FALSE,cunning,1,1
+assassin,counter strike,FALSE,cunning,1,3
+assassin,fearless,FALSE,cunning,2,1
+assassin,ambush,FALSE,cunning,2,3
+assassin,rising shot,FALSE,cunning,3,1
+assassin,death mark,TRUE,cunning,3,2
+assassin,unforseen,FALSE,cunning,3,3
+assassin,innervate,FALSE,cunning,4,2
+assassin,two fang,FALSE,cunning,5,2
+assassin,death blossom,TRUE,cunning,6,2
+assassin,killing blow,FALSE,bloodshed,1,1
+assassin,iron hand,FALSE,bloodshed,1,3
+assassin,grim,FALSE,bloodshed,2,1
+assassin,be like water,FALSE,bloodshed,2,3
+assassin,followthrough,FALSE,bloodshed,3,1
+assassin,execute,TRUE,bloodshed,3,2
+assassin,backstab,FALSE,bloodshed,3,3
+assassin,resurgence,FALSE,bloodshed,4,2
+assassin,like the wind,FALSE,bloodshed,5,2
+assassin,many must fall,TRUE,bloodshed,6,2
+siren,ward,FALSE,motion,1,1
+siren,accelerate,FALSE,motion,1,3
+siren,suspension,FALSE,motion,2,1
+siren,kinetic reflection,FALSE,motion,2,3
+siren,fleet,FALSE,motion,3,1
+siren,inertia,FALSE,motion,3,2
+siren,converge,TRUE,motion,3,3
+siren,quicken,FALSE,motion,4,2
+siren,sub-sequence,FALSE,motion,5,2
+siren,thoughtlock,TRUE,motion,6,2
+siren,mind's eye,FALSE,harmony,1,1
+siren,sweet release,FALSE,harmony,1,3
+siren,restoration,FALSE,harmony,2,1
+siren,wreck,FALSE,harmony,2,3
+siren,elated,FALSE,harmony,3,1
+siren,recompense,FALSE,harmony,3,2
+siren,res,TRUE,harmony,3,3
+siren,sustenance,FALSE,harmony,4,2
+siren,life tap,FALSE,harmony,5,2
+siren,scorn,TRUE,harmony,6,2
+siren,flicker,FALSE,cataclysm,1,1
+siren,foresight,FALSE,cataclysm,1,3
+siren,immolate,FALSE,cataclysm,2,1
+siren,helios,FALSE,cataclysm,2,3
+siren,chain reaction,FALSE,cataclysm,3,1
+siren,backdraft,FALSE,cataclysm,3,2
+siren,cloud kill,TRUE,cataclysm,3,3
+siren,reaper,FALSE,cataclysm,4,2
+siren,blight phoenix,FALSE,cataclysm,5,2
+siren,ruin,TRUE,cataclysm,6,2
+soldier,sentry,FALSE,guerrilla,1,1
+soldier,ready,FALSE,guerrilla,1,3
+soldier,laser sight,FALSE,guerrilla,2,1
+soldier,willing,FALSE,guerrilla,2,3
+soldier,onslaught,FALSE,guerrilla,3,1
+soldier,scorched earth,TRUE,guerrilla,3,2
+soldier,able,FALSE,guerrilla,3,3
+soldier,grenadier,FALSE,guerrilla,4,2
+soldier,crisis management,FALSE,guerrilla,5,2
+soldier,double up,TRUE,guerrilla,6,2
+soldier,impact,FALSE,gunpowder,1,1
+soldier,expertise,FALSE,gunpowder,1,3
+soldier,overload,FALSE,gunpowder,2,1
+soldier,metal storm,FALSE,gunpowder,2,3
+soldier,steady,FALSE,gunpowder,3,1
+soldier,longbow turret,TRUE,gunpowder,3,2
+soldier,battlefront,FALSE,gunpowder,3,3
+soldier,duty calls,FALSE,gunpowder,4,1
+soldier,do or die,TRUE,gunpowder,4,2
+soldier,ranger,FALSE,gunpowder,5,2
+soldier,nuke,TRUE,gunpowder,6,2
+soldier,healthy,FALSE,survival,1,1
+soldier,preparation,FALSE,survival,1,3
+soldier,last ditch effort,FALSE,survival,2,1
+soldier,pressure,FALSE,survival,2,3
+soldier,forbearance,FALSE,survival,3,1
+soldier,quick charge,FALSE,survival,3,2
+soldier,phalanx shield,TRUE,survival,3,3
+soldier,resourceful,FALSE,survival,4,1
+soldier,mag-lock,TRUE,survival,4,2
+soldier,grit,FALSE,survival,5,2
+soldier,gemini,TRUE,survival,6,2
+gunzerker,locked and loaded,FALSE,gun lust,1,1
+gunzerker,quick draw,FALSE,gun lust,1,3
+gunzerker,i'm your huckleberry,FALSE,gun lust,2,1
+gunzerker,all i need is one,FALSE,gun lust,2,3
+gunzerker,divergent likeness,FALSE,gun lust,3,1
+gunzerker,auto-loader,TRUE,gun lust,3,2
+gunzerker,money shot,FALSE,gun lust,3,3
+gunzerker,lay waste,FALSE,gun lust,4,1
+gunzerker,down not out,TRUE,gun lust,4,2
+gunzerker,keep it piping hot,FALSE,gun lust,5,2
+gunzerker,no kill like overkill,TRUE,gun lust,6,2
+gunzerker,inconceivable,FALSE,rampage,1,1
+gunzerker,filled to the brim,FALSE,rampage,1,3
+gunzerker,all in the reflexes,FALSE,rampage,2,1
+gunzerker,last longer,FALSE,rampage,2,3
+gunzerker,i'm ready already,FALSE,rampage,3,1
+gunzerker,5 shots or 6,FALSE,rampage,3,2
+gunzerker,steady as she goes,TRUE,rampage,3,3
+gunzerker,yippee ki yay,FALSE,rampage,4,1
+gunzerker,double your fun,TRUE,rampage,4,2
+gunzerker,get some,FALSE,rampage,5,2
+gunzerker,keep firing...,TRUE,rampage,6,2
+gunzerker,hard to kill,FALSE,brawn,1,1
+gunzerker,incite,FALSE,brawn,1,3
+gunzerker,asbestos,FALSE,brawn,2,1
+gunzerker,i'm the juggernaut,FALSE,brawn,2,3
+gunzerker,ain't got time to bleed,FALSE,brawn,3,1
+gunzerker,fistful of hurt,TRUE,brawn,3,2
+gunzerker,out of bubblegum,FALSE,brawn,3,3
+gunzerker,bus that can't slow down,FALSE,brawn,4,1
+gunzerker,just got real,FALSE,brawn,4,2
+gunzerker,sexual tyrannosaurus,FALSE,brawn,5,2
+gunzerker,come at me bro,TRUE,brawn,6,2
+psycho,blood twitch,FALSE,bloodlust,1,1
+psycho,blood-filled guns,FALSE,bloodlust,1,3
+psycho,blood overdrive,FALSE,bloodlust,2,1
+psycho,bloody revival,FALSE,bloodlust,2,2
+psycho,taste of blood,FALSE,bloodlust,2,3
+psycho,blood bath,FALSE,bloodlust,3,1
+psycho,buzz axe bombardier,TRUE,bloodlust,3,2
+psycho,fuel the blood,FALSE,bloodlust,3,3
+psycho,boiling blood,FALSE,bloodlust,4,1
+psycho,blood trance,FALSE,bloodlust,4,3
+psycho,nervous blood,FALSE,bloodlust,5,2
+psycho,bloodsplosion,TRUE,bloodlust,6,2
+psycho,empty the rage,FALSE,mania,1,1
+psycho,pull the pin,TRUE,mania,1,2
+psycho,feed the meat,FALSE,mania,1,3
+psycho,fuel the rampage,FALSE,mania,2,1
+psycho,embrace the pin,FALSE,mania,2,3
+psycho,thrill of the kill,FALSE,mania,3,1
+psycho,light the fuse,TRUE,mania,3,2
+psycho,strip the flesh,FALSE,mania,3,3
+psycho,redeem the soul,TRUE,mania,4,1
+psycho,salt the wound,FALSE,mania,4,2
+psycho,silence the voices,FALSE,mania,5,2
+psycho,release the best,TRUE,mania,6,2
+psycho,"burn, baby, burn",FALSE,hellborn,1,1
+psycho,fuel the fire,FALSE,hellborn,1,3
+psycho,pain is power,FALSE,hellborn,2,1
+psycho,numbed nerves,FALSE,hellborn,2,3
+psycho,elemental elation,FALSE,hellborn,3,1
+psycho,delusional damage,TRUE,hellborn,3,2
+psycho,fire fiend,FALSE,hellborn,3,3
+psycho,hellfire halitosis,TRUE,hellborn,4,2
+psycho,flame fare,FALSE,hellborn,4,3
+psycho,elemental empathy,FALSE,hellborn,5,2
+psycho,raving retribution,TRUE,hellborn,6,2
+mechromancer,close enough,FALSE,best friends forever,1,1
+mechromancer,cooking up trouble,FALSE,best friends forever,1,3
+mechromancer,fancy mathematics,FALSE,best friends forever,2,1
+mechromancer,buck up,TRUE,best friends forever,2,2
+mechromancer,the better half,FALSE,best friends forever,2,3
+mechromancer,potent as a pony,FALSE,best friends forever,3,1
+mechromancer,upshot robot,TRUE,best friends forever,3,2
+mechromancer,unstoppable force,FALSE,best friends forever,3,3
+mechromancer,explosive clap,TRUE,best friends forever,4,1
+mechromancer,made of sterner stuff,FALSE,best friends forever,4,2
+mechromancer,20% cooler,FALSE,best friends forever,5,2
+mechromancer,sharing is caring,TRUE,best friends forever,6,2
+mechromancer,more pep,FALSE,little big trouble,1,1
+mechromancer,myelin,FALSE,little big trouble,1,3
+mechromancer,shock storm,FALSE,little big trouble,2,1
+mechromancer,the stare,TRUE,little big trouble,2,2
+mechromancer,strength of five gorillas,FALSE,little big trouble,2,3
+mechromancer,electrical burn,FALSE,little big trouble,3,1
+mechromancer,"shock and ""aaagggghhh!""",TRUE,little big trouble,3,2
+mechromancer,evil enchantress,FALSE,little big trouble,3,3
+mechromancer,one two boom,TRUE,little big trouble,4,1
+mechromancer,wires don't talk,FALSE,little big trouble,4,2
+mechromancer,interspersed outburst,FALSE,little big trouble,5,2
+mechromancer,make it sparkle,TRUE,little big trouble,6,2
+mechromancer,"smaller, lighter, faster",FALSE,ordered chaos,1,1
+mechromancer,anarchy,TRUE,ordered chaos,1,3
+mechromancer,preshrunk cyberpunk,FALSE,ordered chaos,2,1
+mechromancer,robot rampage,TRUE,ordered chaos,2,2
+mechromancer,blood soaked shields,FALSE,ordered chaos,2,3
+mechromancer,annoyed android,FALSE,ordered chaos,3,1
+mechromancer,discord,TRUE,ordered chaos,3,2
+mechromancer,typecast iconoclast,FALSE,ordered chaos,3,3
+mechromancer,rational anarchist,TRUE,ordered chaos,4,1
+mechromancer,death from above,FALSE,ordered chaos,4,2
+mechromancer,the nth degree,FALSE,ordered chaos,5,2
+mechromancer,with claws,TRUE,ordered chaos,6,2
