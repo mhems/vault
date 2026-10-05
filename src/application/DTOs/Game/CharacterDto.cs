@@ -29,7 +29,7 @@ namespace Vault.Application
         List<Element> ElementalWeaknesses,
         List<Element> ElementalResistances,
         List<Element> ElementalImmunities,
-        Guid LootPoolId)
+        Guid? LootPool)
         : NonPlayableCharacterDto(
             Id,
             Name,
@@ -55,7 +55,7 @@ namespace Vault.Application
         List<Element> ElementalWeaknesses,
         List<Element> ElementalResistances,
         List<Element> ElementalImmunities,
-        Guid LootPoolId,
+        Guid? LootPool,
         bool Boss,
         bool RaidBoss
         )
@@ -74,6 +74,6 @@ namespace Vault.Application
             ElementalWeaknesses,
             ElementalResistances,
             ElementalImmunities,
-            LootPoolId);
+            LootPool);
 }
 

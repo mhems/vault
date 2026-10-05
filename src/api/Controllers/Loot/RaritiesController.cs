@@ -3,6 +3,8 @@ using Vault.Application;
 
 namespace Vault.Api
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class RaritiesController(IRarityApi api, LinkGenerator links) : VaultController(links)
     {
         #region route names

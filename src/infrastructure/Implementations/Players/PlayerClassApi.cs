@@ -10,6 +10,7 @@ namespace Vault.Infrastructure
         public async Task<List<PlayerClassDto>> GetPlayerClassesAsync(CancellationToken ct)
         {
             return await db.PlayerClasses
+              .AsNoTracking()
               .Select(p => new PlayerClassDto(
                   p.Id,
                   p.Dlc,
@@ -22,6 +23,7 @@ namespace Vault.Infrastructure
         public async Task<PlayerClassDto> GetPlayerClassAsync(Guid id, CancellationToken ct)
         {
             return await db.PlayerClasses
+                .AsNoTracking()
                 .Where(p => p.Id == id)
                 .Select(p => new PlayerClassDto(
                     p.Id,

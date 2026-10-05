@@ -7,7 +7,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -36,7 +36,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -60,7 +60,7 @@ namespace Vault.Application
             PlayerId,
             ModelId,
             RarityId,
-            DropId,
+            Drop,
             Level,
             BuyPrice,
             SellPrice,
@@ -71,7 +71,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -88,7 +88,7 @@ namespace Vault.Application
             PlayerId,
             ModelId,
             RarityId,
-            DropId,
+            Drop,
             Level,
             BuyPrice,
             SellPrice,
@@ -99,7 +99,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -119,7 +119,7 @@ namespace Vault.Application
             PlayerId,
             ModelId,
             RarityId,
-            DropId,
+            Drop,
             Level,
             BuyPrice,
             SellPrice,
@@ -130,7 +130,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -140,7 +140,7 @@ namespace Vault.Application
             PlayerId,
             ModelId,
             RarityId,
-            DropId,
+            Drop,
             Level,
             BuyPrice,
             SellPrice,
@@ -151,7 +151,7 @@ namespace Vault.Application
         Guid PlayerId,
         Guid ModelId,
         Guid RarityId,
-        Guid? DropId,
+        LootDropDto? Drop,
         byte? Level,
         int? BuyPrice,
         int? SellPrice,
@@ -163,7 +163,7 @@ namespace Vault.Application
             PlayerId,
             ModelId,
             RarityId,
-            DropId,
+            Drop,
             Level,
             BuyPrice,
             SellPrice,
@@ -173,4 +173,21 @@ namespace Vault.Application
         Guid SkillId,
         int Amount
         );
+
+    public sealed record LootDropDto(
+        bool Specified,
+        Guid? Mission,
+        Guid? Area,
+        Guid? Enemy
+    )
+    {
+        public LootDropDto(LootDrop drop)
+            : this(drop.Specified,
+                 drop.MissionId,
+                 drop.AreaId,
+                 drop.EnemyId)
+        {
+
+        }
+    }
 }

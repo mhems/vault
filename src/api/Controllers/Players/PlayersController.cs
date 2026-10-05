@@ -17,7 +17,6 @@ namespace Vault.Api
         internal const string GetPlayerShieldsRoute = "GetPlayerShields";
         internal const string GetPlayerClassModsRoute = "GetPlayerClassMods";
         internal const string GetPlayerRelicsRoute = "GetPlayerRelics";
-        internal const string GetPlayerSkillsRoute = "GetPlayerSkills";
 
         internal const string AddPlayerRoute = "AddPlayer";
         internal const string LevelUpPlayerRoute = "LevelUpPlayer";
@@ -141,20 +140,6 @@ namespace Vault.Api
             try
             {
                 var items = await api.GetPlayerRelicsAsync(id, ct);
-                return Ok(items);
-            }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("{id}/skills", Name = GetPlayerSkillsRoute)]
-        public async Task<ActionResult<IEnumerable<PlayerSkillDto>>> GetPlayerSkills(Guid id, CancellationToken ct)
-        {
-            try
-            {
-                var items = await api.GetPlayerSkillsAsync(id, ct);
                 return Ok(items);
             }
             catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)

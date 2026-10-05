@@ -24,21 +24,25 @@ namespace Vault.Infrastructure
 
             builder.HasOne(m => m.StartArea)
                 .WithMany()
+                .HasForeignKey(m => m.StartAreaId)
                 .IsRequired();
 
             builder.HasOne(m => m.EndArea)
                 .WithMany()
+                .HasForeignKey(m => m.EndAreaId)
                 .IsRequired();
 
             builder.HasOne(m => m.MissionGiver)
-                .WithMany();
+                .WithMany()
+                .HasForeignKey(m => m.MissionGiverId);
 
             builder.HasOne(m => m.MissionRewarder)
-                .WithMany();
+                .WithMany()
+                .HasForeignKey(m => m.MissionRewarderId);
 
             builder.HasOne(m => m.MissionItem)
-                .WithOne()
-                .HasForeignKey<Mission>(m => m.MissionItemId);
+                .WithMany()
+                .HasForeignKey(m => m.MissionItemId);
 
             builder.HasMany(m => m.Maps)
                 .WithMany();

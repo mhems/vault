@@ -136,6 +136,9 @@ namespace Vault.Infrastructure.Migrations
                     b.Property<bool>("ComesWithoutElement")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("ElementSets");
@@ -321,8 +324,7 @@ namespace Vault.Infrastructure.Migrations
 
                     b.HasIndex("MissionGiverId");
 
-                    b.HasIndex("MissionItemId")
-                        .IsUnique();
+                    b.HasIndex("MissionItemId");
 
                     b.HasIndex("MissionRewarderId");
 
@@ -493,6 +495,9 @@ namespace Vault.Infrastructure.Migrations
 
                     b.Property<bool>("ComesInWhite")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -1034,8 +1039,8 @@ namespace Vault.Infrastructure.Migrations
                         .HasForeignKey("MissionGiverId");
 
                     b.HasOne("Vault.Domain.EquipmentModel", "MissionItem")
-                        .WithOne()
-                        .HasForeignKey("Vault.Domain.Mission", "MissionItemId");
+                        .WithMany()
+                        .HasForeignKey("MissionItemId");
 
                     b.HasOne("Vault.Domain.NonPlayableCharacter", "MissionRewarder")
                         .WithMany()

@@ -15,8 +15,6 @@
         Task<List<ShieldItemDto>> GetPlayerShieldsAsync(Guid id, CancellationToken ct);
         Task<List<ClassModItemDto>> GetPlayerClassModsAsync(Guid id, CancellationToken ct);
         Task<List<RelicItemDto>> GetPlayerRelicsAsync(Guid id, CancellationToken ct);
-
-        Task<List<PlayerSkillDto>> GetPlayerSkillsAsync(Guid id, CancellationToken ct);
         #endregion
 
         #region commands

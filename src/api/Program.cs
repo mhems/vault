@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using Vault.Application;
 using Vault.Infrastructure;
 
@@ -8,8 +9,35 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddScoped<IAccountApi, AccountApi>();
 builder.Services.AddScoped<IPlayerApi, PlayerApi>();
+
 builder.Services.AddScoped<IPlayerClassApi, PlayerClassApi>();
 builder.Services.AddScoped<ISkillApi, SkillApi>();
+
+builder.Services.AddScoped<IRarityApi, RarityApi>();
+builder.Services.AddScoped<IRaritySetApi, RaritySetApi>();
+builder.Services.AddScoped<IElementSetApi, ElementSetApi>();
+
+builder.Services.AddScoped<IEquipmentModelApi, EquipmentModelApi>();
+
+builder.Services.AddScoped<IEquipmentItemApi, EquipmentItemApi>();
+builder.Services.AddScoped<IGunApi, GunApi>();
+builder.Services.AddScoped<IGrenadeApi, GrenadeApi>();
+builder.Services.AddScoped<IShieldApi, ShieldApi>();
+builder.Services.AddScoped<IRelicApi, RelicApi>();
+builder.Services.AddScoped<IClassModApi, ClassModApi>();
+
+builder.Services.AddScoped<ILootPoolApi, LootPoolApi>();
+
+builder.Services.AddScoped<IMissionApi, MissionApi>();
+
+builder.Services.AddScoped<ILocationApi, LocationApi>();
+builder.Services.AddScoped<IMapApi, MapApi>();
+builder.Services.AddScoped<IAreaApi, AreaApi>();
+
+builder.Services.AddScoped<ICharacterApi, CharacterApi>();
+builder.Services.AddScoped<IEnemyApi, EnemyApi>();
+builder.Services.AddScoped<IUniqueEnemyApi, UniqueEnemyApi>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -22,6 +50,14 @@ builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 

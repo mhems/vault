@@ -12,6 +12,7 @@ namespace Vault.Infrastructure
         public async Task<PlayerDto> GetPlayerAsync(Guid id, CancellationToken ct)
         {
             return await db.Players
+                .AsNoTracking()
                 .Where(player => player.Id == id)
                 .Select(player => new PlayerDto(
                     player.Id,
@@ -30,6 +31,7 @@ namespace Vault.Infrastructure
         public async Task<List<PlayerDto>> GetPlayersAsync(CancellationToken ct)
         {
             return await db.Players
+                .AsNoTracking()
                 .Select(player => new PlayerDto(
                     player.Id,
                     player.AccountId,
@@ -46,6 +48,7 @@ namespace Vault.Infrastructure
         public async Task<List<PlayerDto>> GetPlayersByClassAsync(string @class, CancellationToken ct)
         {
             return await db.Players
+                .AsNoTracking()
                 .Where(player => player.Class.Name == @class)
                 .Select(player => new PlayerDto(
                     player.Id,
@@ -66,13 +69,14 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.EquipmentItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new EquipmentItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
@@ -86,13 +90,14 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.GunItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new GunItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
@@ -124,13 +129,14 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.GrenadeItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new GrenadeItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
@@ -154,13 +160,14 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.ShieldItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new ShieldItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
@@ -187,13 +194,14 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.ClassModItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new ClassModItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
@@ -209,30 +217,19 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
 
             return await db.RelicItems
+                    .AsNoTracking()
                     .Where(i => i.PlayerId == id)
                     .Select(i => new RelicItemDto(
                         i.Id,
                         i.PlayerId,
                         i.ModelId,
                         i.RarityId,
-                        i.DropId,
+                        i.Drop != null ? new LootDropDto(i.Drop) : null,
                         i.Level,
                         (int?)i.BuyPrice,
                         (int?)i.SellPrice,
                         i.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()))
                     .ToListAsync(ct);
-        }
-
-        public async Task<List<PlayerSkillDto>> GetPlayerSkillsAsync(Guid id, CancellationToken ct)
-        {
-            var player = await db.Players.FirstOrDefaultAsync(p => p.Id == id, ct)
-                ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
-
-            return player.SkillTree
-                .Select(s => new PlayerSkillDto(
-                    s.SkillId,
-                    s.Amount))
-                .ToList();
         }
 
         #endregion

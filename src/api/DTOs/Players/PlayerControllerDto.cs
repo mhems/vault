@@ -15,7 +15,7 @@ namespace api.DTOs.Players
     );
 
     public sealed record PlayerSkillControllerDto(
-        ResourceLinkDto SkillId,
+        ResourceLinkDto Skill,
         int Amount
     );
 }

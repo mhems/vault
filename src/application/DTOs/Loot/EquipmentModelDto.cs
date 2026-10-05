@@ -19,6 +19,7 @@ namespace Vault.Application
 
     public sealed record RaritySetDto(
         Guid Id,
+        string? Description,
         bool ComesInWhite,
         bool ComesInGreen,
         bool ComesInBlue,
@@ -32,6 +33,7 @@ namespace Vault.Application
 
     public sealed record ElementSetDto(
         Guid Id,
+        string? Description,
         bool ComesWithoutElement,
         bool ComesInIncendiary,
         bool ComesInShock,

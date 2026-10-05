@@ -3,6 +3,8 @@ using Vault.Application;
 
 namespace Vault.Api
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class SkillsController(ISkillApi api, LinkGenerator links) : VaultController(links)
     {
         #region route names
@@ -15,7 +17,7 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetSkillsRoute)]
-        public async Task<ActionResult<IEnumerable<SkillDto>>> GetSKills(CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<SkillControllerDto>>> GetSKills(CancellationToken ct)
         {
             var skills = await api.GetSkillsAsync(ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
@@ -23,7 +25,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/class/{class}", Name = GetSkillsByClassRoute)]
-        public async Task<ActionResult<IEnumerable<SkillDto>>> GetSkillsByPlayerClass(string @class, CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<SkillControllerDto>>> GetSkillsByPlayerClass(string @class, CancellationToken ct)
         {
             var skills = await api.GetSkillsByPlayerClassAsync(@class, ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
@@ -31,7 +33,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetSkillRoute)]
-        public async Task<ActionResult<SkillDto>> GetSkill(Guid id, CancellationToken ct)
+        public async Task<ActionResult<SkillControllerDto>> GetSkill(Guid id, CancellationToken ct)
         {
             try
             {

@@ -62,6 +62,8 @@ namespace Vault.Infrastructure
         {
             builder.HasKey(e => e.Id);
 
+            builder.Property(e => e.Description);
+
             builder.Property(e => e.ComesInWhite)
                 .IsRequired();
 
@@ -96,6 +98,8 @@ namespace Vault.Infrastructure
         public void Configure(EntityTypeBuilder<ElementSet> builder)
         {
             builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Description);
 
             builder.Property(e => e.ComesWithoutElement)
                 .IsRequired();

@@ -6,10 +6,16 @@
         public string Name { get; set; }
         public Dlc Dlc { get; set; }
         public bool StoryMission { get; set; }
-        public Area StartArea { get; set; }
-        public Area EndArea { get; set; }
 
+        public Guid StartAreaId { get; set; }
+        public Area StartArea { get; set; } = null!;
+
+        public Guid EndAreaId { get; set; }
+        public Area EndArea { get; set; } = null!;
+
+        public Guid? MissionGiverId { get; set; }
         public NonPlayableCharacter? MissionGiver { get; set; }
+        public Guid? MissionRewarderId { get; set; }
         public NonPlayableCharacter? MissionRewarder { get; set; }
 
         public Guid? MissionItemId { get; set; }

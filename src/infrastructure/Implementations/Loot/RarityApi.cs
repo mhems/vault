@@ -10,6 +10,7 @@ namespace Vault.Infrastructure
         public async Task<List<RarityDto>> GetRaritiesAsync(CancellationToken ct)
         {
             return await db.Rarities
+              .AsNoTracking()
               .Select(r => new RarityDto(
                   r.Id,
                   r.Name,
@@ -21,6 +22,7 @@ namespace Vault.Infrastructure
         public async Task<RarityDto> GetRarityAsync(Guid id, CancellationToken ct)
         {
             return await db.Rarities
+                .AsNoTracking()
                 .Where(r => r.Id == id)
                 .Select(r => new RarityDto(
                   r.Id,

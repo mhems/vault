@@ -16,9 +16,4 @@
     <ProjectReference Include="..\infrastructure\infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Game\" />
-    <Folder Include="DTOs\Game\" />
-  </ItemGroup>
-
 </Project>

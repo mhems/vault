@@ -26,6 +26,7 @@ namespace Vault.Infrastructure
         #endregion
 
         #region game-related
+        public DbSet<Location> Locations { get; set; }
         public DbSet<Area> Areas { get; set; }
         public DbSet<Map> Maps { get; set; }
 

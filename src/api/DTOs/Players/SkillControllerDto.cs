@@ -3,8 +3,8 @@
 namespace Vault.Application
 {
     public sealed record SkillControllerDto(
-        ResourceLinkDto Id,
-        ResourceLinkDto PlayerClassId,
+        ResourceLinkDto Self,
+        ResourceLinkDto PlayerClass,
         string Name,
         int MaxPoints,
         string Tree,

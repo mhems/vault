@@ -12,6 +12,7 @@ namespace Vault.Infrastructure
         public async Task<List<AccountDto>> GetAccountsAsync(CancellationToken ct)
         {
             return await db.Accounts
+              .AsNoTracking()
               .Select(p => new AccountDto(
                   p.Id,
                   p.Name,
@@ -24,6 +25,8 @@ namespace Vault.Infrastructure
         public async Task<AccountDto> GetAccountAsync(Guid id, CancellationToken ct)
         {
             return await db.Accounts
+              .AsNoTracking()
+              .Where(r => r.Id == id)
               .Select(p => new AccountDto(
                   p.Id,
                   p.Name,
