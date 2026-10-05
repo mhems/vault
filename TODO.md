@@ -3,3 +3,5 @@
   * update conversions in VaultController
 * do the same for super classes whose instance is a derived type
 
+* seed tables
+* unit tests

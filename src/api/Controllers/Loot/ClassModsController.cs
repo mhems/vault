@@ -79,7 +79,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetClassModRoute)]
-        public async Task<ActionResult<List<ClassModControllerDto>>> GetClassMod(Guid id, CancellationToken ct)
+        public async Task<ActionResult<ClassModControllerDto>> GetClassMod(Guid id, CancellationToken ct)
         {
             try
             {

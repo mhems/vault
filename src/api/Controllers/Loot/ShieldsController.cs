@@ -90,7 +90,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetShieldRoute)]
-        public async Task<ActionResult<List<ShieldControllerDto>>> GetShield(Guid id, CancellationToken ct)
+        public async Task<ActionResult<ShieldControllerDto>> GetShield(Guid id, CancellationToken ct)
         {
             try
             {

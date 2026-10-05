@@ -60,7 +60,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetEquipmentModelRoute)]
-        public async Task<ActionResult<List<EquipmentModelControllerDto>>> GetEquipmentModel(Guid id, CancellationToken ct)
+        public async Task<ActionResult<EquipmentModelControllerDto>> GetEquipmentModel(Guid id, CancellationToken ct)
         {
             try
             {

@@ -10,11 +10,3524 @@
     }
   ],
   "paths": {
+    "/api/Characters": {
+      "get": {
+        "tags": [
+          "Characters"
+        ],
+        "operationId": "GetCharacters",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Characters/{id}": {
+      "get": {
+        "tags": [
+          "Characters"
+        ],
+        "operationId": "GetCharacter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NonPlayableCharacterControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Enemies": {
+      "get": {
+        "tags": [
+          "Enemies"
+        ],
+        "operationId": "GetEnemies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EnemyControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EnemyControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EnemyControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Enemies/{id}": {
+      "get": {
+        "tags": [
+          "Enemies"
+        ],
+        "operationId": "GetEnemy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnemyControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnemyControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnemyControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UniqueEnemies": {
+      "get": {
+        "tags": [
+          "UniqueEnemies"
+        ],
+        "operationId": "GetUniqueEnemies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UniqueEnemies/{id}": {
+      "get": {
+        "tags": [
+          "UniqueEnemies"
+        ],
+        "operationId": "GetUniqueEnemy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniqueEnemyControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Areas": {
+      "get": {
+        "tags": [
+          "Areas"
+        ],
+        "operationId": "GetAreas",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AreaControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AreaControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AreaControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Areas/{id}": {
+      "get": {
+        "tags": [
+          "Areas"
+        ],
+        "operationId": "GetArea",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AreaControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AreaControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AreaControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Locations": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "operationId": "GetLocations",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Locations/{id}": {
+      "get": {
+        "tags": [
+          "Locations"
+        ],
+        "operationId": "GetLocation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Maps": {
+      "get": {
+        "tags": [
+          "Maps"
+        ],
+        "operationId": "GetMaps",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Maps/{id}": {
+      "get": {
+        "tags": [
+          "Maps"
+        ],
+        "operationId": "GetMap",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MapControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LootPools": {
+      "get": {
+        "tags": [
+          "LootPools"
+        ],
+        "operationId": "GetLootPools",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LootPools/contains/{id}": {
+      "get": {
+        "tags": [
+          "LootPools"
+        ],
+        "operationId": "GetLootPoolsByMembership",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LootPoolControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LootPools/{id}": {
+      "get": {
+        "tags": [
+          "LootPools"
+        ],
+        "operationId": "GetLootPool",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LootPoolControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LootPoolControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LootPoolControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Missions": {
+      "get": {
+        "tags": [
+          "Missions"
+        ],
+        "operationId": "GetMissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MissionControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MissionControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MissionControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Missions/{id}": {
+      "get": {
+        "tags": [
+          "Missions"
+        ],
+        "operationId": "GetMission",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassMods",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/player/{id}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/model/{id}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/rarity/{id}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/loot_drop/{id}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByLootDrop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/class/{class}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByClass",
+        "parameters": [
+          {
+            "name": "class",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassModsByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ClassMods/{id}": {
+      "get": {
+        "tags": [
+          "ClassMods"
+        ],
+        "operationId": "GetClassMod",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClassModControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ElementSets": {
+      "get": {
+        "tags": [
+          "ElementSets"
+        ],
+        "operationId": "GetElementSetsRoute",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ElementSetControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ElementSetControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ElementSetControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ElementSets/{id}": {
+      "get": {
+        "tags": [
+          "ElementSets"
+        ],
+        "operationId": "GetElementSetRoute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ElementSetControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ElementSetControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ElementSetControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModels",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels/by/category/{category}": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModelsByCategory",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModelsByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels/by/rarity_set/{id}": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModelsByRaritySet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels/by/element_set/{id}": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModelsByElementSet",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/EquipmentModels/{id}": {
+      "get": {
+        "tags": [
+          "EquipmentModels"
+        ],
+        "operationId": "GetEquipmentModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EquipmentModelControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenades",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/player/{id}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/model/{id}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/rarity/{id}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/loot_drop/{id}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByLootDrop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/element/{element}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByElement",
+        "parameters": [
+          {
+            "name": "element",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/delivery/{delivery}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByDelivery",
+        "parameters": [
+          {
+            "name": "delivery",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenadesByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Grenades/{id}": {
+      "get": {
+        "tags": [
+          "Grenades"
+        ],
+        "operationId": "GetGrenade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GrenadeControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGuns",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/player/{id}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/model/{id}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/rarity/{id}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/loot_drop/{id}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByLootDrop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/element/{element}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByElement",
+        "parameters": [
+          {
+            "name": "element",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/type/{type}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByType",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGunsByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Guns/{id}": {
+      "get": {
+        "tags": [
+          "Guns"
+        ],
+        "operationId": "GetGun",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GunControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Rarities": {
+      "get": {
+        "tags": [
+          "Rarities"
+        ],
+        "operationId": "GetRarities",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RarityDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RarityDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RarityDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Rarities/{id}": {
+      "get": {
+        "tags": [
+          "Rarities"
+        ],
+        "operationId": "GetRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RarityDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RarityDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RarityDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RaritySets": {
+      "get": {
+        "tags": [
+          "RaritySets"
+        ],
+        "operationId": "GetRaritySetsRoute",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RaritySetControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RaritySetControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RaritySetControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/RaritySets/{id}": {
+      "get": {
+        "tags": [
+          "RaritySets"
+        ],
+        "operationId": "GetRaritySetRoute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RaritySetControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RaritySetControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RaritySetControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelics",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/player/{id}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/model/{id}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/rarity/{id}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/loot_drop/{id}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByLootDrop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/type/{type}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByType",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelicsByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Relics/{id}": {
+      "get": {
+        "tags": [
+          "Relics"
+        ],
+        "operationId": "GetRelic",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RelicControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShields",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/player/{id}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByPlayer",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/model/{id}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByModel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/rarity/{id}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByRarity",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/loot_drop/{id}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByLootDrop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/element/{element}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByElement",
+        "parameters": [
+          {
+            "name": "element",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/type/{type}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByType",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/by/manufacturer/{manufacturer}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShieldsByManufacturer",
+        "parameters": [
+          {
+            "name": "manufacturer",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Shields/{id}": {
+      "get": {
+        "tags": [
+          "Shields"
+        ],
+        "operationId": "GetShield",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ShieldControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Accounts": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "GetAccounts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Accounts/{id}": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "GetAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Accounts/add": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "AddAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAccountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAccountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAccountDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PlayerClasses": {
+      "get": {
+        "tags": [
+          "PlayerClasses"
+        ],
+        "operationId": "GetPlayerClasses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerClassDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerClassDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlayerClassDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/PlayerClasses/{id}": {
+      "get": {
+        "tags": [
+          "PlayerClasses"
+        ],
+        "operationId": "GetPlayerClass",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerClassDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerClassDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerClassDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Players": {
       "get": {
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayers",
         "responses": {
           "200": {
             "description": "OK",
@@ -48,11 +3561,12 @@
         }
       }
     },
-    "/api/Players/by/{class}": {
+    "/api/Players/by/class/{class}": {
       "get": {
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayersByClass",
         "parameters": [
           {
             "name": "class",
@@ -101,6 +3615,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayer",
         "parameters": [
           {
             "name": "id",
@@ -141,6 +3656,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerItems",
         "parameters": [
           {
             "name": "id",
@@ -190,6 +3706,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerGuns",
         "parameters": [
           {
             "name": "id",
@@ -239,6 +3756,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerGrenades",
         "parameters": [
           {
             "name": "id",
@@ -288,6 +3806,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerShields",
         "parameters": [
           {
             "name": "id",
@@ -337,6 +3856,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerClassMods",
         "parameters": [
           {
             "name": "id",
@@ -386,6 +3906,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "GetPlayerRelics",
         "parameters": [
           {
             "name": "id",
@@ -435,6 +3956,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddPlayer",
         "requestBody": {
           "content": {
             "application/json": {
@@ -487,6 +4009,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "LevelUpPlayer",
         "parameters": [
           {
             "name": "id",
@@ -510,6 +4033,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "SetPlayerLevel",
         "parameters": [
           {
             "name": "id",
@@ -546,6 +4070,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddGunToPlayer",
         "parameters": [
           {
             "name": "id",
@@ -589,6 +4114,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddGrenadeToPlayer",
         "parameters": [
           {
             "name": "id",
@@ -632,6 +4158,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddShieldToPlayer",
         "parameters": [
           {
             "name": "id",
@@ -675,6 +4202,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddClassModToPlayer",
         "parameters": [
           {
             "name": "id",
@@ -718,6 +4246,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "AddRelicToPlayer",
         "parameters": [
           {
             "name": "id",
@@ -761,6 +4290,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "PlayerInvestInSkill",
         "parameters": [
           {
             "name": "id",
@@ -804,6 +4334,7 @@
         "tags": [
           "Players"
         ],
+        "operationId": "ClearPlayerSkills",
         "parameters": [
           {
             "name": "id",
@@ -821,10 +4352,199 @@
           }
         }
       }
+    },
+    "/api/Skills": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "operationId": "GetSkills",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Skills/by/class/{class}": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "operationId": "GetSkillsByClass",
+        "parameters": [
+          {
+            "name": "class",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillControllerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Skills/{id}": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "operationId": "GetSkill",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillControllerDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillControllerDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillControllerDto"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "AccountControllerDto": {
+        "required": [
+          "self",
+          "name",
+          "badassRank",
+          "players",
+          "stashedEquipment"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "badassRank": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "players": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "stashedEquipment": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "AddAccountDto": {
+        "required": [
+          "name",
+          "badassRank"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "badassRank": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          }
+        }
+      },
       "AddPlayerDto": {
         "required": [
           "playerClassId",
@@ -851,7 +4571,7 @@
               "integer",
               "string"
             ],
-            "format": "uint8",
+            "format": "int32",
             "default": 1
           },
           "experience": {
@@ -874,37 +4594,93 @@
           }
         }
       },
-      "ClassModItemDto": {
+      "AreaControllerDto": {
+        "required": [
+          "hasFastTravel",
+          "hasUTurn",
+          "map",
+          "self",
+          "name",
+          "dlc",
+          "characters"
+        ],
+        "type": "object",
+        "properties": {
+          "hasFastTravel": {
+            "type": "boolean"
+          },
+          "hasUTurn": {
+            "type": [
+              "null",
+              "boolean"
+            ]
+          },
+          "map": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "ClassModControllerDto": {
         "required": [
           "prefix",
-          "id",
-          "playerId",
-          "modelId",
-          "rarityId",
+          "boosts",
+          "self",
+          "player",
+          "model",
+          "rarity",
+          "drop",
           "level",
           "buyPrice",
-          "sellPrice"
+          "sellPrice",
+          "effects"
         ],
         "type": "object",
         "properties": {
           "prefix": {
             "type": "string"
           },
-          "id": {
-            "type": "string",
-            "format": "uuid"
+          "boosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillBoostControllerDto"
+            }
           },
-          "playerId": {
-            "type": "string",
-            "format": "uuid"
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
           },
-          "modelId": {
-            "type": "string",
-            "format": "uuid"
+          "player": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
           },
-          "rarityId": {
-            "type": "string",
-            "format": "uuid"
+          "model": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "rarity": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropControllerDto"
+              }
+            ]
           },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -932,6 +4708,129 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "ClassModItemDto": {
+        "required": [
+          "prefix",
+          "boosts",
+          "id",
+          "playerId",
+          "modelId",
+          "rarityId",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "prefix": {
+            "type": "string"
+          },
+          "boosts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SkillBoostDto"
+            }
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rarityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "uint8"
+          },
+          "buyPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "sellPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "Dlc": {
+        "type": "integer"
+      },
+      "EffectDto": {
+        "required": [
+          "description",
+          "amount",
+          "units"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "units": {
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
@@ -987,15 +4886,162 @@
           }
         }
       },
+      "ElementSetControllerDto": {
+        "required": [
+          "self",
+          "comesWithoutElement",
+          "comesInIncendiary",
+          "comesInShock",
+          "comesInCorrosive",
+          "comesInSlag",
+          "comesInExplosive"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "comesWithoutElement": {
+            "type": "boolean"
+          },
+          "comesInIncendiary": {
+            "type": "boolean"
+          },
+          "comesInShock": {
+            "type": "boolean"
+          },
+          "comesInCorrosive": {
+            "type": "boolean"
+          },
+          "comesInSlag": {
+            "type": "boolean"
+          },
+          "comesInExplosive": {
+            "type": "boolean"
+          }
+        }
+      },
+      "EnemyControllerDto": {
+        "required": [
+          "prefix",
+          "hasShield",
+          "unique",
+          "elementalWeaknesses",
+          "elementalResistances",
+          "elementalImmunities",
+          "lootPool",
+          "self",
+          "name",
+          "species",
+          "subSpecies",
+          "dlc",
+          "level",
+          "affiliation",
+          "locations"
+        ],
+        "type": "object",
+        "properties": {
+          "prefix": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "hasShield": {
+            "type": "boolean"
+          },
+          "unique": {
+            "type": "boolean"
+          },
+          "elementalWeaknesses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "elementalResistances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "elementalImmunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "lootPool": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "species": {
+            "type": "string"
+          },
+          "subSpecies": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "affiliation": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "enemy": {
+            "type": "boolean"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "Equipment": {
+        "type": "integer"
+      },
       "EquipmentItemDto": {
         "required": [
           "id",
           "playerId",
           "modelId",
           "rarityId",
+          "drop",
           "level",
           "buyPrice",
-          "sellPrice"
+          "sellPrice",
+          "effects"
         ],
         "type": "object",
         "properties": {
@@ -1014,6 +5060,16 @@
           "rarityId": {
             "type": "string",
             "format": "uuid"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
           },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -1041,6 +5097,213 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "EquipmentModelControllerDto": {
+        "required": [
+          "self",
+          "name",
+          "category",
+          "subCategory",
+          "manufacturer",
+          "dlc",
+          "unique",
+          "flavorText",
+          "instances",
+          "lootPools",
+          "raritySet",
+          "elementSet"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "category": {
+            "$ref": "#/components/schemas/Equipment"
+          },
+          "subCategory": {
+            "type": "string"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/Manufacturer"
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "unique": {
+            "type": "boolean"
+          },
+          "flavorText": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "lootPools": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "raritySet": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "elementSet": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          }
+        }
+      },
+      "GrenadeControllerDto": {
+        "required": [
+          "damage",
+          "blastRadius",
+          "fuse",
+          "delivery",
+          "sticky",
+          "childCount",
+          "elementalDamage",
+          "self",
+          "player",
+          "model",
+          "rarity",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "damage": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "blastRadius": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "fuse": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/GrenadeDelivery"
+          },
+          "sticky": {
+            "type": "boolean"
+          },
+          "childCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "elementalDamage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ElementalDamageDto"
+              }
+            ]
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "player": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "rarity": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropControllerDto"
+              }
+            ]
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "uint8"
+          },
+          "buyPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "sellPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
           }
         }
       },
@@ -1060,9 +5323,11 @@
           "playerId",
           "modelId",
           "rarityId",
+          "drop",
           "level",
           "buyPrice",
-          "sellPrice"
+          "sellPrice",
+          "effects"
         ],
         "type": "object",
         "properties": {
@@ -1131,6 +5396,16 @@
             "type": "string",
             "format": "uuid"
           },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
+          },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
             "type": [
@@ -1157,10 +5432,16 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
           }
         }
       },
-      "GunItemDto": {
+      "GunControllerDto": {
         "required": [
           "damage",
           "accuracy",
@@ -1171,13 +5452,20 @@
           "elementalDamage",
           "prefix",
           "missionItem",
-          "id",
-          "playerId",
-          "modelId",
-          "rarityId",
+          "barrel",
+          "stock",
+          "grip",
+          "scope",
+          "body",
+          "self",
+          "player",
+          "model",
+          "rarity",
+          "drop",
           "level",
           "buyPrice",
-          "sellPrice"
+          "sellPrice",
+          "effects"
         ],
         "type": "object",
         "properties": {
@@ -1249,21 +5537,77 @@
           "missionItem": {
             "type": "boolean"
           },
-          "id": {
-            "type": "string",
-            "format": "uuid"
+          "barrel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "playerId": {
-            "type": "string",
-            "format": "uuid"
+          "stock": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "modelId": {
-            "type": "string",
-            "format": "uuid"
+          "grip": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "rarityId": {
-            "type": "string",
-            "format": "uuid"
+          "scope": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "body": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "player": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "rarity": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropControllerDto"
+              }
+            ]
           },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -1291,18 +5635,558 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
           }
         }
       },
-      "PlayerDto": {
+      "GunItemDto": {
+        "required": [
+          "damage",
+          "accuracy",
+          "fireRate",
+          "reloadSpeed",
+          "magazineSize",
+          "pelletCount",
+          "elementalDamage",
+          "prefix",
+          "missionItem",
+          "barrel",
+          "stock",
+          "grip",
+          "scope",
+          "body",
+          "id",
+          "playerId",
+          "modelId",
+          "rarityId",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "damage": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "accuracy": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "fireRate": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "reloadSpeed": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "magazineSize": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "pelletCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "elementalDamage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ElementalDamageChanceDto"
+              }
+            ]
+          },
+          "prefix": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "missionItem": {
+            "type": "boolean"
+          },
+          "barrel": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "stock": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "grip": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "scope": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "body": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rarityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "uint8"
+          },
+          "buyPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "sellPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "LocationControllerDto": {
+        "required": [
+          "self",
+          "name",
+          "dlc",
+          "characters"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "LootDropControllerDto": {
+        "required": [
+          "specified",
+          "mission",
+          "area",
+          "enemy"
+        ],
+        "type": "object",
+        "properties": {
+          "specified": {
+            "type": "boolean"
+          },
+          "mission": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "area": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "enemy": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          }
+        }
+      },
+      "LootDropDto": {
+        "type": "object",
+        "properties": {
+          "specified": {
+            "type": "boolean"
+          },
+          "mission": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "area": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          },
+          "enemy": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "format": "uuid"
+          }
+        }
+      },
+      "LootPoolControllerDto": {
+        "required": [
+          "self",
+          "models"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "models": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "Manufacturer": {
+        "type": "integer"
+      },
+      "MapControllerDto": {
+        "required": [
+          "numberOfFastTravels",
+          "areas",
+          "inConnections",
+          "outConnections",
+          "self",
+          "name",
+          "dlc",
+          "characters"
+        ],
+        "type": "object",
+        "properties": {
+          "numberOfFastTravels": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "areas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "inConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "outConnections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "MissionControllerDto": {
+        "required": [
+          "self",
+          "dlc",
+          "storyMission",
+          "startArea",
+          "endArea",
+          "missionGiver",
+          "missionRewarder",
+          "missionItem",
+          "lootPool",
+          "maps",
+          "predecessors",
+          "successors"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "storyMission": {
+            "type": "boolean"
+          },
+          "startArea": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "endArea": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "missionGiver": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "missionRewarder": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "missionItem": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "lootPool": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "maps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "predecessors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          },
+          "successors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "NonPlayableCharacterControllerDto": {
+        "required": [
+          "self",
+          "name",
+          "species",
+          "subSpecies",
+          "dlc",
+          "level",
+          "affiliation",
+          "enemy",
+          "locations"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "species": {
+            "type": "string"
+          },
+          "subSpecies": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "affiliation": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "enemy": {
+            "type": "boolean"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
+          }
+        }
+      },
+      "PlayerClassDto": {
         "required": [
           "id",
-          "playerClassId",
-          "accountId",
+          "dlc",
           "name",
-          "level",
-          "experience",
-          "money"
+          "skills",
+          "players"
         ],
         "type": "object",
         "properties": {
@@ -1310,11 +6194,51 @@
             "type": "string",
             "format": "uuid"
           },
-          "playerClassId": {
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "name": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "players": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      },
+      "PlayerDto": {
+        "required": [
+          "id",
+          "accountId",
+          "playerClassId",
+          "name",
+          "level",
+          "experience",
+          "money",
+          "items",
+          "skillTree"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "string",
             "format": "uuid"
           },
           "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerClassId": {
             "type": "string",
             "format": "uuid"
           },
@@ -1327,7 +6251,7 @@
               "integer",
               "string"
             ],
-            "format": "uint8"
+            "format": "int32"
           },
           "experience": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -1346,6 +6270,19 @@
               "string"
             ],
             "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "skillTree": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlayerSkillDto"
+            }
           }
         }
       },
@@ -1370,33 +6307,106 @@
           }
         }
       },
-      "RelicItemDto": {
-        "required": [
-          "id",
-          "playerId",
-          "modelId",
-          "rarityId",
-          "level",
-          "buyPrice",
-          "sellPrice"
-        ],
+      "RarityDto": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid"
           },
-          "playerId": {
-            "type": "string",
-            "format": "uuid"
+          "name": {
+            "type": "string"
           },
-          "modelId": {
-            "type": "string",
-            "format": "uuid"
+          "colorName": {
+            "type": "string"
           },
-          "rarityId": {
-            "type": "string",
-            "format": "uuid"
+          "rgbaColorValue": {
+            "type": "string"
+          }
+        }
+      },
+      "RaritySetControllerDto": {
+        "required": [
+          "self",
+          "comesInWhite",
+          "comesInGreen",
+          "comesInBlue",
+          "comesInPurple",
+          "comesInLegendary",
+          "comesInEffervescent",
+          "comesInPearlescent",
+          "comesInSeraph",
+          "comesInETech"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "comesInWhite": {
+            "type": "boolean"
+          },
+          "comesInGreen": {
+            "type": "boolean"
+          },
+          "comesInBlue": {
+            "type": "boolean"
+          },
+          "comesInPurple": {
+            "type": "boolean"
+          },
+          "comesInLegendary": {
+            "type": "boolean"
+          },
+          "comesInEffervescent": {
+            "type": "boolean"
+          },
+          "comesInPearlescent": {
+            "type": "boolean"
+          },
+          "comesInSeraph": {
+            "type": "boolean"
+          },
+          "comesInETech": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RelicControllerDto": {
+        "required": [
+          "self",
+          "player",
+          "model",
+          "rarity",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "player": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "rarity": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropControllerDto"
+              }
+            ]
           },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -1424,10 +6434,107 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
           }
         }
       },
-      "ShieldItemDto": {
+      "RelicItemDto": {
+        "required": [
+          "id",
+          "playerId",
+          "modelId",
+          "rarityId",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rarityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "uint8"
+          },
+          "buyPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "sellPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "ResourceLinkDto": {
+        "required": [
+          "id",
+          "url"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "ShieldControllerDto": {
         "required": [
           "capacity",
           "rechargeRate",
@@ -1436,13 +6543,18 @@
           "elementalDamage",
           "elementalImmunity",
           "elementalReduction",
-          "id",
-          "playerId",
-          "modelId",
-          "rarityId",
+          "battery",
+          "capacitor",
+          "body",
+          "self",
+          "player",
+          "model",
+          "rarity",
+          "drop",
           "level",
           "buyPrice",
-          "sellPrice"
+          "sellPrice",
+          "effects"
         ],
         "type": "object",
         "properties": {
@@ -1506,21 +6618,57 @@
               }
             ]
           },
-          "id": {
-            "type": "string",
-            "format": "uuid"
+          "battery": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "playerId": {
-            "type": "string",
-            "format": "uuid"
+          "capacitor": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "modelId": {
-            "type": "string",
-            "format": "uuid"
+          "body": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
           },
-          "rarityId": {
-            "type": "string",
-            "format": "uuid"
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "player": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "model": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "rarity": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropControllerDto"
+              }
+            ]
           },
           "level": {
             "pattern": "^-?(?:0|[1-9]\\d*)$",
@@ -1548,6 +6696,399 @@
               "string"
             ],
             "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "ShieldItemDto": {
+        "required": [
+          "capacity",
+          "rechargeRate",
+          "rechargeDelay",
+          "prefix",
+          "elementalDamage",
+          "elementalImmunity",
+          "elementalReduction",
+          "battery",
+          "capacitor",
+          "body",
+          "id",
+          "playerId",
+          "modelId",
+          "rarityId",
+          "drop",
+          "level",
+          "buyPrice",
+          "sellPrice",
+          "effects"
+        ],
+        "type": "object",
+        "properties": {
+          "capacity": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "rechargeRate": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "rechargeDelay": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "prefix": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "elementalDamage": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ElementalDamageDto"
+              }
+            ]
+          },
+          "elementalImmunity": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Element"
+              }
+            ]
+          },
+          "elementalReduction": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Element"
+              }
+            ]
+          },
+          "battery": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "capacitor": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "body": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/Manufacturer"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "modelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rarityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "drop": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/LootDropDto"
+              }
+            ]
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "uint8"
+          },
+          "buyPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "sellPrice": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "effects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EffectDto"
+            }
+          }
+        }
+      },
+      "SkillBoostControllerDto": {
+        "required": [
+          "skill",
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "skill": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
+      "SkillBoostDto": {
+        "required": [
+          "skillId",
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "skillId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          }
+        }
+      },
+      "SkillControllerDto": {
+        "required": [
+          "self",
+          "playerClass",
+          "name",
+          "maxPoints",
+          "tree",
+          "treeRow",
+          "treeColumn",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "playerClass": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": "string"
+          },
+          "maxPoints": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "tree": {
+            "type": "string"
+          },
+          "treeRow": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "treeColumn": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "description": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "UniqueEnemyControllerDto": {
+        "required": [
+          "boss",
+          "raidBoss",
+          "prefix",
+          "hasShield",
+          "elementalWeaknesses",
+          "elementalResistances",
+          "elementalImmunities",
+          "lootPool",
+          "self",
+          "name",
+          "species",
+          "subSpecies",
+          "dlc",
+          "level",
+          "affiliation",
+          "locations"
+        ],
+        "type": "object",
+        "properties": {
+          "boss": {
+            "type": "boolean"
+          },
+          "raidBoss": {
+            "type": "boolean"
+          },
+          "prefix": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "hasShield": {
+            "type": "boolean"
+          },
+          "unique": {
+            "type": "boolean"
+          },
+          "elementalWeaknesses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "elementalResistances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "elementalImmunities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Element"
+            }
+          },
+          "lootPool": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/ResourceLinkDto"
+              }
+            ]
+          },
+          "self": {
+            "$ref": "#/components/schemas/ResourceLinkDto"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "species": {
+            "type": "string"
+          },
+          "subSpecies": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "dlc": {
+            "$ref": "#/components/schemas/Dlc"
+          },
+          "level": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "affiliation": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "enemy": {
+            "type": "boolean"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceLinkDto"
+            }
           }
         }
       }
@@ -1555,7 +7096,67 @@
   },
   "tags": [
     {
+      "name": "Characters"
+    },
+    {
+      "name": "Enemies"
+    },
+    {
+      "name": "UniqueEnemies"
+    },
+    {
+      "name": "Areas"
+    },
+    {
+      "name": "Locations"
+    },
+    {
+      "name": "Maps"
+    },
+    {
+      "name": "LootPools"
+    },
+    {
+      "name": "Missions"
+    },
+    {
+      "name": "ClassMods"
+    },
+    {
+      "name": "ElementSets"
+    },
+    {
+      "name": "EquipmentModels"
+    },
+    {
+      "name": "Grenades"
+    },
+    {
+      "name": "Guns"
+    },
+    {
+      "name": "Rarities"
+    },
+    {
+      "name": "RaritySets"
+    },
+    {
+      "name": "Relics"
+    },
+    {
+      "name": "Shields"
+    },
+    {
+      "name": "Accounts"
+    },
+    {
+      "name": "PlayerClasses"
+    },
+    {
       "name": "Players"
+    },
+    {
+      "name": "Skills"
     }
   ]
 }

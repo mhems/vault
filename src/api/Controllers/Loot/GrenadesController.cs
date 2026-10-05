@@ -90,7 +90,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetGrenadeRoute)]
-        public async Task<ActionResult<List<GrenadeControllerDto>>> GetGrenade(Guid id, CancellationToken ct)
+        public async Task<ActionResult<GrenadeControllerDto>> GetGrenade(Guid id, CancellationToken ct)
         {
             try
             {

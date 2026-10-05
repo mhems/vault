@@ -80,7 +80,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetRelicRoute)]
-        public async Task<ActionResult<List<RelicControllerDto>>> GetRelic(Guid id, CancellationToken ct)
+        public async Task<ActionResult<RelicControllerDto>> GetRelic(Guid id, CancellationToken ct)
         {
             try
             {

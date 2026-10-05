@@ -89,7 +89,7 @@ namespace Vault.Api
 
 
         [HttpGet("{id}", Name = GetGunRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGun(Guid id, CancellationToken ct)
+        public async Task<ActionResult<GunControllerDto>> GetGun(Guid id, CancellationToken ct)
         {
             try
             {
