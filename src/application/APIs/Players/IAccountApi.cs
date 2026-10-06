@@ -10,7 +10,7 @@
         #endregion
 
         #region commands
-        Task<Guid> AddAccountAsync(AddAccountDto account, CancellationToken ct);
+        Task<Guid> AddAccountAsync(AddAccountRequest account, CancellationToken ct);
         #endregion
     }
 }

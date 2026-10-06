@@ -3,7 +3,7 @@ using Vault.Domain;
 
 namespace Vault.Application
 {
-    public sealed record MissionControllerDto(
+    public sealed record MissionResponse(
         ResourceLinkDto Self,
         Dlc DLC,
         bool StoryMission,

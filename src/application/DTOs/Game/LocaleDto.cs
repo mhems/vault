@@ -1,4 +1,5 @@
-﻿using Vault.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Domain;
 
 namespace Vault.Application
 {
@@ -14,6 +15,7 @@ namespace Vault.Application
         string Name,
         Dlc DLC,
         List<Guid> Characters,
+        [Range(0, 6)]
         int NumberOfFastTravels,
         List<Guid> Areas,
         List<Guid> InConnections,

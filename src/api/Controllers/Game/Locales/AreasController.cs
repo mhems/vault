@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IAreaApi api = api;
 
         [HttpGet(Name = GetAreasRoute)]
-        public async Task<ActionResult<List<AreaControllerDto>>> GetAreas(CancellationToken ct)
+        public async Task<ActionResult<List<AreaResponse>>> GetAreas(CancellationToken ct)
         {
             var areas = await api.GetAreasAsync(ct);
             var linkedAreas = areas.Select(ConvertArea).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetAreaRoute)]
-        public async Task<ActionResult<AreaControllerDto>> GetArea(Guid id, CancellationToken ct)
+        public async Task<ActionResult<AreaResponse>> GetArea(Guid id, CancellationToken ct)
         {
             var area = await api.GetAreaAsync(id, ct);
             var linkedArea = ConvertArea(area);

@@ -2,7 +2,7 @@
 
 namespace Vault.Api
 {
-    public sealed record EquipmentModelControllerDto(
+    public sealed record EquipmentModelResponse(
         ResourceLinkDto Self,
         string? Name,
         Equipment Category,
@@ -17,7 +17,7 @@ namespace Vault.Api
         ResourceLinkDto? ElementSet
         );
 
-    public sealed record RaritySetControllerDto(
+    public sealed record RaritySetResponse(
         ResourceLinkDto Self,
         bool ComesInWhite,
         bool ComesInGreen,
@@ -30,7 +30,7 @@ namespace Vault.Api
         bool ComesInETech
         );
 
-    public sealed record ElementSetControllerDto(
+    public sealed record ElementSetResponse(
         ResourceLinkDto Self,
         bool ComesWithoutElement,
         bool ComesInIncendiary,

@@ -1,4 +1,5 @@
-﻿using Vault.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Domain;
 
 namespace Vault.Application
 {
@@ -8,8 +9,11 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects
         );
@@ -22,12 +26,15 @@ namespace Vault.Application
 
     public sealed record ElementalDamageDto(
         Element Element,
+        [Range(0, double.MaxValue)]
         double DamagePerSecond
         );
 
     public sealed record ElementalDamageChanceDto(
         Element Element,
+        [Range(0, double.MaxValue)]
         double DamagePerSecond,
+        [Range(1, 100)]
         double Chance
         );
 
@@ -37,15 +44,24 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Damage,
+        [Range(1, 100)]
         double Accuracy,
+        [Range(0, double.MaxValue)]
         double FireRate,
+        [Range(0, double.MaxValue)]
         double ReloadSpeed,
+        [Range(1, int.MaxValue)]
         int MagazineSize,
+        [Range(1, int.MaxValue)]
         int? PelletCount,
         ElementalDamageChanceDto? ElementalDamage,
         string? Prefix,
@@ -72,15 +88,22 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Damage,
+        [Range(0, int.MaxValue)]
         int BlastRadius,
+        [Range(0, double.MaxValue)]
         double Fuse,
         GrenadeDelivery Delivery,
         bool Sticky,
+        [Range(0, int.MaxValue)]
         int? ChildCount,
         ElementalDamageDto? ElementalDamage
         )
@@ -100,12 +123,18 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Capacity,
+        [Range(0, int.MaxValue)]
         int RechargeRate,
+        [Range(0, double.MaxValue)]
         double RechargeDelay,
         string? Prefix,
         ElementalDamageDto? ElementalDamage,
@@ -131,8 +160,11 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects
         )
@@ -152,8 +184,11 @@ namespace Vault.Application
         Guid ModelId,
         Guid RarityId,
         LootDropDto? Drop,
-        byte? Level,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
         string Prefix,
@@ -171,6 +206,7 @@ namespace Vault.Application
 
     public sealed record SkillBoostDto(
         Guid SkillId,
+        [Range(1, 6)]
         int Amount
         );
 

@@ -58,7 +58,11 @@ namespace Vault.Api
                 var linkedPlayer = ConvertPlayer(player);
                 return Ok(linkedPlayer);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -72,7 +76,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerItemsAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -86,7 +94,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerGunsAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -100,7 +112,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerGrenadesAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -114,7 +130,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerShieldsAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -128,7 +148,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerClassModsAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -142,7 +166,11 @@ namespace Vault.Api
                 var items = await api.GetPlayerRelicsAsync(id, ct);
                 return Ok(items);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -150,15 +178,22 @@ namespace Vault.Api
         #endregion
 
         #region commands
-        [HttpPost("add", Name = AddPlayerRoute)]
-        public async Task<ActionResult<Guid>> AddPlayer(AddPlayerDto player, CancellationToken ct)
+        [HttpPost(Name = AddPlayerRoute)]
+        public async Task<ActionResult<Guid>> AddPlayer(AddPlayerRequest player, CancellationToken ct)
         {
             try
             {
                 var id = await api.AddPlayerAsync(player, ct);
-                return Ok(id);
+                return CreatedAtRoute(
+                    GetPlayerRoute,
+                    new { id },
+                    new { id });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -170,9 +205,13 @@ namespace Vault.Api
             try
             {
                 await api.LevelUpPlayerAsync(id, ct);
-                return Ok();
+                return NoContent();
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -184,79 +223,118 @@ namespace Vault.Api
             try
             {
                 await api.SetPlayerLevelAsync(id, level, ct);
-                return Ok();
+                return NoContent();
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        [HttpPost("{id}/guns/add", Name = AddGunToPlayerRoute)]
+        [HttpPost("{id}/guns", Name = AddGunToPlayerRoute)]
         public async Task<ActionResult> AddGunToPlayer(Guid id, GunItemDto item, CancellationToken ct)
         {
             try
             {
-                await api.AddGunToPlayerAsync(id, item, ct);
-                return Ok();
+                var createdId = await api.AddGunToPlayerAsync(id, item, ct);
+                return CreatedAtRoute(
+                    GunsController.GetGunRoute,
+                    new { createdId },
+                    new { createdId });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        [HttpPost("{id}/grenades/add", Name = AddGrenadeToPlayerRoute)]
+        [HttpPost("{id}/grenades", Name = AddGrenadeToPlayerRoute)]
         public async Task<ActionResult> AddGrenadeToPlayer(Guid id, GrenadeItemDto item, CancellationToken ct)
         {
             try
             {
-                await api.AddGrenadeToPlayerAsync(id, item, ct);
-                return Ok();
+                var createdId = await api.AddGrenadeToPlayerAsync(id, item, ct);
+                return CreatedAtRoute(
+                    GrenadesController.GetGrenadeRoute,
+                    new { createdId },
+                    new { createdId });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        [HttpPost("{id}/shields/add", Name = AddShieldToPlayerRoute)]
+        [HttpPost("{id}/shields", Name = AddShieldToPlayerRoute)]
         public async Task<ActionResult> AddShieldToPlayer(Guid id, ShieldItemDto item, CancellationToken ct)
         {
             try
             {
-                await api.AddShieldToPlayerAsync(id, item, ct);
-                return Ok();
+                var createdId = await api.AddShieldToPlayerAsync(id, item, ct);
+                return CreatedAtRoute(
+                    ShieldsController.GetShieldRoute,
+                    new { createdId },
+                    new { createdId });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        [HttpPost("{id}/class_mods/add", Name = AddClassModToPlayerRoute)]
+        [HttpPost("{id}/class_mods", Name = AddClassModToPlayerRoute)]
         public async Task<ActionResult> AddGunToPlayer(Guid id, ClassModItemDto item, CancellationToken ct)
         {
             try
             {
-                await api.AddClassModToPlayerAsync(id, item, ct);
-                return Ok();
+                var createdId = await api.AddClassModToPlayerAsync(id, item, ct);
+                return CreatedAtRoute(
+                    ClassModsController.GetClassModRoute,
+                    new { createdId },
+                    new { createdId });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
-        [HttpPost("{id}/relics/add", Name = AddRelicToPlayerRoute)]
+        [HttpPost("{id}/relics", Name = AddRelicToPlayerRoute)]
         public async Task<ActionResult> AddRelicToPlayer(Guid id, RelicItemDto item, CancellationToken ct)
         {
             try
             {
-                await api.AddRelicToPlayerAsync(id, item, ct);
-                return Ok();
+                var createdId = await api.AddRelicToPlayerAsync(id, item, ct);
+                return CreatedAtRoute(
+                    RelicsController.GetRelicRoute,
+                    new { createdId },
+                    new { createdId });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -268,9 +346,13 @@ namespace Vault.Api
             try
             {
                 await api.PlayerInvestInSkillAsync(id, investment, ct);
-                return Ok();
+                return NoContent();
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -282,9 +364,13 @@ namespace Vault.Api
             try
             {
                 await api.ClearPlayerSkillTreeAsync(id, ct);
-                return Ok();
+                return NoContent();
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

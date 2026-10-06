@@ -21,7 +21,7 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetAccountsRoute)]
-        public async Task<ActionResult<IEnumerable<AccountControllerDto>>> GetAccounts(CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<AccountResponse>>> GetAccounts(CancellationToken ct)
         {
             var accounts = await api.GetAccountsAsync(ct);
             var linkedAccounts = accounts.Select(ConvertAccount).ToList();
@@ -29,7 +29,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetAccountRoute)]
-        public async Task<ActionResult<AccountControllerDto>> GetAccount(Guid id, CancellationToken ct)
+        public async Task<ActionResult<AccountResponse>> GetAccount(Guid id, CancellationToken ct)
         {
             try
             {
@@ -37,7 +37,11 @@ namespace Vault.Api
                 var linkedAccount = ConvertAccount(account);
                 return Ok(linkedAccount);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -45,15 +49,22 @@ namespace Vault.Api
         #endregion
 
         #region commands
-        [HttpPost("add", Name = AddAccountRoute)]
-        public async Task<ActionResult<Guid>> AddAccount(AddAccountDto account, CancellationToken ct)
+        [HttpPost(Name = AddAccountRoute)]
+        public async Task<ActionResult<Guid>> AddAccount(AddAccountRequest account, CancellationToken ct)
         {
             try
             {
                 var id = await api.AddAccountAsync(account, ct);
-                return Ok(id);
+                return CreatedAtRoute(
+                    GetAccountRoute,
+                    new { id },
+                    new { id });
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

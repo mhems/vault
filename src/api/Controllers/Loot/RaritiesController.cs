@@ -32,7 +32,11 @@ namespace Vault.Api
                 var linkedRarity = ConvertRarity(Rarity);
                 return Ok(linkedRarity);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

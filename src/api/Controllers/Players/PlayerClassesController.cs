@@ -32,7 +32,11 @@ namespace Vault.Api
                 var linkedClass = ConvertPlayerClass(@class);
                 return Ok(linkedClass);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

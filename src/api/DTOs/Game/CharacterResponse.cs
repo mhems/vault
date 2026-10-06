@@ -1,26 +1,29 @@
-﻿using Vault.Api;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Api;
 using Vault.Domain;
 
 namespace Vault.Application
 {
-    public record NonPlayableCharacterControllerDto(
+    public record NonPlayableCharacterResponse(
         ResourceLinkDto Self,
         string? Name,
         string Species,
         string? SubSpecies,
         Dlc DLC,
+        [Range(1, 200)]
         int? Level,
         string? Affiliation,
         bool Enemy,
         List<ResourceLinkDto> Locations
     );
 
-    public record EnemyControllerDto(
+    public record EnemyResponse(
         ResourceLinkDto Self,
         string? Name,
         string Species,
         string? SubSpecies,
         Dlc DLC,
+        [Range(1, 200)]
         int? Level,
         string? Affiliation,
         List<ResourceLinkDto> Locations,
@@ -31,7 +34,7 @@ namespace Vault.Application
         List<Element> ElementalResistances,
         List<Element> ElementalImmunities,
         ResourceLinkDto? LootPool)
-        : NonPlayableCharacterControllerDto(
+        : NonPlayableCharacterResponse(
             Self,
             Name,
             Species,
@@ -42,12 +45,13 @@ namespace Vault.Application
             true,
             Locations);
 
-    public sealed record UniqueEnemyControllerDto(
+    public sealed record UniqueEnemyResponse(
         ResourceLinkDto Self,
         string? Name,
         string Species,
         string? SubSpecies,
         Dlc DLC,
+        [Range(1, 200)]
         int? Level,
         string? Affiliation,
         List<ResourceLinkDto> Locations,
@@ -60,7 +64,7 @@ namespace Vault.Application
         bool Boss,
         bool RaidBoss
         )
-        : EnemyControllerDto(
+        : EnemyResponse(
             Self,
             Name,
             Species,

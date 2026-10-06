@@ -2,7 +2,7 @@
 
 namespace Vault.Application
 {
-    public sealed record LootPoolControllerDto(
+    public sealed record LootPoolResponse(
         ResourceLinkDto Self,
         List<ResourceLinkDto> Models);
 }

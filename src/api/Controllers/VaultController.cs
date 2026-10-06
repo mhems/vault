@@ -15,7 +15,7 @@ namespace Vault.Api
                 routeName,
                 values: new { id })
             ?? throw new Exception($"id={id}, route={routeName}");
-            return new(id, uri);
+            return new(id, new Uri(uri));
         }
 
         protected List<ResourceLinkDto> ConvertGuids(IEnumerable<Guid> guids, string route)
@@ -25,7 +25,7 @@ namespace Vault.Api
                 .ToList();
         }
 
-        protected PlayerControllerDto ConvertPlayer(PlayerDto dto)
+        protected PlayerResponse ConvertPlayer(PlayerDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, PlayersController.GetPlayerRoute),
@@ -37,12 +37,12 @@ namespace Vault.Api
                 dto.Money,
                 ConvertGuids(dto.Items, EquipmentItemsController.GetEquipmentItemRoute),
                 dto.SkillTree.Select(ps =>
-                    new PlayerSkillControllerDto(MakeResourceLinkDto(ps.SkillId, SkillsController.GetSkillRoute),
+                    new PlayerSkillResponse(MakeResourceLinkDto(ps.SkillId, SkillsController.GetSkillRoute),
                                                  ps.Amount)).ToList()
             );
         }
 
-        protected AccountControllerDto ConvertAccount(AccountDto dto)
+        protected AccountResponse ConvertAccount(AccountDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, AccountsController.GetAccountRoute),
@@ -53,7 +53,7 @@ namespace Vault.Api
             );
         }
 
-        protected PlayerClassControllerDto ConvertPlayerClass(PlayerClassDto dto)
+        protected PlayerClassResponse ConvertPlayerClass(PlayerClassDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, PlayerClassesController.GetPlayerClassRoute),
@@ -64,7 +64,7 @@ namespace Vault.Api
             );
         }
 
-        protected SkillControllerDto ConvertSkill(SkillDto dto)
+        protected SkillResponse ConvertSkill(SkillDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, SkillsController.GetSkillRoute),
@@ -78,7 +78,7 @@ namespace Vault.Api
             );
         }
 
-        protected RarityControllerDto ConvertRarity(RarityDto dto)
+        protected RarityResponse ConvertRarity(RarityDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, RaritiesController.GetRarityRoute),
@@ -88,7 +88,7 @@ namespace Vault.Api
             );
         }
 
-        protected EquipmentModelControllerDto ConvertEquipmentModel(EquipmentModelDto dto)
+        protected EquipmentModelResponse ConvertEquipmentModel(EquipmentModelDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, EquipmentModelsController.GetEquipmentModelRoute),
@@ -106,7 +106,7 @@ namespace Vault.Api
             );
         }
 
-        protected RaritySetControllerDto ConvertRaritySet(RaritySetDto dto)
+        protected RaritySetResponse ConvertRaritySet(RaritySetDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, RaritySetsController.GetRaritySetRoute),
@@ -122,7 +122,7 @@ namespace Vault.Api
             );
         }
 
-        protected ElementSetControllerDto ConvertElementSet(ElementSetDto dto)
+        protected ElementSetResponse ConvertElementSet(ElementSetDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, ElementSetsController.GetElementSetRoute),
@@ -135,7 +135,7 @@ namespace Vault.Api
             );
         }
 
-        protected EquipmentItemControllerDto ConvertEquipmentItem(EquipmentItemDto dto)
+        protected EquipmentItemResponse ConvertEquipmentItem(EquipmentItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, EquipmentItemsController.GetEquipmentItemRoute),
@@ -150,7 +150,7 @@ namespace Vault.Api
                 );
         }
 
-        protected GunControllerDto ConvertGun(GunItemDto dto)
+        protected GunResponse ConvertGun(GunItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, GunsController.GetGunRoute),
@@ -179,7 +179,7 @@ namespace Vault.Api
                 );
         }
 
-        protected GrenadeControllerDto ConvertGrenade(GrenadeItemDto dto)
+        protected GrenadeResponse ConvertGrenade(GrenadeItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, GrenadesController.GetGrenadeRoute),
@@ -201,7 +201,7 @@ namespace Vault.Api
                 );
         }
 
-        protected ShieldControllerDto ConvertShield(ShieldItemDto dto)
+        protected ShieldResponse ConvertShield(ShieldItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, ShieldsController.GetShieldRoute),
@@ -226,7 +226,7 @@ namespace Vault.Api
                 );
         }
 
-        protected ClassModControllerDto ConvertClassMod(ClassModItemDto dto)
+        protected ClassModResponse ConvertClassMod(ClassModItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, ClassModsController.GetClassModRoute),
@@ -239,13 +239,13 @@ namespace Vault.Api
                 dto.SellPrice,
                 dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
                 dto.Prefix,
-                dto.Boosts.Select(b => new SkillBoostControllerDto(
+                dto.Boosts.Select(b => new SkillBoostResponse(
                     MakeResourceLinkDto(b.SkillId, SkillsController.GetSkillRoute),
                     b.Amount)).ToList()
                 );
         }
 
-        protected RelicControllerDto ConvertRelic(RelicItemDto dto)
+        protected RelicResponse ConvertRelic(RelicItemDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, RelicsController.GetRelicRoute),
@@ -260,7 +260,7 @@ namespace Vault.Api
                 );
         }
 
-        protected LootPoolControllerDto ConvertLootPool(LootPoolDto dto)
+        protected LootPoolResponse ConvertLootPool(LootPoolDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, LootPoolsController.GetLootPoolRoute),
@@ -268,7 +268,7 @@ namespace Vault.Api
                 );
         }
 
-        protected LootDropControllerDto? ConvertLootDrop(LootDropDto? dto)
+        protected LootDropResponse? ConvertLootDrop(LootDropDto? dto)
         {
             if (dto == null)
             {
@@ -282,7 +282,7 @@ namespace Vault.Api
             );
         }
 
-        protected MissionControllerDto ConvertMission(MissionDto dto)
+        protected MissionResponse ConvertMission(MissionDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, MissionsController.GetMissionRoute),
@@ -300,7 +300,7 @@ namespace Vault.Api
             );
         }
 
-        protected LocationControllerDto ConvertLocation(LocationDto dto)
+        protected LocationResponse ConvertLocation(LocationDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, MapsController.GetMapRoute),
@@ -310,7 +310,7 @@ namespace Vault.Api
                 );
         }
 
-        protected MapControllerDto ConvertMap(MapDto dto)
+        protected MapResponse ConvertMap(MapDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, MapsController.GetMapRoute),
@@ -324,7 +324,7 @@ namespace Vault.Api
                 );
         }
 
-        protected AreaControllerDto ConvertArea(AreaDto dto)
+        protected AreaResponse ConvertArea(AreaDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, AreasController.GetAreaRoute),
@@ -337,7 +337,7 @@ namespace Vault.Api
                 );
         }
 
-        protected NonPlayableCharacterControllerDto ConvertCharacter(NonPlayableCharacterDto dto)
+        protected NonPlayableCharacterResponse ConvertCharacter(NonPlayableCharacterDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, CharactersController.GetCharacterRoute),
@@ -352,7 +352,7 @@ namespace Vault.Api
             );
         }
 
-        protected EnemyControllerDto ConvertEnemy(EnemyDto dto)
+        protected EnemyResponse ConvertEnemy(EnemyDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, CharactersController.GetCharacterRoute),
@@ -373,7 +373,7 @@ namespace Vault.Api
             );
         }
 
-        protected UniqueEnemyControllerDto ConvertUniqueEnemy(UniqueEnemyDto dto)
+        protected UniqueEnemyResponse ConvertUniqueEnemy(UniqueEnemyDto dto)
         {
             return new(
                 MakeResourceLinkDto(dto.Id, CharactersController.GetCharacterRoute),

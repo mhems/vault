@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IElementSetApi api = api;
 
         [HttpGet(Name = GetElementSetsRoute)]
-        public async Task<ActionResult<List<ElementSetControllerDto>>> GetElementSets(CancellationToken ct)
+        public async Task<ActionResult<List<ElementSetResponse>>> GetElementSets(CancellationToken ct)
         {
             var raritySets = await api.GetElementSetsAsync(ct);
             var linkedSets = raritySets.Select(ConvertElementSet).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetElementSetRoute)]
-        public async Task<ActionResult<ElementSetControllerDto>> GetElementSet(Guid id, CancellationToken ct)
+        public async Task<ActionResult<ElementSetResponse>> GetElementSet(Guid id, CancellationToken ct)
         {
             var raritySet = await api.GetElementSetAsync(id, ct);
             var linkedSet = ConvertElementSet(raritySet);

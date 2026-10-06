@@ -17,7 +17,7 @@ namespace Vault.Infrastructure
                     e.ModelId,
                     e.RarityId,
                     e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
+                    (int?)e.Level,
                     (int?)e.BuyPrice,
                     (int?)e.SellPrice,
                     e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),

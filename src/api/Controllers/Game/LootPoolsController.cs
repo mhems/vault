@@ -16,7 +16,7 @@ namespace Vault.Api
         private readonly ILootPoolApi api = api;
 
         [HttpGet(Name = GetLootPoolsRoute)]
-        public async Task<ActionResult<List<LootPoolControllerDto>>> GetLootPools(CancellationToken ct)
+        public async Task<ActionResult<List<LootPoolResponse>>> GetLootPools(CancellationToken ct)
         {
             var lootPools = await api.GetLootPoolsAsync(ct);
             var linkedLootPools = lootPools.Select(ConvertLootPool).ToList();
@@ -24,7 +24,7 @@ namespace Vault.Api
         }
 
         [HttpGet("contains/{id}", Name = GetLootPoolsByMembershipRoute)]
-        public async Task<ActionResult<List<LootPoolControllerDto>>> GetLootPoolsByMembership(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<LootPoolResponse>>> GetLootPoolsByMembership(Guid id, CancellationToken ct)
         {
             var lootPools = await api.GetLootPoolsByMembershipAsync(id, ct);
             var linkedLootPools = lootPools.Select(ConvertLootPool).ToList();
@@ -32,7 +32,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetLootPoolRoute)]
-        public async Task<ActionResult<LootPoolControllerDto>> GetLootPool(Guid id, CancellationToken ct)
+        public async Task<ActionResult<LootPoolResponse>> GetLootPool(Guid id, CancellationToken ct)
         {
             var lootPool = await api.GetLootPoolAsync(id, ct);
             var linkedLootPool = ConvertLootPool(lootPool);

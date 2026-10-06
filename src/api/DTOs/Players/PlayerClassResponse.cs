@@ -2,7 +2,7 @@
 
 namespace Vault.Api
 {
-    public sealed record PlayerClassControllerDto(
+    public sealed record PlayerClassResponse(
         ResourceLinkDto Self,
         Dlc DLC,
         string Name,

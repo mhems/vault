@@ -18,21 +18,21 @@
         #endregion
 
         #region commands
-        Task<Guid> AddPlayerAsync(AddPlayerDto dto, CancellationToken ct);
+        Task<Guid> AddPlayerAsync(AddPlayerRequest dto, CancellationToken ct);
 
         Task LevelUpPlayerAsync(Guid id, CancellationToken ct);
 
         Task SetPlayerLevelAsync(Guid id, int level, CancellationToken ct);
 
-        Task AddGunToPlayerAsync(Guid id, GunItemDto item, CancellationToken ct);
+        Task<Guid> AddGunToPlayerAsync(Guid id, GunItemDto item, CancellationToken ct);
 
-        Task AddGrenadeToPlayerAsync(Guid id, GrenadeItemDto item, CancellationToken ct);
+        Task<Guid> AddGrenadeToPlayerAsync(Guid id, GrenadeItemDto item, CancellationToken ct);
 
-        Task AddShieldToPlayerAsync(Guid id, ShieldItemDto item, CancellationToken ct);
+        Task<Guid> AddShieldToPlayerAsync(Guid id, ShieldItemDto item, CancellationToken ct);
 
-        Task AddClassModToPlayerAsync(Guid id, ClassModItemDto item, CancellationToken ct);
+        Task<Guid> AddClassModToPlayerAsync(Guid id, ClassModItemDto item, CancellationToken ct);
 
-        Task AddRelicToPlayerAsync(Guid id, RelicItemDto item, CancellationToken ct);
+        Task<Guid> AddRelicToPlayerAsync(Guid id, RelicItemDto item, CancellationToken ct);
 
         Task PlayerInvestInSkillAsync(Guid id, PlayerSkillDto investment, CancellationToken ct);
 

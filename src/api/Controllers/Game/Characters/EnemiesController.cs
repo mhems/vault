@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IEnemyApi api = api;
 
         [HttpGet(Name = GetEnemiesRoute)]
-        public async Task<ActionResult<List<EnemyControllerDto>>> GetEnemies(CancellationToken ct)
+        public async Task<ActionResult<List<EnemyResponse>>> GetEnemies(CancellationToken ct)
         {
             var enemies = await api.GetEnemiesAsync(ct);
             var linkedEnemies = enemies.Select(ConvertEnemy).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetEnemyRoute)]
-        public async Task<ActionResult<EnemyControllerDto>> GetEnemy(Guid id, CancellationToken ct)
+        public async Task<ActionResult<EnemyResponse>> GetEnemy(Guid id, CancellationToken ct)
         {
             var enemy = await api.GetEnemyAsync(id, ct);
             var linkedEnemy = ConvertEnemy(enemy);

@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly ILocationApi api = api;
 
         [HttpGet(Name = GetLocationsRoute)]
-        public async Task<ActionResult<List<LocationControllerDto>>> GetLocations(CancellationToken ct)
+        public async Task<ActionResult<List<LocationResponse>>> GetLocations(CancellationToken ct)
         {
             var maps = await api.GetLocationsAsync(ct);
             var linkedLocations = maps.Select(ConvertLocation).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetLocationRoute)]
-        public async Task<ActionResult<LocationControllerDto>> GetLocation(Guid id, CancellationToken ct)
+        public async Task<ActionResult<LocationResponse>> GetLocation(Guid id, CancellationToken ct)
         {
             var map = await api.GetLocationAsync(id, ct);
             var linkedLocation = ConvertLocation(map);

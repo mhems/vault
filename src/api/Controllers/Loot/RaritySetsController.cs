@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IRaritySetApi api = api;
 
         [HttpGet(Name = GetRaritySetsRoute)]
-        public async Task<ActionResult<List<RaritySetControllerDto>>> GetRaritySets(CancellationToken ct)
+        public async Task<ActionResult<List<RaritySetResponse>>> GetRaritySets(CancellationToken ct)
         {
             var raritySets = await api.GetRaritySetsAsync(ct);
             var linkedSets = raritySets.Select(ConvertRaritySet).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetRaritySetRoute)]
-        public async Task<ActionResult<RaritySetControllerDto>> GetRaritySet(Guid id, CancellationToken ct)
+        public async Task<ActionResult<RaritySetResponse>> GetRaritySet(Guid id, CancellationToken ct)
         {
             var raritySet = await api.GetRaritySetAsync(id, ct);
             var linkedSet = ConvertRaritySet(raritySet);

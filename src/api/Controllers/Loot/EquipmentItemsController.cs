@@ -24,7 +24,7 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetEquipmentItemsRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItems(CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItems(CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsAsync(ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -32,7 +32,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/player/{id}", Name = GetEquipmentItemsByPlayerRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByPlayer(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByPlayer(Guid id, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByPlayerAsync(id, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -40,7 +40,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/model/{id}", Name = GetEquipmentItemsByModelRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByModel(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByModel(Guid id, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByModelAsync(id, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -48,7 +48,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/rarity/{id}", Name = GetEquipmentItemsByRarityRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByRarity(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByRarity(Guid id, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByRarityAsync(id, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -56,7 +56,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/loot_drop/{id}", Name = GetEquipmentItemsByLootDropRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByLootDrop(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByLootDrop(Guid id, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByLootDropAsync(id, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -66,7 +66,7 @@ namespace Vault.Api
 
 
         [HttpGet("by/category/{category}", Name = GetEquipmentItemsByCategoryRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByCategory(string category, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByCategory(string category, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByCategoryAsync(category, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -74,7 +74,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/manufacturer/{manufacturer}", Name = GetEquipmentItemsByManufacturerRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItemsByManufacturer(string manufacturer, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItemsByManufacturer(string manufacturer, CancellationToken ct)
         {
             var equipmentItems = await api.GetEquipmentItemsByManufacturerAsync(manufacturer, ct);
             var linkedEquipmentItems = equipmentItems.Select(ConvertEquipmentItem).ToList();
@@ -82,7 +82,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetEquipmentItemRoute)]
-        public async Task<ActionResult<List<EquipmentItemControllerDto>>> GetEquipmentItem(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetEquipmentItem(Guid id, CancellationToken ct)
         {
             try
             {
@@ -90,7 +90,11 @@ namespace Vault.Api
                 var linkedEquipmentItem = ConvertEquipmentItem(equipmentItem);
                 return Ok(linkedEquipmentItem);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

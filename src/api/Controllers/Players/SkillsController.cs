@@ -17,7 +17,7 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetSkillsRoute)]
-        public async Task<ActionResult<IEnumerable<SkillControllerDto>>> GetSKills(CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<SkillResponse>>> GetSKills(CancellationToken ct)
         {
             var skills = await api.GetSkillsAsync(ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
@@ -25,7 +25,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/class/{class}", Name = GetSkillsByClassRoute)]
-        public async Task<ActionResult<IEnumerable<SkillControllerDto>>> GetSkillsByPlayerClass(string @class, CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<SkillResponse>>> GetSkillsByPlayerClass(string @class, CancellationToken ct)
         {
             var skills = await api.GetSkillsByPlayerClassAsync(@class, ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
@@ -33,7 +33,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetSkillRoute)]
-        public async Task<ActionResult<SkillControllerDto>> GetSkill(Guid id, CancellationToken ct)
+        public async Task<ActionResult<SkillResponse>> GetSkill(Guid id, CancellationToken ct)
         {
             try
             {
@@ -41,7 +41,11 @@ namespace Vault.Api
                 var linkedSkill = ConvertSkill(skill);
                 return Ok(linkedSkill);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

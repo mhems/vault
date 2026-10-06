@@ -1,35 +1,48 @@
-﻿using Vault.Api;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Api;
 using Vault.Domain;
 
 namespace Vault.Application
 {
-    public record EquipmentItemControllerDto(
+    public record EquipmentItemResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects
         );
 
-    public sealed record GunControllerDto(
+    public sealed record GunResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Damage,
+        [Range(1, 100)]
         double Accuracy,
+        [Range(0, double.MaxValue)]
         double FireRate,
+        [Range(0, double.MaxValue)]
         double ReloadSpeed,
+        [Range(1, int.MaxValue)]
         int MagazineSize,
+        [Range(1, int.MaxValue)]
         int? PelletCount,
         ElementalDamageChanceDto? ElementalDamage,
         string? Prefix,
@@ -40,7 +53,7 @@ namespace Vault.Application
         Manufacturer? Scope,
         Manufacturer? Body
         )
-        : EquipmentItemControllerDto(Self,
+        : EquipmentItemResponse(Self,
             Player,
             Model,
             Rarity,
@@ -50,25 +63,32 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
-    public sealed record GrenadeControllerDto(
+    public sealed record GrenadeResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Damage,
+        [Range(0, int.MaxValue)]
         int BlastRadius,
+        [Range(0, double.MaxValue)]
         double Fuse,
         GrenadeDelivery Delivery,
         bool Sticky,
+        [Range(0, int.MaxValue)]
         int? ChildCount,
         ElementalDamageDto? ElementalDamage
         )
-        : EquipmentItemControllerDto(Self,
+        : EquipmentItemResponse(Self,
             Player,
             Model,
             Rarity,
@@ -78,18 +98,24 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
-    public sealed record ShieldControllerDto(
+    public sealed record ShieldResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
+        [Range(0, int.MaxValue)]
         int Capacity,
+        [Range(0, int.MaxValue)]
         int RechargeRate,
+        [Range(0, double.MaxValue)]
         double RechargeDelay,
         string? Prefix,
         ElementalDamageDto? ElementalDamage,
@@ -99,7 +125,7 @@ namespace Vault.Application
         Manufacturer? Capacitor,
         Manufacturer? Body
         )
-        : EquipmentItemControllerDto(Self,
+        : EquipmentItemResponse(Self,
             Player,
             Model,
             Rarity,
@@ -109,18 +135,21 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
-    public sealed record RelicControllerDto(
+    public sealed record RelicResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects
         )
-        : EquipmentItemControllerDto(Self,
+        : EquipmentItemResponse(Self,
             Player,
             Model,
             Rarity,
@@ -130,20 +159,23 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
-    public sealed record ClassModControllerDto(
+    public sealed record ClassModResponse(
         ResourceLinkDto Self,
         ResourceLinkDto Player,
         ResourceLinkDto Model,
         ResourceLinkDto Rarity,
-        LootDropControllerDto? Drop,
-        byte? Level,
+        LootDropResponse? Drop,
+        [Range(1, 90)]
+        int? Level,
+        [Range(1, int.MaxValue)]
         int? BuyPrice,
+        [Range(1, int.MaxValue)]
         int? SellPrice,
         List<EffectDto> Effects,
         string Prefix,
-        List<SkillBoostControllerDto> Boosts
+        List<SkillBoostResponse> Boosts
         )
-        : EquipmentItemControllerDto(Self,
+        : EquipmentItemResponse(Self,
             Player,
             Model,
             Rarity,
@@ -153,12 +185,13 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
-    public sealed record SkillBoostControllerDto(
+    public sealed record SkillBoostResponse(
         ResourceLinkDto Skill,
+        [Range(1, 6)]
         int Amount
         );
 
-    public sealed record LootDropControllerDto(
+    public sealed record LootDropResponse(
         bool Specified,
         ResourceLinkDto? Mission,
         ResourceLinkDto? Area,

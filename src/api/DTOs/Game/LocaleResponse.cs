@@ -1,32 +1,34 @@
-﻿using Vault.Api;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Api;
 using Vault.Domain;
 
 namespace Vault.Application
 {
-    public record LocationControllerDto(
+    public record LocationResponse(
         ResourceLinkDto Self,
         string Name,
         Dlc DLC,
         List<ResourceLinkDto> Characters
         );
 
-    public record MapControllerDto(
+    public record MapResponse(
         ResourceLinkDto Self,
         string Name,
         Dlc DLC,
         List<ResourceLinkDto> Characters,
+        [Range(0, 6)]
         int NumberOfFastTravels,
         List<ResourceLinkDto> Areas,
         List<ResourceLinkDto> InConnections,
         List<ResourceLinkDto> OutConnections
         )
-        : LocationControllerDto(
+        : LocationResponse(
             Self,
             Name,
             DLC,
             Characters);
 
-    public record AreaControllerDto(
+    public record AreaResponse(
         ResourceLinkDto Self,
         string Name,
         Dlc DLC,
@@ -35,7 +37,7 @@ namespace Vault.Application
         bool? HasUTurn,
         ResourceLinkDto Map
         )
-        : LocationControllerDto(
+        : LocationResponse(
             Self,
             Name,
             DLC,

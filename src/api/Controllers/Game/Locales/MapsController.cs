@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IMapApi api = api;
 
         [HttpGet(Name = GetMapsRoute)]
-        public async Task<ActionResult<List<MapControllerDto>>> GetMaps(CancellationToken ct)
+        public async Task<ActionResult<List<MapResponse>>> GetMaps(CancellationToken ct)
         {
             var maps = await api.GetMapsAsync(ct);
             var linkedMaps = maps.Select(ConvertMap).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetMapRoute)]
-        public async Task<ActionResult<MapControllerDto>> GetMap(Guid id, CancellationToken ct)
+        public async Task<ActionResult<MapResponse>> GetMap(Guid id, CancellationToken ct)
         {
             var map = await api.GetMapAsync(id, ct);
             var linkedMap = ConvertMap(map);

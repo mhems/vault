@@ -1,4 +1,5 @@
-﻿using Vault.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+using Vault.Domain;
 
 namespace Vault.Application
 {
@@ -8,6 +9,7 @@ namespace Vault.Application
     string Species,
     string? SubSpecies,
     Dlc DLC,
+    [Range(1, 200)]
     int? Level,
     string? Affiliation,
     bool Enemy,
@@ -20,6 +22,7 @@ namespace Vault.Application
         string Species,
         string? SubSpecies,
         Dlc DLC,
+        [Range(1, 200)]
         int? Level,
         string? Affiliation,
         List<Guid> Locations,
@@ -47,6 +50,7 @@ namespace Vault.Application
         string Species,
         string? SubSpecies,
         Dlc DLC,
+        [Range(1, 200)]
         int? Level,
         string? Affiliation,
         List<Guid> Locations,

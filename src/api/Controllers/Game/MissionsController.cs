@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly IMissionApi api = api;
 
         [HttpGet(Name = GetMissionsRoute)]
-        public async Task<ActionResult<List<MissionControllerDto>>> GetMissions(CancellationToken ct)
+        public async Task<ActionResult<List<MissionResponse>>> GetMissions(CancellationToken ct)
         {
             var missions = await api.GetMissionsAsync(ct);
             var linkedMissions = missions.Select(ConvertMission).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetMissionRoute)]
-        public async Task<ActionResult<MissionControllerDto>> GetMission(Guid id, CancellationToken ct)
+        public async Task<ActionResult<MissionResponse>> GetMission(Guid id, CancellationToken ct)
         {
             var lootPool = await api.GetMissionAsync(id, ct);
             var linkedMission = ConvertMission(lootPool);

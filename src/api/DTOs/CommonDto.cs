@@ -2,5 +2,5 @@
 {
     public sealed record ResourceLinkDto(
         Guid Id,
-        string Url);
+        Uri Url);
 }

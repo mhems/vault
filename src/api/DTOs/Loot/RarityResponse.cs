@@ -1,6 +1,6 @@
 ﻿namespace Vault.Api
 {
-    public sealed record RarityControllerDto(
+    public sealed record RarityResponse(
         ResourceLinkDto Self,
         string Name,
         string ColorName,

@@ -24,7 +24,7 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetGunsRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGuns(CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGuns(CancellationToken ct)
         {
             var guns = await api.GetGunsAsync(ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -32,7 +32,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/player/{id}", Name = GetGunsByPlayerRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByPlayer(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByPlayer(Guid id, CancellationToken ct)
         {
             var guns = await api.GetGunsByPlayerAsync(id, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -40,7 +40,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/model/{id}", Name = GetGunsByModelRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByModel(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByModel(Guid id, CancellationToken ct)
         {
             var guns = await api.GetGunsByModelAsync(id, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -48,7 +48,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/rarity/{id}", Name = GetGunsByRarityRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByRarity(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByRarity(Guid id, CancellationToken ct)
         {
             var guns = await api.GetGunsByRarityAsync(id, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -56,7 +56,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/loot_drop/{id}", Name = GetGunsByLootDropRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByLootDrop(Guid id, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByLootDrop(Guid id, CancellationToken ct)
         {
             var guns = await api.GetGunsByLootDropAsync(id, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -64,7 +64,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/element/{element}", Name = GetGunsByElementRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByElement(string element, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByElement(string element, CancellationToken ct)
         {
             var guns = await api.GetGunsByElementAsync(element, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -72,7 +72,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/type/{type}", Name = GetGunsByTypeRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByType(string type, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByType(string type, CancellationToken ct)
         {
             var guns = await api.GetGunsByTypeAsync(type, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -80,7 +80,7 @@ namespace Vault.Api
         }
 
         [HttpGet("by/manufacturer/{manufacturer}", Name = GetGunsByManufacturerRoute)]
-        public async Task<ActionResult<List<GunControllerDto>>> GetGunsByManufacturer(string manufacturer, CancellationToken ct)
+        public async Task<ActionResult<List<GunResponse>>> GetGunsByManufacturer(string manufacturer, CancellationToken ct)
         {
             var guns = await api.GetGunsByManufacturerAsync(manufacturer, ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
@@ -89,7 +89,7 @@ namespace Vault.Api
 
 
         [HttpGet("{id}", Name = GetGunRoute)]
-        public async Task<ActionResult<GunControllerDto>> GetGun(Guid id, CancellationToken ct)
+        public async Task<ActionResult<GunResponse>> GetGun(Guid id, CancellationToken ct)
         {
             try
             {
@@ -97,7 +97,11 @@ namespace Vault.Api
                 var linkedGun = ConvertGun(equipmentItem);
                 return Ok(linkedGun);
             }
-            catch (Exception ex) when (ex is KeyNotFoundException or ArgumentException)
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
             {
                 return BadRequest(ex.Message);
             }

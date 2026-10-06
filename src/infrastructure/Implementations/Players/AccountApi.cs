@@ -40,7 +40,7 @@ namespace Vault.Infrastructure
         #endregion
 
         #region commands
-        public async Task<Guid> AddAccountAsync(AddAccountDto account, CancellationToken ct)
+        public async Task<Guid> AddAccountAsync(AddAccountRequest account, CancellationToken ct)
         {
             var accountEntity = new Account(account.Name)
             {

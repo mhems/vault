@@ -235,28 +235,13 @@ namespace Vault.Infrastructure
         #endregion
 
         #region commands
-        public async Task<Guid> AddPlayerAsync(AddPlayerDto dto, CancellationToken ct)
+        public async Task<Guid> AddPlayerAsync(AddPlayerRequest dto, CancellationToken ct)
         {
             var account = await db.Accounts.FirstOrDefaultAsync(a => a.Id == dto.AccountId, ct)
                 ?? throw new KeyNotFoundException($"unable to find account {dto.AccountId}");
 
             var @class = await db.PlayerClasses.FirstOrDefaultAsync(c => c.Id == dto.PlayerClassId, ct)
                 ?? throw new KeyNotFoundException($"unable to find player class {dto.PlayerClassId}");
-
-            if (dto.Experience.HasValue && dto.Experience.Value < 0)
-            {
-                throw new ArgumentException($"experience cannot be below zero");
-            }
-
-            if (dto.Money.HasValue && dto.Money.Value < 0)
-            {
-                throw new ArgumentException($"money cannot be below zero");
-            }
-
-            if (dto.Level.HasValue && (dto.Level.Value < 0 || dto.Level.Value > Byte.MaxValue))
-            {
-                throw new ArgumentException($"level must be between 0 and 255");
-            }
 
             var player = new Player(account, @class, dto.Name, (byte?)dto.Level, (uint?)dto.Experience, (uint?)dto.Money);
 
@@ -286,7 +271,7 @@ namespace Vault.Infrastructure
             await db.SaveChangesAsync(ct);
         }
 
-        public async Task AddGunToPlayerAsync(Guid id, GunItemDto item, CancellationToken ct)
+        public async Task<Guid> AddGunToPlayerAsync(Guid id, GunItemDto item, CancellationToken ct)
         {
             (var player, var model, var rarity) = await GetItemObjectsAsync(id, item.ModelId, item.RarityId, ct);
 
@@ -308,9 +293,9 @@ namespace Vault.Infrastructure
                 elementalDamageChance = item.ElementalDamage.Chance;
             }
 
-            player.AddEquipment(new GunItem(player,
+            var gun = new GunItem(player,
                 gunModel,
-                item.Level,
+                (byte?)item.Level,
                 rarity,
                 item.Damage,
                 item.Accuracy,
@@ -323,12 +308,16 @@ namespace Vault.Infrastructure
                 item.Prefix,
                 item.MissionItem,
                 (uint?)item.BuyPrice,
-                (uint?)item.SellPrice));
+                (uint?)item.SellPrice);
+
+            player.AddEquipment(gun);
 
             await db.SaveChangesAsync(ct);
+
+            return gun.Id;
         }
 
-        public async Task AddGrenadeToPlayerAsync(Guid id, GrenadeItemDto item, CancellationToken ct)
+        public async Task<Guid> AddGrenadeToPlayerAsync(Guid id, GrenadeItemDto item, CancellationToken ct)
         {
             (var player, var model, var rarity) = await GetItemObjectsAsync(id, item.ModelId, item.RarityId, ct);
 
@@ -348,9 +337,9 @@ namespace Vault.Infrastructure
                 elementalDamage = new(item.ElementalDamage.Element, item.ElementalDamage.DamagePerSecond);
             }
 
-            player.AddEquipment(new GrenadeItem(player,
+            var grenade = new GrenadeItem(player,
                 grenadeModel,
-                item.Level,
+                (byte?)item.Level,
                 rarity,
                 item.Damage,
                 item.BlastRadius,
@@ -360,12 +349,16 @@ namespace Vault.Infrastructure
                 item.ChildCount,
                 elementalDamage,
                 (uint?)item.BuyPrice,
-                (uint?)item.SellPrice));
+                (uint?)item.SellPrice);
+
+            player.AddEquipment(grenade);
 
             await db.SaveChangesAsync(ct);
+
+            return grenade.Id;
         }
 
-        public async Task AddShieldToPlayerAsync(Guid id, ShieldItemDto item, CancellationToken ct)
+        public async Task<Guid> AddShieldToPlayerAsync(Guid id, ShieldItemDto item, CancellationToken ct)
         {
             (var player, var model, var rarity) = await GetItemObjectsAsync(id, item.ModelId, item.RarityId, ct);
 
@@ -385,9 +378,9 @@ namespace Vault.Infrastructure
                 elementalDamage = new(item.ElementalDamage.Element, item.ElementalDamage.DamagePerSecond);
             }
 
-            player.AddEquipment(new ShieldItem(player,
+            var shield = new ShieldItem(player,
                 shieldModel,
-                item.Level,
+                (byte?)item.Level,
                 rarity,
                 item.Capacity,
                 item.RechargeRate,
@@ -397,12 +390,16 @@ namespace Vault.Infrastructure
                 item.ElementalImmunity,
                 item.ElementalReduction,
                 (uint?)item.BuyPrice,
-                (uint?)item.SellPrice));
+                (uint?)item.SellPrice);
+
+            player.AddEquipment(shield);
 
             await db.SaveChangesAsync(ct);
+
+            return shield.Id;
         }
 
-        public async Task AddRelicToPlayerAsync(Guid id, RelicItemDto item, CancellationToken ct)
+        public async Task<Guid> AddRelicToPlayerAsync(Guid id, RelicItemDto item, CancellationToken ct)
         {
             (var player, var model, var rarity) = await GetItemObjectsAsync(id, item.ModelId, item.RarityId, ct);
 
@@ -416,17 +413,21 @@ namespace Vault.Infrastructure
                 throw new ArgumentException($"model with ID {model.Id} is not a relic");
             }
 
-            player.AddEquipment(new RelicItem(player,
+            var relic = new RelicItem(player,
                 relicModel,
-                item.Level,
+                (byte?)item.Level,
                 rarity,
                 (uint?)item.BuyPrice,
-                (uint?)item.SellPrice));
+                (uint?)item.SellPrice);
+
+            player.AddEquipment(relic);
 
             await db.SaveChangesAsync(ct);
+
+            return relic.Id;
         }
 
-        public async Task AddClassModToPlayerAsync(Guid id, ClassModItemDto item, CancellationToken ct)
+        public async Task<Guid> AddClassModToPlayerAsync(Guid id, ClassModItemDto item, CancellationToken ct)
         {
             (var player, var model, var rarity) = await GetItemObjectsAsync(id, item.ModelId, item.RarityId, ct);
 
@@ -440,17 +441,21 @@ namespace Vault.Infrastructure
                 throw new ArgumentException($"model with ID {model.Id} is not a shield");
             }
 
-            player.AddEquipment(new ClassModItem(player,
+            var classMod = new ClassModItem(player,
                 classModModel,
-                item.Level,
+                (byte?)item.Level,
                 rarity,
                 player.Class,
                 item.Prefix,
                 [],
                 (uint?)item.BuyPrice,
-                (uint?)item.SellPrice));
+                (uint?)item.SellPrice);
+
+            player.AddEquipment(classMod);
 
             await db.SaveChangesAsync(ct);
+
+            return classMod.Id;
         }
 
         public async Task PlayerInvestInSkillAsync(Guid id, PlayerSkillDto investment, CancellationToken ct)
@@ -461,7 +466,7 @@ namespace Vault.Infrastructure
             var skill = await db.Skills.FirstOrDefaultAsync(s => s.Id == investment.SkillId, ct)
                 ?? throw new KeyNotFoundException($"no such skill exists with ID {investment.SkillId}");
 
-            player.InvestIn(skill, investment.Amount);
+            player.InvestIn(skill, (byte)investment.Amount);
 
             await db.SaveChangesAsync(ct);
         }

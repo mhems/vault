@@ -15,7 +15,7 @@ namespace Vault.Api
         private readonly ICharacterApi api = api;
 
         [HttpGet(Name = GetCharactersRoute)]
-        public async Task<ActionResult<List<NonPlayableCharacterControllerDto>>> GetCharacters(CancellationToken ct)
+        public async Task<ActionResult<List<NonPlayableCharacterResponse>>> GetCharacters(CancellationToken ct)
         {
             var characters = await api.GetCharactersAsync(ct);
             var linkedCharacters = characters.Select(ConvertCharacter).ToList();
@@ -23,7 +23,7 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetCharacterRoute)]
-        public async Task<ActionResult<NonPlayableCharacterControllerDto>> GetCharacter(Guid id, CancellationToken ct)
+        public async Task<ActionResult<NonPlayableCharacterResponse>> GetCharacter(Guid id, CancellationToken ct)
         {
             var character = await api.GetCharacterAsync(id, ct);
             var linkedCharacter = ConvertCharacter(character);
