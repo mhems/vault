@@ -1,7 +1,7 @@
 ﻿namespace Vault.Api
 {
     public sealed record RarityResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string Name,
         string ColorName,
         string RgbaColorValue

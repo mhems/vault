@@ -2,25 +2,25 @@
 using Vault.Api;
 using Vault.Domain;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public record LocationResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string Name,
         Dlc DLC,
-        List<ResourceLinkDto> Characters
+        List<ResourceLink> Characters
         );
 
     public record MapResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string Name,
         Dlc DLC,
-        List<ResourceLinkDto> Characters,
+        List<ResourceLink> Characters,
         [Range(0, 6)]
         int NumberOfFastTravels,
-        List<ResourceLinkDto> Areas,
-        List<ResourceLinkDto> InConnections,
-        List<ResourceLinkDto> OutConnections
+        List<ResourceLink> Areas,
+        List<ResourceLink> InConnections,
+        List<ResourceLink> OutConnections
         )
         : LocationResponse(
             Self,
@@ -29,13 +29,13 @@ namespace Vault.Application
             Characters);
 
     public record AreaResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string Name,
         Dlc DLC,
-        List<ResourceLinkDto> Characters,
+        List<ResourceLink> Characters,
         bool HasFastTravel,
         bool? HasUTurn,
-        ResourceLinkDto Map
+        ResourceLink Map
         )
         : LocationResponse(
             Self,

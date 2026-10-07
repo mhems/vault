@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly ILocationApi api = api;
 
         [HttpGet(Name = GetLocationsRoute)]
+        [ProducesResponseType(typeof(List<LocationResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<LocationResponse>>> GetLocations(CancellationToken ct)
         {
             var maps = await api.GetLocationsAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetLocationRoute)]
+        [ProducesResponseType(typeof(LocationResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<LocationResponse>> GetLocation(Guid id, CancellationToken ct)
         {
-            var map = await api.GetLocationAsync(id, ct);
-            var linkedLocation = ConvertLocation(map);
-            return Ok(linkedLocation);
+            try
+            {
+                var map = await api.GetLocationAsync(id, ct);
+                var linkedLocation = ConvertLocation(map);
+                return Ok(linkedLocation);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

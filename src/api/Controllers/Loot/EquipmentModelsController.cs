@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -9,10 +10,6 @@ namespace Vault.Api
     {
         #region routes
         internal const string GetEquipmentModelsRoute = "GetEquipmentModels";
-        internal const string GetEquipmentModelsByCategoryRoute = "GetEquipmentModelsByCategory";
-        internal const string GetEquipmentModelsByManufacturerRoute = "GetEquipmentModelsByManufacturer";
-        internal const string GetEquipmentModelsByRaritySetRoute = "GetEquipmentModelsByRaritySet";
-        internal const string GetEquipmentModelsByElementSetRoute = "GetEquipmentModelsByElementSet";
         internal const string GetEquipmentModelRoute = "GetEquipmentModel";
         #endregion
 
@@ -20,46 +17,35 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetEquipmentModelsRoute)]
-        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModels(CancellationToken ct)
+        [ProducesResponseType(typeof(List<EquipmentModelResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModels(
+            string? name,
+            Equipment? category,
+            string? subcategory,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            Guid? raritySetId,
+            Guid? elementSetId,
+            CancellationToken ct)
         {
-            var equipmentModels = await api.GetEquipmentModelsAsync(ct);
-            var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
-            return Ok(linkedEquipmentModels);
-        }
-
-        [HttpGet("by/category/{category}", Name = GetEquipmentModelsByCategoryRoute)]
-        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModelsByCategory(string category, CancellationToken ct)
-        {
-            var equipmentModels = await api.GetEquipmentModelsByCategoryAsync(category, ct);
-            var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
-            return Ok(linkedEquipmentModels);
-        }
-
-        [HttpGet("by/manufacturer/{manufacturer}", Name = GetEquipmentModelsByManufacturerRoute)]
-        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModelsByManufacturer(string manufacturer, CancellationToken ct)
-        {
-            var equipmentModels = await api.GetEquipmentModelsByManufacturerAsync(manufacturer, ct);
-            var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
-            return Ok(linkedEquipmentModels);
-        }
-
-        [HttpGet("by/rarity_set/{id}", Name = GetEquipmentModelsByRaritySetRoute)]
-        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModelsByRaritySet(Guid id, CancellationToken ct)
-        {
-            var equipmentModels = await api.GetEquipmentModelsByRaritySetAsync(id, ct);
-            var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
-            return Ok(linkedEquipmentModels);
-        }
-
-        [HttpGet("by/element_set/{id}", Name = GetEquipmentModelsByElementSetRoute)]
-        public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModelsByElementSet(Guid id, CancellationToken ct)
-        {
-            var equipmentModels = await api.GetEquipmentModelsByElementSetAsync(id, ct);
+            var equipmentModels = await api.GetEquipmentModelsAsync(
+                name,
+                category,
+                subcategory,
+                manufacturer,
+                dlc,
+                unique,
+                raritySetId,
+                elementSetId,
+                ct);
             var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
             return Ok(linkedEquipmentModels);
         }
 
         [HttpGet("{id}", Name = GetEquipmentModelRoute)]
+        [ProducesResponseType(typeof(EquipmentModelResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EquipmentModelResponse>> GetEquipmentModel(Guid id, CancellationToken ct)
         {
             try
@@ -71,10 +57,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
         #endregion

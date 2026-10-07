@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,10 +8,61 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<RelicItemDto>> GetRelicsAsync(CancellationToken ct)
+        public async Task<List<RelicItemDto>> GetRelicsAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            string? subcategory,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            CancellationToken ct)
         {
-            return await db.RelicItems
-                .AsNoTracking()
+            var query = db.RelicItems.AsNoTracking();
+
+            if (playerId != null)
+            {
+                query = query.Where(i => i.PlayerId == playerId);
+            }
+
+            if (modelId != null)
+            {
+                query = query.Where(i => i.ModelId == modelId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(
+                    m => string.Equals(m.Model.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(subcategory))
+            {
+                query = query.Where(m => string.Equals(m.Model.SubCategory, subcategory, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (manufacturer != null)
+            {
+                query = query.Where(m => m.Model.Manufacturer == manufacturer);
+            }
+
+            if (dlc != null)
+            {
+                query = query.Where(m => m.Model.Dlc == dlc);
+            }
+
+            if (unique != null)
+            {
+                query = query.Where(m => m.Model.Unique == unique);
+            }
+
+            if (!string.IsNullOrWhiteSpace(rarity))
+            {
+                query = query.Where(m => m.Rarity.Name.Equals(rarity, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            return await query
                 .Select(e => new RelicItemDto(
                     e.Id,
                     e.PlayerId,

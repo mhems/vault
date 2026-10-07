@@ -3,10 +3,10 @@
 namespace Vault.Api
 {
     public sealed record PlayerClassResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         Dlc DLC,
         string Name,
-        List<ResourceLinkDto> Skills,
-        List<ResourceLinkDto> Players
+        List<ResourceLink> Skills,
+        List<ResourceLink> Players
         );
 }

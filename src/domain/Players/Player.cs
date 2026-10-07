@@ -47,9 +47,9 @@ namespace Vault.Domain
 
         public void SetLevel(int level)
         {
-            if (level < 0 || level > Byte.MaxValue)
+            if (level < 0 || level > 90)
             {
-                throw new ArgumentException("level must be between 0 and 255");
+                throw new ArgumentException("level must be between 0 and 90");
             }
 
             if (level < Level)

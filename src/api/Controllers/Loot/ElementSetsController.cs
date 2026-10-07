@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly IElementSetApi api = api;
 
         [HttpGet(Name = GetElementSetsRoute)]
+        [ProducesResponseType(typeof(List<ElementSetResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<ElementSetResponse>>> GetElementSets(CancellationToken ct)
         {
             var raritySets = await api.GetElementSetsAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetElementSetRoute)]
+        [ProducesResponseType(typeof(ElementSetResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ElementSetResponse>> GetElementSet(Guid id, CancellationToken ct)
         {
-            var raritySet = await api.GetElementSetAsync(id, ct);
-            var linkedSet = ConvertElementSet(raritySet);
-            return Ok(linkedSet);
+            try
+            {
+                var raritySet = await api.GetElementSetAsync(id, ct);
+                var linkedSet = ConvertElementSet(raritySet);
+                return Ok(linkedSet);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

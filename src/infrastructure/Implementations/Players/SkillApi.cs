@@ -7,9 +7,14 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<SkillDto>> GetSkillsAsync(CancellationToken ct)
+        public async Task<List<SkillDto>> GetSkillsAsync(string? @class, CancellationToken ct)
         {
-            return await db.Skills
+            var query = db.Skills.AsNoTracking();
+            if (!string.IsNullOrWhiteSpace(@class))
+            {
+                query = query.Where(s => s.Class.Name.Equals(@class, StringComparison.InvariantCultureIgnoreCase));
+            }
+            return await query
               .AsNoTracking()
               .Select(s => new SkillDto(
                   s.Id,
@@ -21,23 +26,6 @@ namespace Vault.Infrastructure
                   s.Column,
                   s.Description))
               .ToListAsync(ct);
-        }
-
-        public async Task<List<SkillDto>> GetSkillsByPlayerClassAsync(string @class, CancellationToken ct)
-        {
-            return await db.Skills
-                .AsNoTracking()
-                .Where(skill => skill.Class.Name == @class)
-                .Select(s => new SkillDto(
-                    s.Id,
-                    s.PlayerClassId,
-                    s.Name,
-                    s.OnePointMax,
-                    s.Tree,
-                    s.Tier,
-                    s.Column,
-                    s.Description))
-                .ToListAsync(ct);
         }
 
         public async Task<SkillDto> GetSkillAsync(Guid id, CancellationToken ct)

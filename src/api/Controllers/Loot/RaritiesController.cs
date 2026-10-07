@@ -16,7 +16,8 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetRaritiesRoute)]
-        public async Task<ActionResult<IEnumerable<RarityDto>>> GetRarities(CancellationToken ct)
+        [ProducesResponseType(typeof(List<RarityResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<RarityResponse>>> GetRarities(CancellationToken ct)
         {
             var Rarities = await api.GetRaritiesAsync(ct);
             var linkedRarities = Rarities.Select(ConvertRarity).ToList();
@@ -24,7 +25,9 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetRarityRoute)]
-        public async Task<ActionResult<RarityDto>> GetRarity(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(RarityResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<RarityResponse>> GetRarity(Guid id, CancellationToken ct)
         {
             try
             {
@@ -35,10 +38,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
 

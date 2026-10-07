@@ -1,6 +1,6 @@
 ﻿namespace Vault.Api
 {
-    public sealed record ResourceLinkDto(
+    public sealed record ResourceLink(
         Guid Id,
         Uri Url);
 }

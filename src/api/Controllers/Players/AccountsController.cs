@@ -1,5 +1,4 @@
-﻿using api.DTOs.Players;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
 
 namespace Vault.Api
@@ -21,7 +20,8 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetAccountsRoute)]
-        public async Task<ActionResult<IEnumerable<AccountResponse>>> GetAccounts(CancellationToken ct)
+        [ProducesResponseType(typeof(List<AccountResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<AccountResponse>>> GetAccounts(CancellationToken ct)
         {
             var accounts = await api.GetAccountsAsync(ct);
             var linkedAccounts = accounts.Select(ConvertAccount).ToList();
@@ -29,6 +29,8 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetAccountRoute)]
+        [ProducesResponseType(typeof(AccountResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<AccountResponse>> GetAccount(Guid id, CancellationToken ct)
         {
             try
@@ -41,15 +43,13 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
         #endregion
 
         #region commands
         [HttpPost(Name = AddAccountRoute)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Guid>> AddAccount(AddAccountRequest account, CancellationToken ct)
         {
             try
@@ -63,10 +63,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
         #endregion

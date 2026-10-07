@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -9,86 +10,59 @@ namespace Vault.Api
     {
         #region routes
         internal const string GetGunsRoute = "GetGuns";
-        internal const string GetGunsByPlayerRoute = "GetGunsByPlayer";
-        internal const string GetGunsByModelRoute = "GetGunsByModel";
-        internal const string GetGunsByRarityRoute = "GetGunsByRarity";
-        internal const string GetGunsByLootDropRoute = "GetGunsByLootDrop";
-        internal const string GetGunsByElementRoute = "GetGunsByElement";
-        internal const string GetGunsByTypeRoute = "GetGunsByType";
         internal const string GetGunRoute = "GetGun";
 
-        internal const string GetGunsByManufacturerRoute = "GetGunsByManufacturer";
         #endregion
 
         private readonly IGunApi api = api;
 
         #region queries
         [HttpGet(Name = GetGunsRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGuns(CancellationToken ct)
+        [ProducesResponseType(typeof(List<GunResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<GunResponse>>> GetGuns(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            Gun? category,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            string? element,
+            string? prefix,
+            bool? missionItem,
+            Manufacturer? barrel,
+            Manufacturer? stock,
+            Manufacturer? grip,
+            Manufacturer? scope,
+            Manufacturer? body,
+            CancellationToken ct)
         {
-            var guns = await api.GetGunsAsync(ct);
+            var guns = await api.GetGunsAsync(
+                playerId,
+                modelId,
+                name,
+                category,
+                manufacturer,
+                dlc,
+                unique,
+                rarity,
+                element,
+                prefix,
+                missionItem,
+                barrel,
+                stock,
+                grip,
+                scope,
+                body,
+                ct);
             var linkedGuns = guns.Select(ConvertGun).ToList();
             return Ok(linkedGuns);
         }
-
-        [HttpGet("by/player/{id}", Name = GetGunsByPlayerRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByPlayer(Guid id, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByPlayerAsync(id, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/model/{id}", Name = GetGunsByModelRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByModel(Guid id, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByModelAsync(id, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/rarity/{id}", Name = GetGunsByRarityRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByRarity(Guid id, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByRarityAsync(id, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/loot_drop/{id}", Name = GetGunsByLootDropRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByLootDrop(Guid id, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByLootDropAsync(id, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/element/{element}", Name = GetGunsByElementRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByElement(string element, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByElementAsync(element, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/type/{type}", Name = GetGunsByTypeRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByType(string type, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByTypeAsync(type, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
-        [HttpGet("by/manufacturer/{manufacturer}", Name = GetGunsByManufacturerRoute)]
-        public async Task<ActionResult<List<GunResponse>>> GetGunsByManufacturer(string manufacturer, CancellationToken ct)
-        {
-            var guns = await api.GetGunsByManufacturerAsync(manufacturer, ct);
-            var linkedGuns = guns.Select(ConvertGun).ToList();
-            return Ok(linkedGuns);
-        }
-
 
         [HttpGet("{id}", Name = GetGunRoute)]
+        [ProducesResponseType(typeof(GunResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<GunResponse>> GetGun(Guid id, CancellationToken ct)
         {
             try
@@ -100,10 +74,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
         #endregion

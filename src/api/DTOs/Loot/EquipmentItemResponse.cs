@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Vault.Api;
 using Vault.Domain;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public record EquipmentItemResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -16,14 +15,20 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects
+        List<Effect> Effects
+        );
+
+    public sealed record Effect(
+        string Description,
+        double? Amount,
+        string? Units
         );
 
     public sealed record GunResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -31,7 +36,7 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects,
+        List<Effect> Effects,
         [Range(0, int.MaxValue)]
         int Damage,
         [Range(1, 100)]
@@ -44,7 +49,7 @@ namespace Vault.Application
         int MagazineSize,
         [Range(1, int.MaxValue)]
         int? PelletCount,
-        ElementalDamageChanceDto? ElementalDamage,
+        ElementalDamageChance? ElementalDamage,
         string? Prefix,
         bool MissionItem,
         Manufacturer? Barrel,
@@ -63,11 +68,19 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
+    public sealed record ElementalDamageChance(
+        Element Element,
+        [Range(0, double.MaxValue)]
+        double DamagePerSecond,
+        [Range(1, 100)]
+        double Chance
+    );
+
     public sealed record GrenadeResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -75,7 +88,7 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects,
+        List<Effect> Effects,
         [Range(0, int.MaxValue)]
         int Damage,
         [Range(0, int.MaxValue)]
@@ -86,7 +99,7 @@ namespace Vault.Application
         bool Sticky,
         [Range(0, int.MaxValue)]
         int? ChildCount,
-        ElementalDamageDto? ElementalDamage
+        ElementalDamage? ElementalDamage
         )
         : EquipmentItemResponse(Self,
             Player,
@@ -98,11 +111,17 @@ namespace Vault.Application
             SellPrice,
             Effects);
 
+    public sealed record ElementalDamage(
+        Element Element,
+        [Range(0, double.MaxValue)]
+        double DamagePerSecond
+        );
+
     public sealed record ShieldResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -110,7 +129,7 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects,
+        List<Effect> Effects,
         [Range(0, int.MaxValue)]
         int Capacity,
         [Range(0, int.MaxValue)]
@@ -118,7 +137,7 @@ namespace Vault.Application
         [Range(0, double.MaxValue)]
         double RechargeDelay,
         string? Prefix,
-        ElementalDamageDto? ElementalDamage,
+        ElementalDamage? ElementalDamage,
         Element? ElementalImmunity,
         Element? ElementalReduction,
         Manufacturer? Battery,
@@ -136,10 +155,10 @@ namespace Vault.Application
             Effects);
 
     public sealed record RelicResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -147,7 +166,7 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects
+        List<Effect> Effects
         )
         : EquipmentItemResponse(Self,
             Player,
@@ -160,10 +179,10 @@ namespace Vault.Application
             Effects);
 
     public sealed record ClassModResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Player,
-        ResourceLinkDto Model,
-        ResourceLinkDto Rarity,
+        ResourceLink Self,
+        ResourceLink Player,
+        ResourceLink Model,
+        ResourceLink Rarity,
         LootDropResponse? Drop,
         [Range(1, 90)]
         int? Level,
@@ -171,7 +190,7 @@ namespace Vault.Application
         int? BuyPrice,
         [Range(1, int.MaxValue)]
         int? SellPrice,
-        List<EffectDto> Effects,
+        List<Effect> Effects,
         string Prefix,
         List<SkillBoostResponse> Boosts
         )
@@ -186,15 +205,14 @@ namespace Vault.Application
             Effects);
 
     public sealed record SkillBoostResponse(
-        ResourceLinkDto Skill,
+        ResourceLink Skill,
         [Range(1, 6)]
         int Amount
         );
 
     public sealed record LootDropResponse(
-        bool Specified,
-        ResourceLinkDto? Mission,
-        ResourceLinkDto? Area,
-        ResourceLinkDto? Enemy
+        ResourceLink? Mission,
+        ResourceLink? Area,
+        ResourceLink? Enemy
     );
 }

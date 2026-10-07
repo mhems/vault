@@ -1,22 +1,26 @@
-﻿namespace Vault.Application
+﻿using Vault.Domain;
+
+namespace Vault.Application
 {
     public interface IShieldApi
     {
-        Task<List<ShieldItemDto>> GetShieldsAsync(CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByPlayerAsync(Guid id, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByModelAsync(Guid id, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByRarityAsync(Guid id, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByLootDropAsync(Guid id, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByElementAsync(string element, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByTypeAsync(string type, CancellationToken ct);
-
-        Task<List<ShieldItemDto>> GetShieldsByManufacturerAsync(string manufacturer, CancellationToken ct);
+        Task<List<ShieldItemDto>> GetShieldsAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            Shield? category,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            string? element,
+            string? prefix,
+            Element? immunity,
+            Element? reduction,
+            Manufacturer? battery,
+            Manufacturer? capacitor,
+            Manufacturer? body,
+            CancellationToken ct);
 
         Task<ShieldItemDto> GetShieldAsync(Guid id, CancellationToken ct);
     }

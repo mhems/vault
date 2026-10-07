@@ -7,24 +7,16 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<LootPoolDto>> GetLootPoolsAsync(CancellationToken ct)
+        public async Task<List<LootPoolDto>> GetLootPoolsAsync(Guid? modelId, CancellationToken ct)
         {
-            return await db.LootPools
-              .AsNoTracking()
-              .Select(e => new LootPoolDto(
-                  e.Id,
-                  e.Models.Select(m => m.Id).ToList()))
-              .ToListAsync(ct);
-        }
+            var query = db.LootPools.AsNoTracking();
 
-        public async Task<List<LootPoolDto>> GetLootPoolsByMembershipAsync(Guid id, CancellationToken ct)
-        {
-            var model = db.EquipmentModels.FirstOrDefault(m => m.Id == id)
-                ?? throw new KeyNotFoundException($"no such model exists with id {id}");
+            if (modelId != null)
+            {
+                query = query.Where(e => e.Models.Any(m => m.Id == modelId));
+            }
 
-            return await db.LootPools
-              .AsNoTracking()
-              .Where(e => e.Models.Any(m => m.Id == id))
+            return await query
               .Select(e => new LootPoolDto(
                   e.Id,
                   e.Models.Select(m => m.Id).ToList()))

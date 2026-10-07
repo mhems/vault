@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Vault.Api;
 
-namespace api.DTOs.Players
+namespace Vault.Api
 {
     public sealed record PlayerResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto Account,
-        ResourceLinkDto PlayerClassLink,
+        ResourceLink Self,
+        ResourceLink Account,
+        ResourceLink PlayerClassLink,
         string Name,
         [Range(1, 90)]
         int Level,
@@ -14,12 +13,12 @@ namespace api.DTOs.Players
         int? Experience,
         [Range(0, int.MaxValue)]
         int? Money,
-        List<ResourceLinkDto> Items,
+        List<ResourceLink> Items,
         List<PlayerSkillResponse> SkillTrees
     );
 
     public sealed record PlayerSkillResponse(
-        ResourceLinkDto Skill,
+        ResourceLink Skill,
         [Range(1, 5)]
         int Amount
     );

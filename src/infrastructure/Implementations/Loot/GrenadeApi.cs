@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,201 +8,80 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesAsync(CancellationToken ct)
+        public async Task<List<GrenadeItemDto>> GetGrenadesAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            GrenadeDelivery? delivery,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            string? element,
+            bool? sticky,
+            CancellationToken ct)
         {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            var query = db.GrenadeItems.AsNoTracking();
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByPlayerAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.PlayerId == id)
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (playerId != null)
+            {
+                query = query.Where(i => i.PlayerId == playerId);
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByModelAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.ModelId == id)
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (modelId != null)
+            {
+                query = query.Where(i => i.ModelId == modelId);
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByRarityAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.RarityId == id)
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(
+                    m => string.Equals(m.Model.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByLootDropAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.DropId != null && e.DropId.Value == id)
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (delivery != null)
+            {
+                var deliveryStr = delivery.ToString();
+                query = query.Where(m => string.Equals(m.Model.SubCategory, deliveryStr, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByElementAsync(string element, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.ElementalDamage != null &&
-                    string.Equals(e.ElementalDamage.Element.ToString(), element, StringComparison.InvariantCultureIgnoreCase))
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (manufacturer != null)
+            {
+                query = query.Where(m => m.Model.Manufacturer == manufacturer);
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByDeliveryAsync(string delivery, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => e.Model.SubCategory != null &&
-                    string.Equals(e.Model.SubCategory, delivery, StringComparison.InvariantCultureIgnoreCase))
-                .Select(e => new GrenadeItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.BlastRadius,
-                    e.Fuse,
-                    e.Delivery,
-                    e.Sticky,
-                    e.ChildCount,
-                    e.ElementalDamage != null
-                        ? new ElementalDamageDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond)
-                        : null))
-                .ToListAsync(ct);
-        }
+            if (dlc != null)
+            {
+                query = query.Where(m => m.Model.Dlc == dlc);
+            }
 
-        public async Task<List<GrenadeItemDto>> GetGrenadesByManufacturerAsync(string manufacturer, CancellationToken ct)
-        {
-            return await db.GrenadeItems
-                .AsNoTracking()
-                .Where(e => string.Equals(e.Model.Manufacturer.ToString(), manufacturer, StringComparison.InvariantCultureIgnoreCase))
+            if (unique != null)
+            {
+                query = query.Where(m => m.Model.Unique == unique);
+            }
+
+            if (!string.IsNullOrWhiteSpace(rarity))
+            {
+                query = query.Where(m => m.Rarity.Name.Equals(rarity, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(element))
+            {
+                var lookingForNonElemental = element.Equals(Element.None.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                query = query.Where(m =>
+                    m.ElementalDamage == null
+                    ? lookingForNonElemental
+                    : m.ElementalDamage.Element.ToString().Equals(element, StringComparison.InvariantCultureIgnoreCase)
+                );
+            }
+
+            if (sticky != null)
+            {
+                query = query.Where(m => m.Sticky == sticky);
+            }
+
+
+            return await query
                 .Select(e => new GrenadeItemDto(
                     e.Id,
                     e.PlayerId,

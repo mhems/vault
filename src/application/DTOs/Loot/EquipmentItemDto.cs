@@ -211,15 +211,13 @@ namespace Vault.Application
         );
 
     public sealed record LootDropDto(
-        bool Specified,
         Guid? Mission,
         Guid? Area,
         Guid? Enemy
     )
     {
         public LootDropDto(LootDrop drop)
-            : this(drop.Specified,
-                 drop.MissionId,
+            : this(drop.MissionId,
                  drop.AreaId,
                  drop.EnemyId)
         {

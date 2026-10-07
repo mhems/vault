@@ -2,10 +2,10 @@
 using Vault.Api;
 using Vault.Domain;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public record NonPlayableCharacterResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string? Name,
         string Species,
         string? SubSpecies,
@@ -14,11 +14,11 @@ namespace Vault.Application
         int? Level,
         string? Affiliation,
         bool Enemy,
-        List<ResourceLinkDto> Locations
+        List<ResourceLink> Locations
     );
 
     public record EnemyResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string? Name,
         string Species,
         string? SubSpecies,
@@ -26,14 +26,14 @@ namespace Vault.Application
         [Range(1, 200)]
         int? Level,
         string? Affiliation,
-        List<ResourceLinkDto> Locations,
+        List<ResourceLink> Locations,
         string? Prefix,
         bool HasShield,
         bool Unique,
         List<Element> ElementalWeaknesses,
         List<Element> ElementalResistances,
         List<Element> ElementalImmunities,
-        ResourceLinkDto? LootPool)
+        ResourceLink? LootPool)
         : NonPlayableCharacterResponse(
             Self,
             Name,
@@ -46,7 +46,7 @@ namespace Vault.Application
             Locations);
 
     public sealed record UniqueEnemyResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string? Name,
         string Species,
         string? SubSpecies,
@@ -54,13 +54,13 @@ namespace Vault.Application
         [Range(1, 200)]
         int? Level,
         string? Affiliation,
-        List<ResourceLinkDto> Locations,
+        List<ResourceLink> Locations,
         string? Prefix,
         bool HasShield,
         List<Element> ElementalWeaknesses,
         List<Element> ElementalResistances,
         List<Element> ElementalImmunities,
-        ResourceLinkDto? LootPool,
+        ResourceLink? LootPool,
         bool Boss,
         bool RaidBoss
         )

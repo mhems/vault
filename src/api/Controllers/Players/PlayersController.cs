@@ -9,7 +9,6 @@ namespace Vault.Api
     {
         #region route names
         internal const string GetPlayersRoute = "GetPlayers";
-        internal const string GetPlayersByClassRoute = "GetPlayersByClass";
         internal const string GetPlayerRoute = "GetPlayer";
         internal const string GetPlayerItemsRoute = "GetPlayerItems";
         internal const string GetPlayerGunsRoute = "GetPlayerGuns";
@@ -34,23 +33,20 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetPlayersRoute)]
-        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayers(CancellationToken ct)
+        [ProducesResponseType(typeof(List<PlayerResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<PlayerResponse>>> GetPlayers(
+            string? @class,
+            CancellationToken ct)
         {
-            var players = await api.GetPlayersAsync(ct);
-            var linkedPlayers = players.Select(ConvertPlayer).ToList();
-            return Ok(linkedPlayers);
-        }
-
-        [HttpGet("by/class/{class}", Name = GetPlayersByClassRoute)]
-        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersByClass(string @class, CancellationToken ct)
-        {
-            var players = await api.GetPlayersByClassAsync(@class, ct);
+            var players = await api.GetPlayersAsync(@class, ct);
             var linkedPlayers = players.Select(ConvertPlayer).ToList();
             return Ok(linkedPlayers);
         }
 
         [HttpGet("{id}", Name = GetPlayerRoute)]
-        public async Task<ActionResult<PlayerDto>> GetPlayer(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(PlayerResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<PlayerResponse>> GetPlayer(Guid id, CancellationToken ct)
         {
             try
             {
@@ -62,14 +58,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/items", Name = GetPlayerItemsRoute)]
-        public async Task<ActionResult<IEnumerable<EquipmentItemDto>>> GetPlayerItems(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<EquipmentItemResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<EquipmentItemResponse>>> GetPlayerItems(Guid id, CancellationToken ct)
         {
             try
             {
@@ -80,14 +74,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/guns", Name = GetPlayerGunsRoute)]
-        public async Task<ActionResult<IEnumerable<GunItemDto>>> GetPlayerGuns(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<GunResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<GunResponse>>> GetPlayerGuns(Guid id, CancellationToken ct)
         {
             try
             {
@@ -98,14 +90,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/grenades", Name = GetPlayerGrenadesRoute)]
-        public async Task<ActionResult<IEnumerable<GrenadeItemDto>>> GetPlayerGrenades(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<GrenadeResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<GrenadeResponse>>> GetPlayerGrenades(Guid id, CancellationToken ct)
         {
             try
             {
@@ -116,14 +106,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/shields", Name = GetPlayerShieldsRoute)]
-        public async Task<ActionResult<IEnumerable<ShieldItemDto>>> GetPlayerShields(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<ShieldResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<ShieldResponse>>> GetPlayerShields(Guid id, CancellationToken ct)
         {
             try
             {
@@ -134,14 +122,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/class_mods", Name = GetPlayerClassModsRoute)]
-        public async Task<ActionResult<IEnumerable<ClassModItemDto>>> GetPlayerClassMods(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<ClassModResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<ClassModResponse>>> GetPlayerClassMods(Guid id, CancellationToken ct)
         {
             try
             {
@@ -152,14 +138,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}/relics", Name = GetPlayerRelicsRoute)]
-        public async Task<ActionResult<IEnumerable<RelicItemDto>>> GetPlayerRelics(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(List<RelicResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<RelicResponse>>> GetPlayerRelics(Guid id, CancellationToken ct)
         {
             try
             {
@@ -170,15 +154,13 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
         #endregion
 
         #region commands
         [HttpPost(Name = AddPlayerRoute)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Guid>> AddPlayer(AddPlayerRequest player, CancellationToken ct)
         {
             try
@@ -193,13 +175,12 @@ namespace Vault.Api
             {
                 return NotFound(ex.Message);
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpPost("{id}/level/up", Name = LevelUpPlayerRoute)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> LevelUpPlayer(Guid id, CancellationToken ct)
         {
             try
@@ -218,6 +199,9 @@ namespace Vault.Api
         }
 
         [HttpPut("{id}/level/{level}", Name = SetPlayerLevelRoute)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> SetPlayerLevel(Guid id, int level, CancellationToken ct)
         {
             try
@@ -236,11 +220,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/guns", Name = AddGunToPlayerRoute)]
-        public async Task<ActionResult> AddGunToPlayer(Guid id, GunItemDto item, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddGunToPlayer(Guid id, AddGunRequest item, CancellationToken ct)
         {
             try
             {
-                var createdId = await api.AddGunToPlayerAsync(id, item, ct);
+                var dto = ConvertGun(item);
+                var createdId = await api.AddGunToPlayerAsync(id, dto, ct);
                 return CreatedAtRoute(
                     GunsController.GetGunRoute,
                     new { createdId },
@@ -257,11 +245,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/grenades", Name = AddGrenadeToPlayerRoute)]
-        public async Task<ActionResult> AddGrenadeToPlayer(Guid id, GrenadeItemDto item, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddGrenadeToPlayer(Guid id, AddGrenadeRequest item, CancellationToken ct)
         {
             try
             {
-                var createdId = await api.AddGrenadeToPlayerAsync(id, item, ct);
+                var dto = ConvertGrenade(item);
+                var createdId = await api.AddGrenadeToPlayerAsync(id, dto, ct);
                 return CreatedAtRoute(
                     GrenadesController.GetGrenadeRoute,
                     new { createdId },
@@ -278,11 +270,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/shields", Name = AddShieldToPlayerRoute)]
-        public async Task<ActionResult> AddShieldToPlayer(Guid id, ShieldItemDto item, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddShieldToPlayer(Guid id, AddShieldRequest item, CancellationToken ct)
         {
             try
             {
-                var createdId = await api.AddShieldToPlayerAsync(id, item, ct);
+                var dto = ConvertShield(item);
+                var createdId = await api.AddShieldToPlayerAsync(id, dto, ct);
                 return CreatedAtRoute(
                     ShieldsController.GetShieldRoute,
                     new { createdId },
@@ -299,11 +295,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/class_mods", Name = AddClassModToPlayerRoute)]
-        public async Task<ActionResult> AddGunToPlayer(Guid id, ClassModItemDto item, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddGunToPlayer(Guid id, AddClassModRequest item, CancellationToken ct)
         {
             try
             {
-                var createdId = await api.AddClassModToPlayerAsync(id, item, ct);
+                var dto = ConvertClassMod(item);
+                var createdId = await api.AddClassModToPlayerAsync(id, dto, ct);
                 return CreatedAtRoute(
                     ClassModsController.GetClassModRoute,
                     new { createdId },
@@ -320,11 +320,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/relics", Name = AddRelicToPlayerRoute)]
-        public async Task<ActionResult> AddRelicToPlayer(Guid id, RelicItemDto item, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> AddRelicToPlayer(Guid id, AddRelicRequest item, CancellationToken ct)
         {
             try
             {
-                var createdId = await api.AddRelicToPlayerAsync(id, item, ct);
+                var dto = ConvertRelic(item);
+                var createdId = await api.AddRelicToPlayerAsync(id, dto, ct);
                 return CreatedAtRoute(
                     RelicsController.GetRelicRoute,
                     new { createdId },
@@ -341,11 +345,15 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/skills/invest", Name = PlayerInvestInSkillRoute)]
-        public async Task<ActionResult> PlayerInvestInSkill(Guid id, PlayerSkillDto investment, CancellationToken ct)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> PlayerInvestInSkill(Guid id, InvestPlayerSkillRequest investment, CancellationToken ct)
         {
             try
             {
-                await api.PlayerInvestInSkillAsync(id, investment, ct);
+                var dto = ConvertPlayerSkill(investment);
+                await api.PlayerInvestInSkillAsync(id, dto, ct);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -359,6 +367,8 @@ namespace Vault.Api
         }
 
         [HttpPost("{id}/skills/clear", Name = ClearPlayerSkillTreeRoute)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> ClearPlayerSkillTree(Guid id, CancellationToken ct)
         {
             try
@@ -369,10 +379,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
         #endregion

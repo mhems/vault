@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly IAreaApi api = api;
 
         [HttpGet(Name = GetAreasRoute)]
+        [ProducesResponseType(typeof(List<AreaResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<AreaResponse>>> GetAreas(CancellationToken ct)
         {
             var areas = await api.GetAreasAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetAreaRoute)]
+        [ProducesResponseType(typeof(AreaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<AreaResponse>> GetArea(Guid id, CancellationToken ct)
         {
-            var area = await api.GetAreaAsync(id, ct);
-            var linkedArea = ConvertArea(area);
-            return Ok(linkedArea);
+            try
+            {
+                var area = await api.GetAreaAsync(id, ct);
+                var linkedArea = ConvertArea(area);
+                return Ok(linkedArea);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

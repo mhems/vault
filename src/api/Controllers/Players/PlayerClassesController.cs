@@ -16,7 +16,8 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetPlayerClassesRoute)]
-        public async Task<ActionResult<IEnumerable<PlayerClassDto>>> GetPlayerClasses(CancellationToken ct)
+        [ProducesResponseType(typeof(List<PlayerClassResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<PlayerClassResponse>>> GetPlayerClasses(CancellationToken ct)
         {
             var classes = await api.GetPlayerClassesAsync(ct);
             var linkedClasses = classes.Select(ConvertPlayerClass).ToList();
@@ -24,7 +25,9 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetPlayerClassRoute)]
-        public async Task<ActionResult<PlayerClassDto>> GetPlayerClass(Guid id, CancellationToken ct)
+        [ProducesResponseType(typeof(PlayerClassResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<PlayerClassResponse>> GetPlayerClass(Guid id, CancellationToken ct)
         {
             try
             {
@@ -35,10 +38,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
 

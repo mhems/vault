@@ -9,7 +9,6 @@ namespace Vault.Api
     {
         #region route names
         internal const string GetSkillsRoute = "GetSkills";
-        internal const string GetSkillsByClassRoute = "GetSkillsByClass";
         internal const string GetSkillRoute = "GetSkill";
         #endregion
 
@@ -17,22 +16,19 @@ namespace Vault.Api
 
         #region queries
         [HttpGet(Name = GetSkillsRoute)]
-        public async Task<ActionResult<IEnumerable<SkillResponse>>> GetSKills(CancellationToken ct)
+        [ProducesResponseType(typeof(List<SkillResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<SkillResponse>>> GetSkills(
+            string? @class,
+            CancellationToken ct)
         {
-            var skills = await api.GetSkillsAsync(ct);
-            var linkedSkills = skills.Select(ConvertSkill).ToList();
-            return Ok(linkedSkills);
-        }
-
-        [HttpGet("by/class/{class}", Name = GetSkillsByClassRoute)]
-        public async Task<ActionResult<IEnumerable<SkillResponse>>> GetSkillsByPlayerClass(string @class, CancellationToken ct)
-        {
-            var skills = await api.GetSkillsByPlayerClassAsync(@class, ct);
+            var skills = await api.GetSkillsAsync(@class, ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
             return Ok(linkedSkills);
         }
 
         [HttpGet("{id}", Name = GetSkillRoute)]
+        [ProducesResponseType(typeof(SkillResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SkillResponse>> GetSkill(Guid id, CancellationToken ct)
         {
             try
@@ -44,10 +40,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
 

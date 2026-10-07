@@ -1,21 +1,21 @@
 ﻿using Vault.Api;
 using Vault.Domain;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public sealed record MissionResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         Dlc DLC,
         bool StoryMission,
-        ResourceLinkDto StartArea,
-        ResourceLinkDto EndArea,
-        ResourceLinkDto? MissionGiver,
-        ResourceLinkDto? MissionRewarder,
-        ResourceLinkDto? MissionItem,
-        ResourceLinkDto? LootPool,
-        List<ResourceLinkDto> Maps,
-        List<ResourceLinkDto> Predecessors,
-        List<ResourceLinkDto> Successors
+        ResourceLink StartArea,
+        ResourceLink EndArea,
+        ResourceLink? MissionGiver,
+        ResourceLink? MissionRewarder,
+        ResourceLink? MissionItem,
+        ResourceLink? LootPool,
+        List<ResourceLink> Maps,
+        List<ResourceLink> Predecessors,
+        List<ResourceLink> Successors
         );
 }
 

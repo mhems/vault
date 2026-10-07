@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Vault.Api;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public sealed record SkillResponse(
-        ResourceLinkDto Self,
-        ResourceLinkDto PlayerClass,
+        ResourceLink Self,
+        ResourceLink PlayerClass,
         string Name,
         [Range(1, 5)]
         int MaxPoints,

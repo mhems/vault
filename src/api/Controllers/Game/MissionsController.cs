@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly IMissionApi api = api;
 
         [HttpGet(Name = GetMissionsRoute)]
+        [ProducesResponseType(typeof(List<MissionResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<MissionResponse>>> GetMissions(CancellationToken ct)
         {
             var missions = await api.GetMissionsAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetMissionRoute)]
+        [ProducesResponseType(typeof(MissionResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<MissionResponse>> GetMission(Guid id, CancellationToken ct)
         {
-            var lootPool = await api.GetMissionAsync(id, ct);
-            var linkedMission = ConvertMission(lootPool);
-            return Ok(linkedMission);
+            try
+            {
+                var lootPool = await api.GetMissionAsync(id, ct);
+                var linkedMission = ConvertMission(lootPool);
+                return Ok(linkedMission);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

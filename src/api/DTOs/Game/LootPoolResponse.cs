@@ -1,9 +1,9 @@
 ﻿using Vault.Api;
 
-namespace Vault.Application
+namespace Vault.Api
 {
     public sealed record LootPoolResponse(
-        ResourceLinkDto Self,
-        List<ResourceLinkDto> Models);
+        ResourceLink Self,
+        List<ResourceLink> Models);
 }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,124 +8,68 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsAsync(CancellationToken ct)
+        public async Task<List<EquipmentItemDto>> GetEquipmentItemsAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            Equipment? category,
+            string? subcategory,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            CancellationToken ct)
         {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            var query = db.EquipmentItems.AsNoTracking();
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByPlayerAsync(Guid id, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => e.PlayerId == id)
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            if (playerId != null)
+            {
+                query = query.Where(i => i.PlayerId == playerId);
+            }
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByModelAsync(Guid id, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => e.ModelId == id)
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            if (modelId != null)
+            {
+                query = query.Where(i => i.ModelId == modelId);
+            }
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByRarityAsync(Guid id, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => e.RarityId == id)
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(
+                    m => !string.IsNullOrWhiteSpace(m.Model.Name) &&
+                          string.Equals(m.Model.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByLootDropAsync(Guid id, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => e.DropId != null && e.DropId.Value == id)
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            if (category != null)
+            {
+                query = query.Where(m => m.Model.Category == category);
+            }
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByCategoryAsync(string category, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => string.Equals(e.Model.Category.ToString(), category, StringComparison.InvariantCultureIgnoreCase))
-                .Select(e => new EquipmentItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
-                    ))
-                .ToListAsync(ct);
-        }
+            if (!string.IsNullOrWhiteSpace(subcategory))
+            {
+                query = query.Where(m => string.Equals(m.Model.SubCategory, subcategory, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<EquipmentItemDto>> GetEquipmentItemsByManufacturerAsync(string manufacturer, CancellationToken ct)
-        {
-            return await db.EquipmentItems
-                .AsNoTracking()
-                .Where(e => string.Equals(e.Model.Manufacturer.ToString(), manufacturer, StringComparison.InvariantCultureIgnoreCase))
+            if (manufacturer != null)
+            {
+                query = query.Where(m => m.Model.Manufacturer == manufacturer);
+            }
+
+            if (dlc != null)
+            {
+                query = query.Where(m => m.Model.Dlc == dlc);
+            }
+
+            if (unique != null)
+            {
+                query = query.Where(m => m.Model.Unique == unique);
+            }
+
+            if (!string.IsNullOrWhiteSpace(rarity))
+            {
+                query = query.Where(m => m.Rarity.Name.Equals(rarity, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            return await query
                 .Select(e => new EquipmentItemDto(
                     e.Id,
                     e.PlayerId,

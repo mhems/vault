@@ -1,5 +1,4 @@
-﻿using api.DTOs.Players;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
 
 namespace Vault.Api
@@ -8,7 +7,7 @@ namespace Vault.Api
     {
         protected LinkGenerator links = links;
 
-        protected ResourceLinkDto MakeResourceLinkDto(Guid id, string routeName)
+        protected ResourceLink MakeResourceLinkDto(Guid id, string routeName)
         {
             var uri = links.GetUriByName(
                 HttpContext,
@@ -18,7 +17,7 @@ namespace Vault.Api
             return new(id, new Uri(uri));
         }
 
-        protected List<ResourceLinkDto> ConvertGuids(IEnumerable<Guid> guids, string route)
+        protected List<ResourceLink> ConvertGuids(IEnumerable<Guid> guids, string route)
         {
             return guids
                 .Select(id => MakeResourceLinkDto(id, route))
@@ -146,7 +145,7 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
-                dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList()
                 );
         }
 
@@ -161,6 +160,39 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList(),
+                dto.Damage,
+                dto.Accuracy,
+                dto.FireRate,
+                dto.ReloadSpeed,
+                dto.MagazineSize,
+                dto.PelletCount,
+                dto.ElementalDamage != null
+                    ? new ElementalDamageChance(dto.ElementalDamage.Element,
+                                                dto.ElementalDamage.DamagePerSecond,
+                                                dto.ElementalDamage.Chance)
+                    : null,
+                dto.Prefix,
+                dto.MissionItem,
+                dto.Barrel,
+                dto.Stock,
+                dto.Grip,
+                dto.Scope,
+                dto.Body
+                );
+        }
+
+        protected GunItemDto ConvertGun(AddGunRequest dto)
+        {
+            return new(
+                Guid.Empty,
+                dto.PlayerId,
+                dto.ModelId,
+                dto.RarityId,
+                dto.Drop != null ? new LootDropDto(dto.Drop.Mission, dto.Drop.Area, dto.Drop.Enemy) : null,
+                dto.Level,
+                dto.BuyPrice,
+                dto.SellPrice,
                 dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
                 dto.Damage,
                 dto.Accuracy,
@@ -168,7 +200,11 @@ namespace Vault.Api
                 dto.ReloadSpeed,
                 dto.MagazineSize,
                 dto.PelletCount,
-                dto.ElementalDamage,
+                dto.ElementalDamage != null
+                    ? new ElementalDamageChanceDto(dto.ElementalDamage.Element,
+                                                   dto.ElementalDamage.DamagePerSecond,
+                                                   dto.ElementalDamage.Chance)
+                    : null,
                 dto.Prefix,
                 dto.MissionItem,
                 dto.Barrel,
@@ -190,6 +226,31 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList(),
+                dto.Damage,
+                dto.BlastRadius,
+                dto.Fuse,
+                dto.Delivery,
+                dto.Sticky,
+                dto.ChildCount,
+                dto.ElementalDamage != null
+                    ? new ElementalDamage(dto.ElementalDamage.Element,
+                                                dto.ElementalDamage.DamagePerSecond)
+                    : null
+                );
+        }
+
+        protected GrenadeItemDto ConvertGrenade(AddGrenadeRequest dto)
+        {
+            return new(
+                Guid.Empty,
+                dto.PlayerId,
+                dto.ModelId,
+                dto.RarityId,
+                dto.Drop != null ? new LootDropDto(dto.Drop.Mission, dto.Drop.Area, dto.Drop.Enemy) : null,
+                dto.Level,
+                dto.BuyPrice,
+                dto.SellPrice,
                 dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
                 dto.Damage,
                 dto.BlastRadius,
@@ -197,7 +258,10 @@ namespace Vault.Api
                 dto.Delivery,
                 dto.Sticky,
                 dto.ChildCount,
-                dto.ElementalDamage
+                dto.ElementalDamage != null
+                    ? new ElementalDamageDto(dto.ElementalDamage.Element,
+                                             dto.ElementalDamage.DamagePerSecond)
+                    : null
                 );
         }
 
@@ -212,12 +276,43 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList(),
+                dto.Capacity,
+                dto.RechargeRate,
+                dto.RechargeDelay,
+                dto.Prefix,
+                dto.ElementalDamage != null
+                    ? new ElementalDamage(dto.ElementalDamage.Element,
+                                                dto.ElementalDamage.DamagePerSecond)
+                    : null,
+                dto.ElementalImmunity,
+                dto.ElementalReduction,
+                dto.Battery,
+                dto.Capacitor,
+                dto.Body
+                );
+        }
+
+        protected ShieldItemDto ConvertShield(AddShieldRequest dto)
+        {
+            return new(
+                Guid.Empty,
+                dto.PlayerId,
+                dto.ModelId,
+                dto.RarityId,
+                dto.Drop != null ? new LootDropDto(dto.Drop.Mission, dto.Drop.Area, dto.Drop.Enemy) : null,
+                dto.Level,
+                dto.BuyPrice,
+                dto.SellPrice,
                 dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
                 dto.Capacity,
                 dto.RechargeRate,
                 dto.RechargeDelay,
                 dto.Prefix,
-                dto.ElementalDamage,
+                dto.ElementalDamage != null
+                    ? new ElementalDamageDto(dto.ElementalDamage.Element,
+                                             dto.ElementalDamage.DamagePerSecond)
+                    : null,
                 dto.ElementalImmunity,
                 dto.ElementalReduction,
                 dto.Battery,
@@ -237,11 +332,28 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
-                dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList(),
                 dto.Prefix,
                 dto.Boosts.Select(b => new SkillBoostResponse(
                     MakeResourceLinkDto(b.SkillId, SkillsController.GetSkillRoute),
                     b.Amount)).ToList()
+                );
+        }
+
+        protected ClassModItemDto ConvertClassMod(AddClassModRequest dto)
+        {
+            return new(
+                Guid.Empty,
+                dto.PlayerId,
+                dto.ModelId,
+                dto.RarityId,
+                dto.Drop != null ? new LootDropDto(dto.Drop.Mission, dto.Drop.Area, dto.Drop.Enemy) : null,
+                dto.Level,
+                dto.BuyPrice,
+                dto.SellPrice,
+                dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
+                dto.Prefix,
+                dto.Boosts.Select(b => new SkillBoostDto(b.SkillId, b.Amount)).ToList()
                 );
         }
 
@@ -256,8 +368,30 @@ namespace Vault.Api
                 dto.Level,
                 dto.BuyPrice,
                 dto.SellPrice,
+                dto.Effects.Select(e => new Effect(e.Description, e.Amount, e.Units)).ToList()
+                );
+        }
+
+        protected RelicItemDto ConvertRelic(AddRelicRequest dto)
+        {
+            return new(
+                Guid.Empty,
+                dto.PlayerId,
+                dto.ModelId,
+                dto.RarityId,
+                dto.Drop != null ? new LootDropDto(dto.Drop.Mission, dto.Drop.Area, dto.Drop.Enemy) : null,
+                dto.Level,
+                dto.BuyPrice,
+                dto.SellPrice,
                 dto.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList()
                 );
+        }
+
+        protected PlayerSkillDto ConvertPlayerSkill(InvestPlayerSkillRequest dto)
+        {
+            return new(
+                dto.SkillId,
+                dto.Amount);
         }
 
         protected LootPoolResponse ConvertLootPool(LootPoolDto dto)
@@ -275,7 +409,6 @@ namespace Vault.Api
                 return null;
             }
             return new(
-                dto.Specified,
                 dto.Mission != null ? MakeResourceLinkDto(dto.Mission.Value, MissionsController.GetMissionRoute) : null,
                 dto.Area != null ? MakeResourceLinkDto(dto.Area.Value, AreasController.GetAreaRoute) : null,
                 dto.Enemy != null ? MakeResourceLinkDto(dto.Enemy.Value, EnemiesController.GetEnemyRoute) : null

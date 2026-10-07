@@ -1,18 +1,20 @@
-﻿namespace Vault.Application
+﻿using Vault.Domain;
+
+namespace Vault.Application
 {
     public interface IEquipmentItemApi
     {
-        Task<List<EquipmentItemDto>> GetEquipmentItemsAsync(CancellationToken ct);
-
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByPlayerAsync(Guid id, CancellationToken ct);
-
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByModelAsync(Guid id, CancellationToken ct);
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByRarityAsync(Guid id, CancellationToken ct);
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByLootDropAsync(Guid id, CancellationToken ct);
-
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByCategoryAsync(string category, CancellationToken ct);
-
-        Task<List<EquipmentItemDto>> GetEquipmentItemsByManufacturerAsync(string manufacturer, CancellationToken ct);
+        Task<List<EquipmentItemDto>> GetEquipmentItemsAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            Equipment? category,
+            string? subcategory,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            CancellationToken ct);
 
         Task<EquipmentItemDto> GetEquipmentItemAsync(Guid id, CancellationToken ct);
     }

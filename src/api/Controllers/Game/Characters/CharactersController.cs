@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly ICharacterApi api = api;
 
         [HttpGet(Name = GetCharactersRoute)]
+        [ProducesResponseType(typeof(List<NonPlayableCharacterResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<NonPlayableCharacterResponse>>> GetCharacters(CancellationToken ct)
         {
             var characters = await api.GetCharactersAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetCharacterRoute)]
+        [ProducesResponseType(typeof(NonPlayableCharacterResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<NonPlayableCharacterResponse>> GetCharacter(Guid id, CancellationToken ct)
         {
-            var character = await api.GetCharacterAsync(id, ct);
-            var linkedCharacter = ConvertCharacter(character);
-            return Ok(linkedCharacter);
+            try
+            {
+                var character = await api.GetCharacterAsync(id, ct);
+                var linkedCharacter = ConvertCharacter(character);
+                return Ok(linkedCharacter);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

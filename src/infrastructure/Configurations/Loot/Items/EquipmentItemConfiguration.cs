@@ -57,9 +57,6 @@ namespace Vault.Infrastructure
 
             builder.OwnsOne(e => e.Drop, drop =>
             {
-                drop.Property(d => d.Specified)
-                    .IsRequired();
-
                 drop.HasOne(d => d.Mission)
                     .WithMany()
                     .HasForeignKey("MissionId");

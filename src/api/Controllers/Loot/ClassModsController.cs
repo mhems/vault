@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -9,76 +10,44 @@ namespace Vault.Api
     {
         #region routes
         internal const string GetClassModsRoute = "GetClassMods";
-        internal const string GetClassModsByPlayerRoute = "GetClassModsByPlayer";
-        internal const string GetClassModsByModelRoute = "GetClassModsByModel";
-        internal const string GetClassModsByRarityRoute = "GetClassModsByRarity";
-        internal const string GetClassModsByLootDropRoute = "GetClassModsByLootDrop";
-        internal const string GetClassModsByClassRoute = "GetClassModsByClass";
         internal const string GetClassModRoute = "GetClassMod";
-
-        internal const string GetClassModsByManufacturerRoute = "GetClassModsByManufacturer";
         #endregion
 
         private readonly IClassModApi api = api;
 
         #region queries
         [HttpGet(Name = GetClassModsRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassMods(CancellationToken ct)
+        [ProducesResponseType(typeof(List<ClassModResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<ClassModResponse>>> GetClassMods(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            string? @class,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            Guid? skillId,
+            CancellationToken ct)
         {
-            var classMods = await api.GetClassModsAsync(ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/player/{id}", Name = GetClassModsByPlayerRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByPlayer(Guid id, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByPlayerAsync(id, ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/model/{id}", Name = GetClassModsByModelRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByModel(Guid id, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByModelAsync(id, ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/rarity/{id}", Name = GetClassModsByRarityRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByRarity(Guid id, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByRarityAsync(id, ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/loot_drop/{id}", Name = GetClassModsByLootDropRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByLootDrop(Guid id, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByLootDropAsync(id, ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/class/{class}", Name = GetClassModsByClassRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByType(string @class, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByClassAsync(@class, ct);
-            var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
-            return Ok(linkedClassMods);
-        }
-
-        [HttpGet("by/manufacturer/{manufacturer}", Name = GetClassModsByManufacturerRoute)]
-        public async Task<ActionResult<List<ClassModResponse>>> GetClassModsByManufacturer(string manufacturer, CancellationToken ct)
-        {
-            var classMods = await api.GetClassModsByManufacturerAsync(manufacturer, ct);
+            var classMods = await api.GetClassModsAsync(
+                playerId,
+                modelId,
+                name,
+                @class,
+                manufacturer,
+                dlc,
+                unique,
+                rarity,
+                skillId,
+                ct);
             var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
             return Ok(linkedClassMods);
         }
 
         [HttpGet("{id}", Name = GetClassModRoute)]
+        [ProducesResponseType(typeof(ClassModResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ClassModResponse>> GetClassMod(Guid id, CancellationToken ct)
         {
             try
@@ -90,10 +59,6 @@ namespace Vault.Api
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
             }
         }
         #endregion

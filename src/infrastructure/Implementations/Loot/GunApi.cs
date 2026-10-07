@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,250 +8,117 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<GunItemDto>> GetGunsAsync(CancellationToken ct)
+        public async Task<List<GunItemDto>> GetGunsAsync(
+            Guid? playerId,
+            Guid? modelId,
+            string? name,
+            Gun? category,
+            Manufacturer? manufacturer,
+            Dlc? dlc,
+            bool? unique,
+            string? rarity,
+            string? element,
+            string? prefix,
+            bool? missionItem,
+            Manufacturer? barrel,
+            Manufacturer? stock,
+            Manufacturer? grip,
+            Manufacturer? scope,
+            Manufacturer? body,
+            CancellationToken ct)
         {
-            return await db.GunItems
-                .AsNoTracking()
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            var query = db.GunItems.AsNoTracking();
 
-        public async Task<List<GunItemDto>> GetGunsByPlayerAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.PlayerId == id)
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (playerId != null)
+            {
+                query = query.Where(i => i.PlayerId == playerId);
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByModelAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.ModelId == id)
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (modelId != null)
+            {
+                query = query.Where(i => i.ModelId == modelId);
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByRarityAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.RarityId == id)
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                query = query.Where(
+                    m => string.Equals(m.Model.Name, name, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByLootDropAsync(Guid id, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.DropId != null && e.DropId.Value == id)
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (category != null)
+            {
+                var categoryStr = category.ToString();
+                query = query.Where(m => string.Equals(m.Model.SubCategory, categoryStr, StringComparison.InvariantCultureIgnoreCase));
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByElementAsync(string element, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.ElementalDamage != null &&
-                    string.Equals(e.ElementalDamage.Element.ToString(), element, StringComparison.InvariantCultureIgnoreCase))
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (manufacturer != null)
+            {
+                query = query.Where(m => m.Model.Manufacturer == manufacturer);
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByTypeAsync(string type, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => e.Model.SubCategory != null &&
-                    string.Equals(e.Model.SubCategory, type, StringComparison.InvariantCultureIgnoreCase))
-                .Select(e => new GunItemDto(
-                    e.Id,
-                    e.PlayerId,
-                    e.ModelId,
-                    e.RarityId,
-                    e.Drop != null ? new LootDropDto(e.Drop) : null,
-                    e.Level,
-                    (int?)e.BuyPrice,
-                    (int?)e.SellPrice,
-                    e.Effects.Select(e => new EffectDto(e.Description, e.Amount, e.Units)).ToList(),
-                    e.Damage,
-                    e.Accuracy,
-                    e.FireRate,
-                    e.ReloadSpeed,
-                    e.MagazineSize,
-                    e.PelletCount,
-                    (e.ElementalDamage != null && e.ElementalChance.HasValue)
-                        ? new ElementalDamageChanceDto(e.ElementalDamage.Element, e.ElementalDamage.DamagePerSecond, e.ElementalChance.Value)
-                        : null,
-                    e.Prefix,
-                    e.MissionItem,
-                    e.Barrel,
-                    e.Stock,
-                    e.Grip,
-                    e.Scope,
-                    e.Body))
-                .ToListAsync(ct);
-        }
+            if (dlc != null)
+            {
+                query = query.Where(m => m.Model.Dlc == dlc);
+            }
 
-        public async Task<List<GunItemDto>> GetGunsByManufacturerAsync(string manufacturer, CancellationToken ct)
-        {
-            return await db.GunItems
-                .AsNoTracking()
-                .Where(e => string.Equals(e.Model.Manufacturer.ToString(), manufacturer, StringComparison.InvariantCultureIgnoreCase))
+            if (unique != null)
+            {
+                query = query.Where(m => m.Model.Unique == unique);
+            }
+
+            if (!string.IsNullOrWhiteSpace(rarity))
+            {
+                query = query.Where(m => m.Rarity.Name.Equals(rarity, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(element))
+            {
+                var lookingForNonElemental = element.Equals(Element.None.ToString(), StringComparison.InvariantCultureIgnoreCase);
+                query = query.Where(m =>
+                    m.ElementalDamage == null
+                    ? lookingForNonElemental
+                    : m.ElementalDamage.Element.ToString().Equals(element, StringComparison.InvariantCultureIgnoreCase)
+                );
+            }
+
+            if (!string.IsNullOrWhiteSpace(prefix))
+            {
+                query = query.Where(m =>
+                    !string.IsNullOrWhiteSpace(m.Prefix) &&
+                    m.Prefix.Equals(prefix, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (missionItem != null)
+            {
+                query = query.Where(m => m.MissionItem == missionItem);
+            }
+
+            if (barrel != null)
+            {
+                query = query.Where(m => m.Barrel == barrel);
+            }
+
+            if (stock != null)
+            {
+                query = query.Where(m => m.Stock == stock);
+            }
+
+            if (grip != null)
+            {
+                query = query.Where(m => m.Grip == grip);
+            }
+
+            if (scope != null)
+            {
+                query = query.Where(m => m.Scope == scope);
+            }
+
+            if (body != null)
+            {
+                query = query.Where(m => m.Body == body);
+            }
+
+            return await query
                 .Select(e => new GunItemDto(
                     e.Id,
                     e.PlayerId,

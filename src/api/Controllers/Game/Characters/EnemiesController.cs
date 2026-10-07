@@ -15,6 +15,7 @@ namespace Vault.Api
         private readonly IEnemyApi api = api;
 
         [HttpGet(Name = GetEnemiesRoute)]
+        [ProducesResponseType(typeof(List<EnemyResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<EnemyResponse>>> GetEnemies(CancellationToken ct)
         {
             var enemies = await api.GetEnemiesAsync(ct);
@@ -23,11 +24,20 @@ namespace Vault.Api
         }
 
         [HttpGet("{id}", Name = GetEnemyRoute)]
+        [ProducesResponseType(typeof(EnemyResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EnemyResponse>> GetEnemy(Guid id, CancellationToken ct)
         {
-            var enemy = await api.GetEnemyAsync(id, ct);
-            var linkedEnemy = ConvertEnemy(enemy);
-            return Ok(linkedEnemy);
+            try
+            {
+                var enemy = await api.GetEnemyAsync(id, ct);
+                var linkedEnemy = ConvertEnemy(enemy);
+                return Ok(linkedEnemy);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace Vault.Api
 {
     public sealed record EquipmentModelResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         string? Name,
         Equipment Category,
         string SubCategory,
@@ -11,14 +11,14 @@ namespace Vault.Api
         Dlc DLC,
         bool Unique,
         string? FlavorText,
-        List<ResourceLinkDto> Instances,
-        List<ResourceLinkDto> LootPools,
-        ResourceLinkDto RaritySet,
-        ResourceLinkDto? ElementSet
+        List<ResourceLink> Instances,
+        List<ResourceLink> LootPools,
+        ResourceLink RaritySet,
+        ResourceLink? ElementSet
         );
 
     public sealed record RaritySetResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         bool ComesInWhite,
         bool ComesInGreen,
         bool ComesInBlue,
@@ -31,7 +31,7 @@ namespace Vault.Api
         );
 
     public sealed record ElementSetResponse(
-        ResourceLinkDto Self,
+        ResourceLink Self,
         bool ComesWithoutElement,
         bool ComesInIncendiary,
         bool ComesInShock,
