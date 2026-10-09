@@ -5,4 +5,5 @@ kiota generate                      \
   --openapi src/api/openapi.json    \
   --output src/client/generated     \
   --class-name VaultApiClient       \
-  --namespace-name Vault.Client
+  --namespace-name Vault.Client     \
+  --clean-output
