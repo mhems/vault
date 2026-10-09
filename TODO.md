@@ -1,4 +1,0 @@
-
-* seed tables
-* unit tests
-

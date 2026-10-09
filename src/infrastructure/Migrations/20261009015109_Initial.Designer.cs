@@ -12,7 +12,7 @@ using Vault.Infrastructure;
 namespace Vault.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261009012444_Initial")]
+    [Migration("20261009015109_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

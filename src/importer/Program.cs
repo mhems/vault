@@ -119,6 +119,6 @@ foreach (var item in CsvUtilities.ParseRelics())
 }
 
 var account = new Account("matt");
-//db.Accounts.Add(account);
+db.Accounts.Add(account);
 
 await db.SaveChangesAsync();
