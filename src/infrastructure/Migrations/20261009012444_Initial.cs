@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Vault.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,21 +25,21 @@ namespace Vault.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EquipmentModels",
+                name: "ElementSets",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true, collation: "NOCASE"),
-                    Category = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
-                    SubCategory = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
-                    Manufacturer = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
-                    Dlc = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
-                    Unique = table.Column<bool>(type: "INTEGER", nullable: false),
-                    FlavorText = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true)
+                    ComesWithoutElement = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInIncendiary = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInShock = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInCorrosive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInSlag = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInExplosive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipmentModels", x => x.Id);
+                    table.PrimaryKey("PK_ElementSets", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +114,27 @@ namespace Vault.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RaritySets",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ComesInWhite = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInGreen = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInBlue = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInPurple = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInLegendary = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInEffervescent = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInPearlescent = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInSeraph = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ComesInETech = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RaritySets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Map",
                 columns: table => new
                 {
@@ -127,30 +148,6 @@ namespace Vault.Infrastructure.Migrations
                         name: "FK_Map_Location_Id",
                         column: x => x.Id,
                         principalTable: "Location",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EquipmentModelLootPool",
-                columns: table => new
-                {
-                    LootPoolsId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ModelsId = table.Column<Guid>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EquipmentModelLootPool", x => new { x.LootPoolsId, x.ModelsId });
-                    table.ForeignKey(
-                        name: "FK_EquipmentModelLootPool_EquipmentModels_ModelsId",
-                        column: x => x.ModelsId,
-                        principalTable: "EquipmentModels",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EquipmentModelLootPool_LootPools_LootPoolsId",
-                        column: x => x.LootPoolsId,
-                        principalTable: "LootPools",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -254,6 +251,37 @@ namespace Vault.Infrastructure.Migrations
                         name: "FK_Skills_PlayerClasses_PlayerClassId",
                         column: x => x.PlayerClassId,
                         principalTable: "PlayerClasses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EquipmentModels",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 64, nullable: true, collation: "NOCASE"),
+                    Category = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
+                    SubCategory = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
+                    Manufacturer = table.Column<string>(type: "TEXT", maxLength: 32, nullable: false, collation: "NOCASE"),
+                    Dlc = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
+                    Unique = table.Column<bool>(type: "INTEGER", nullable: false),
+                    FlavorText = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    PossibleRaritiesId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PossibleElementsId = table.Column<Guid>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EquipmentModels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EquipmentModels_ElementSets_PossibleElementsId",
+                        column: x => x.PossibleElementsId,
+                        principalTable: "ElementSets",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_EquipmentModels_RaritySets_PossibleRaritiesId",
+                        column: x => x.PossibleRaritiesId,
+                        principalTable: "RaritySets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -416,6 +444,30 @@ namespace Vault.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EquipmentModelLootPool",
+                columns: table => new
+                {
+                    LootPoolsId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ModelsId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EquipmentModelLootPool", x => new { x.LootPoolsId, x.ModelsId });
+                    table.ForeignKey(
+                        name: "FK_EquipmentModelLootPool_EquipmentModels_ModelsId",
+                        column: x => x.ModelsId,
+                        principalTable: "EquipmentModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EquipmentModelLootPool_LootPools_LootPoolsId",
+                        column: x => x.LootPoolsId,
+                        principalTable: "LootPools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Missions",
                 columns: table => new
                 {
@@ -477,13 +529,13 @@ namespace Vault.Infrastructure.Migrations
                     RarityId = table.Column<Guid>(type: "TEXT", nullable: false),
                     BuyPrice = table.Column<uint>(type: "INTEGER", nullable: true),
                     SellPrice = table.Column<uint>(type: "INTEGER", nullable: true),
-                    PlayerId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    AccountId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    PlayerId = table.Column<Guid>(type: "TEXT", nullable: false),
                     DropId = table.Column<Guid>(type: "TEXT", nullable: true),
                     Drop_Specified = table.Column<bool>(type: "INTEGER", nullable: true),
                     Drop_MissionId = table.Column<Guid>(type: "TEXT", nullable: true),
                     Drop_AreaId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    Drop_EnemyId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    Drop_EnemyId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    AccountId = table.Column<Guid>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -492,8 +544,7 @@ namespace Vault.Infrastructure.Migrations
                         name: "FK_Equipment_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Equipment_Area_Drop_AreaId",
                         column: x => x.Drop_AreaId,
@@ -818,6 +869,16 @@ namespace Vault.Infrastructure.Migrations
                 column: "ModelsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EquipmentModels_PossibleElementsId",
+                table: "EquipmentModels",
+                column: "PossibleElementsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EquipmentModels_PossibleRaritiesId",
+                table: "EquipmentModels",
+                column: "PossibleRaritiesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LocationNonPlayableCharacter_LocationsId",
                 table: "LocationNonPlayableCharacter",
                 column: "LocationsId");
@@ -855,8 +916,7 @@ namespace Vault.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Missions_MissionItemId",
                 table: "Missions",
-                column: "MissionItemId",
-                unique: true);
+                column: "MissionItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Missions_MissionRewarderId",
@@ -991,6 +1051,12 @@ namespace Vault.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Map");
+
+            migrationBuilder.DropTable(
+                name: "ElementSets");
+
+            migrationBuilder.DropTable(
+                name: "RaritySets");
 
             migrationBuilder.DropTable(
                 name: "Location");

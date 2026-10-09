@@ -73,6 +73,7 @@
         MIRV,
         Singularity,
         Transfusion,
+        Projectile,
     }
 
     public enum GrenadeDelivery
@@ -87,13 +88,14 @@
     {
         Standard,
         Adaptive,
-        Roid,
+        Maylay,
         Booster,
         Amplify,
         Spike,
         Nova,
         Turtle,
-        Absorb
+        Absorb,
+        Other
     }
 
     public enum Relic

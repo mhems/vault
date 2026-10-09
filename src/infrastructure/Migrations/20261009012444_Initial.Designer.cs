@@ -12,8 +12,8 @@ using Vault.Infrastructure;
 namespace Vault.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261003020923_initial")]
-    partial class initial
+    [Migration("20261009012444_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,38 @@ namespace Vault.Infrastructure.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("Vault.Domain.ElementSet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("ComesInCorrosive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInExplosive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInIncendiary")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInShock")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInSlag")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesWithoutElement")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ElementSets");
+                });
+
             modelBuilder.Entity("Vault.Domain.EquipmentItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -136,7 +168,7 @@ namespace Vault.Infrastructure.Migrations
                     b.Property<Guid>("ModelId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("PlayerId")
+                    b.Property<Guid>("PlayerId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("RarityId")
@@ -192,6 +224,12 @@ namespace Vault.Infrastructure.Migrations
                         .HasColumnType("TEXT")
                         .UseCollation("NOCASE");
 
+                    b.Property<Guid?>("PossibleElementsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("PossibleRaritiesId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SubCategory")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -202,6 +240,10 @@ namespace Vault.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PossibleElementsId");
+
+                    b.HasIndex("PossibleRaritiesId");
 
                     b.ToTable("EquipmentModels");
                 });
@@ -285,8 +327,7 @@ namespace Vault.Infrastructure.Migrations
 
                     b.HasIndex("MissionGiverId");
 
-                    b.HasIndex("MissionItemId")
-                        .IsUnique();
+                    b.HasIndex("MissionItemId");
 
                     b.HasIndex("MissionRewarderId");
 
@@ -423,6 +464,47 @@ namespace Vault.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rarities");
+                });
+
+            modelBuilder.Entity("Vault.Domain.RaritySet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("ComesInBlue")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInETech")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInEffervescent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInGreen")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInLegendary")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInPearlescent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInPurple")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInSeraph")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ComesInWhite")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RaritySets");
                 });
 
             modelBuilder.Entity("Vault.Domain.Skill", b =>
@@ -813,13 +895,12 @@ namespace Vault.Infrastructure.Migrations
 
             modelBuilder.Entity("Vault.Domain.EquipmentItem", b =>
                 {
-                    b.HasOne("Vault.Domain.Account", "Account")
+                    b.HasOne("Vault.Domain.Account", null)
                         .WithMany("Stash")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("Vault.Domain.EquipmentModel", "Model")
-                        .WithMany()
+                        .WithMany("Instances")
                         .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -827,7 +908,8 @@ namespace Vault.Infrastructure.Migrations
                     b.HasOne("Vault.Domain.Player", "Player")
                         .WithMany("Equipment")
                         .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Vault.Domain.Rarity", "Rarity")
                         .WithMany()
@@ -915,8 +997,6 @@ namespace Vault.Infrastructure.Migrations
                             b1.Navigation("Mission");
                         });
 
-                    b.Navigation("Account");
-
                     b.Navigation("Drop");
 
                     b.Navigation("Effects");
@@ -926,6 +1006,23 @@ namespace Vault.Infrastructure.Migrations
                     b.Navigation("Player");
 
                     b.Navigation("Rarity");
+                });
+
+            modelBuilder.Entity("Vault.Domain.EquipmentModel", b =>
+                {
+                    b.HasOne("Vault.Domain.ElementSet", "PossibleElements")
+                        .WithMany()
+                        .HasForeignKey("PossibleElementsId");
+
+                    b.HasOne("Vault.Domain.RaritySet", "PossibleRarities")
+                        .WithMany()
+                        .HasForeignKey("PossibleRaritiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PossibleElements");
+
+                    b.Navigation("PossibleRarities");
                 });
 
             modelBuilder.Entity("Vault.Domain.Mission", b =>
@@ -945,8 +1042,8 @@ namespace Vault.Infrastructure.Migrations
                         .HasForeignKey("MissionGiverId");
 
                     b.HasOne("Vault.Domain.EquipmentModel", "MissionItem")
-                        .WithOne()
-                        .HasForeignKey("Vault.Domain.Mission", "MissionItemId");
+                        .WithMany()
+                        .HasForeignKey("MissionItemId");
 
                     b.HasOne("Vault.Domain.NonPlayableCharacter", "MissionRewarder")
                         .WithMany()
@@ -980,7 +1077,7 @@ namespace Vault.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("Vault.Domain.PlayerClass", "Class")
-                        .WithMany()
+                        .WithMany("Players")
                         .HasForeignKey("PlayerClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1257,6 +1354,11 @@ namespace Vault.Infrastructure.Migrations
                     b.Navigation("Stash");
                 });
 
+            modelBuilder.Entity("Vault.Domain.EquipmentModel", b =>
+                {
+                    b.Navigation("Instances");
+                });
+
             modelBuilder.Entity("Vault.Domain.Player", b =>
                 {
                     b.Navigation("Equipment");
@@ -1264,6 +1366,8 @@ namespace Vault.Infrastructure.Migrations
 
             modelBuilder.Entity("Vault.Domain.PlayerClass", b =>
                 {
+                    b.Navigation("Players");
+
                     b.Navigation("Skills");
                 });
 

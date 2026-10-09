@@ -1,14 +1,14 @@
 name,manufacturer,subcategory,dlc,unique,rarity,sticky,none,incendiary,shock,corrosive,explosive,slag
-bouncing betty,dahl,bouncing,basegame,FALSE,white+,,,x,x,x,,x
-corrosive cloud,vladof,area of effect,basegame,FALSE,white+,no,,,,x,,
-fire burst,vladof,area of effect,basegame,FALSE,white+,no,,x,,,,
+bouncing betty,dahl,bouncingbetty,basegame,FALSE,white+,,,x,x,x,,x
+corrosive cloud,vladof,areaofeffect,basegame,FALSE,white+,no,,,,x,,
+fire burst,vladof,areaofeffect,basegame,FALSE,white+,no,,x,,,,
 grenade,tediore,standard,basegame,FALSE,white+,,,x,x,x,x,x
 gurnade,bandit,standard,basegame,FALSE,white+,,,x,x,x,x,x
-jumpin biddy,bandit,bouncing,basegame,FALSE,white+,,,x,x,x,x,x
+jumpin biddy,bandit,bouncingbetty,basegame,FALSE,white+,,,x,x,x,x,x
 mirv,torgue,mirv,basegame,FALSE,white+,,,,,,x,
 murrv,bandit,mirv,basegame,FALSE,white+,,,x,x,x,x,x
 singularity,hyperion,singularity,basegame,FALSE,white+,,,x,x,x,x,x
-tesla,vladof,area of effect,basegame,FALSE,white+,no,,,x,,,
+tesla,vladof,areaofeffect,basegame,FALSE,white+,no,,,x,,,
 transfusion,maliwan,transfusion,basegame,FALSE,white+,,,x,x,x,x,x
 captain blade's midnight star,torgue,mirv,captainscarlett,TRUE,blue,,,,,,x,
 contraband sky rocket,bandit,mirv,basegame,TRUE,blue,,,x,,,,
@@ -16,26 +16,22 @@ fireball,maliwan,projectile,tinytina,TRUE,blue,,,x,,,,
 fuster cluck,bandit,mirv,basegame,TRUE,blue,,x,x,x,x,x,x
 kiss of death,maliwan,transfusion,basegame,TRUE,blue,,,x,x,x,x,
 lightning bolt,maliwan,projectile,tinytina,TRUE,blue,,,,x,,,
-magic missile,maliwan,none,tinytina,TRUE,blue,,,,,,,x
-breath of terramorphous,vladof,"area of effect
-mirv",basegame,FALSE,e-tech,no,,x,,,,
+magic missile,maliwan,standard,tinytina,TRUE,blue,,,,,,,x
+breath of terramorphous,vladof,areaofeffect,basegame,FALSE,e-tech,no,,x,,,,
 bonus package,torgue,mirv,basegame,FALSE,legendary,,,,,,x,
-bouncing bonny,dahl,"bouncing
-mirv",basegame,FALSE,legendary,,,x,x,x,x,x
+bouncing bonny,dahl,bouncingbetty,basegame,FALSE,legendary,,,x,x,x,x,x
 chain lightning,maliwan,projectile,tinytina,FALSE,legendary,,,,x,,,
 fastball,tediore,projectile,basegame,FALSE,legendary,,,x,x,x,x,
-fire bee,vladof,area of effect,basegame,FALSE,legendary,no,,x,,,,
-fire storm,maliwan,thrown,tinytina,FALSE,legendary,,,x,,,,
+fire bee,vladof,areaofeffect,basegame,FALSE,legendary,no,,x,,,,
+fire storm,maliwan,projectile,tinytina,FALSE,legendary,,,x,,,,
 leech,maliwan,transfusion,basegame,FALSE,legendary,,,x,x,x,,
 nasty surprise,hyperion,mirv,basegame,FALSE,legendary,,,x,x,x,x,x
-pandemic,vladof,area of effect,basegame,FALSE,legendary,no,,,,x,,
-quasar,hyperion,"singularity
-area of effect",basegame,FALSE,legendary,,,,x,,,
-rolling thunder,torgue,"bouncing
-mirv",basegame,FALSE,legendary,,,,,,x,
-storm front,vladof,area of effect,basegame,FALSE,legendary,no,,,x,,,
-crossfire,dahl,bouncing,mrtorgue,FALSE,seraph,,,x,x,x,x,x
+pandemic,vladof,areaofeffect,basegame,FALSE,legendary,no,,,,x,,
+quasar,hyperion,singularity,basegame,FALSE,legendary,,,,x,,,
+rolling thunder,torgue,bouncingbetty,basegame,FALSE,legendary,,,,,,x,
+storm front,vladof,areaofeffect,basegame,FALSE,legendary,no,,,x,,,
+crossfire,dahl,bouncingbetty,mrtorgue,FALSE,seraph,,,x,x,x,x,x
 meteor shower,torgue,mirv,mrtorgue,FALSE,seraph,,,,,,x,
 o-negative,maliwan,transfusion,mrtorgue,FALSE,seraph,,,x,x,x,x,x
-antifection,vladof,area of effect,commander,FALSE,effervescent,no,,x,,,,
-the electric chair,vladof,area of effect,commander,FALSE,effervescent,no,,,x,,,
+antifection,vladof,areaofeffect,commander,FALSE,effervescent,no,,x,,,,
+the electric chair,vladof,areaofeffect,commander,FALSE,effervescent,no,,,x,,,

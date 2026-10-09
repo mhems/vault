@@ -22,23 +22,18 @@ slayer of terramorphous,assassin,jakobs,basegame,legendary
 anarchist,mechromancer,vladof,mechromancer,white+
 catalyst,mechromancer,maliwan,mechromancer,white+
 jill of all trades,mechromancer,tediore,mechromancer,white+
-necromancer,mechromancer,tediore,"mechromancer
-tinytina",white+
+necromancer,mechromancer,tediore,tinytina,white+
 prodigy,mechromancer,dahl,mechromancer,white+
 punk,mechromancer,bandit,mechromancer,white+
 roboteer,mechromancer,hyperion,mechromancer,white+
 sweetheart,mechromancer,anshin,mechromancer,white+
 technophile,mechromancer,pangolin,mechromancer,white+
 zapper,mechromancer,maliwan,mechromancer,white+
-legendary anarchist,mechromancer,vladof,"mechromancer
-ultimate",legendary
-legendary catalyst,mechromancer,maliwan,"mechromancer
-ultimate",legendary
+legendary anarchist,mechromancer,vladof,ultimate,legendary
+legendary catalyst,mechromancer,maliwan,ultimate,legendary
 legendary mechromancer,mechromancer,hyperion,mechromancer,legendary
-legendary roboteer,mechromancer,hyperion,"mechromancer
-ultimate",legendary
-barbarian,psycho,bandit,"psycho
-tinytina",white+
+legendary roboteer,mechromancer,hyperion,ultimate,legendary
+barbarian,psycho,bandit,tinytina,white+
 blister,psycho,bandit,psycho,white+
 crunch,psycho,bandit,psycho,white+
 meat,psycho,bandit,psycho,white+
@@ -49,12 +44,9 @@ toast,psycho,bandit,psycho,white+
 torch,psycho,bandit,psycho,white+
 wound,psycho,bandit,psycho,white+
 legendary psycho,psycho,bandit,psycho,legendary
-legendary reaper,psycho,bandit,"psycho
-ultimate",legendary
-legendary sickle,psycho,bandit,"psycho
-ultimate",legendary
-legendary torch,psycho,bandit,"psycho
-ultimate",legendary
+legendary reaper,psycho,bandit,ultimate,legendary
+legendary sickle,psycho,bandit,ultimate,legendary
+legendary torch,psycho,bandit,ultimate,legendary
 banshee,siren,bandit,basegame,white+
 binder,siren,maliwan,basegame,white+
 cat,siren,hyperion,basegame,white+

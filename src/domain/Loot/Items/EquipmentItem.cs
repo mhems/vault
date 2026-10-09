@@ -55,6 +55,7 @@
 
     public class LootDrop
     {
+        public bool Specified { get; private set; }
         public Guid? MissionId { get; private set; }
         public Mission? Mission { get; private set; }
 
@@ -68,18 +69,21 @@
         {
             MissionId = mission.Id;
             Mission = mission;
+            Specified = true;
         }
 
         public void SetAreaSource(Area area)
         {
             AreaId = area.Id;
             Area = area;
+            Specified = true;
         }
 
         public void SetEnemySource(Enemy enemy)
         {
             EnemyId = enemy.Id;
             Enemy = enemy;
+            Specified = true;
         }
     }
 }

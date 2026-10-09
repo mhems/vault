@@ -57,6 +57,8 @@ namespace Vault.Infrastructure
 
             builder.OwnsOne(e => e.Drop, drop =>
             {
+                drop.Property(d => d.Specified);
+
                 drop.HasOne(d => d.Mission)
                     .WithMany()
                     .HasForeignKey("MissionId");
@@ -69,7 +71,6 @@ namespace Vault.Infrastructure
                     .WithMany()
                     .HasForeignKey("EnemyId");
             });
-
         }
     }
 }
