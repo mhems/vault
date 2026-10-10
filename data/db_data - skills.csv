@@ -1,4 +1,5 @@
 class,name,onepointmax,tree,tier,column
+assassin,deception,TRUE,action,0,2
 assassin,headshot,FALSE,sniping,1,1
 assassin,optics,FALSE,sniping,1,3
 assassin,killer,FALSE,sniping,2,1
@@ -29,6 +30,7 @@ assassin,backstab,FALSE,bloodshed,3,3
 assassin,resurgence,FALSE,bloodshed,4,2
 assassin,like the wind,FALSE,bloodshed,5,2
 assassin,many must fall,TRUE,bloodshed,6,2
+siren,phaselock,TRUE,action,0,2
 siren,ward,FALSE,motion,1,1
 siren,accelerate,FALSE,motion,1,3
 siren,suspension,FALSE,motion,2,1
@@ -59,6 +61,7 @@ siren,cloud kill,TRUE,cataclysm,3,3
 siren,reaper,FALSE,cataclysm,4,2
 siren,blight phoenix,FALSE,cataclysm,5,2
 siren,ruin,TRUE,cataclysm,6,2
+soldier,sabre turret,TRUE,action,0,2
 soldier,sentry,FALSE,guerrilla,1,1
 soldier,ready,FALSE,guerrilla,1,3
 soldier,laser sight,FALSE,guerrilla,2,1
@@ -91,6 +94,7 @@ soldier,resourceful,FALSE,survival,4,1
 soldier,mag-lock,TRUE,survival,4,2
 soldier,grit,FALSE,survival,5,2
 soldier,gemini,TRUE,survival,6,2
+gunzerker,gunzerking,TRUE,action,0,2
 gunzerker,locked and loaded,FALSE,gun lust,1,1
 gunzerker,quick draw,FALSE,gun lust,1,3
 gunzerker,i'm your huckleberry,FALSE,gun lust,2,1
@@ -124,6 +128,7 @@ gunzerker,bus that can't slow down,FALSE,brawn,4,1
 gunzerker,just got real,FALSE,brawn,4,2
 gunzerker,sexual tyrannosaurus,FALSE,brawn,5,2
 gunzerker,come at me bro,TRUE,brawn,6,2
+psycho,buzz axe rampage,TRUE,action,0,2
 psycho,blood twitch,FALSE,bloodlust,1,1
 psycho,blood-filled guns,FALSE,bloodlust,1,3
 psycho,blood overdrive,FALSE,bloodlust,2,1
@@ -159,6 +164,7 @@ psycho,hellfire halitosis,TRUE,hellborn,4,2
 psycho,flame fare,FALSE,hellborn,4,3
 psycho,elemental empathy,FALSE,hellborn,5,2
 psycho,raving retribution,TRUE,hellborn,6,2
+mechromancer,deathtrap,TRUE,action,0,2
 mechromancer,close enough,FALSE,best friends forever,1,1
 mechromancer,cooking up trouble,FALSE,best friends forever,1,3
 mechromancer,fancy mathematics,FALSE,best friends forever,2,1
