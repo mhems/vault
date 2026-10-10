@@ -7,13 +7,35 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<SkillDto>> GetSkillsAsync(string? @class, CancellationToken ct)
+        public async Task<List<SkillDto>> GetSkillsAsync(
+            string? @class,
+            string? tree,
+            bool? onePointMax,
+            int? tier,
+            CancellationToken ct)
         {
             var query = db.Skills.AsNoTracking();
+
             if (!string.IsNullOrWhiteSpace(@class))
             {
                 query = query.Where(s => s.Class.Name.Equals(@class, StringComparison.InvariantCultureIgnoreCase));
             }
+
+            if (!string.IsNullOrWhiteSpace(tree))
+            {
+                query = query.Where(s => s.Tree.Equals(tree, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (onePointMax != null)
+            {
+                query = query.Where(s => s.OnePointMax == onePointMax);
+            }
+
+            if (tier != null)
+            {
+                query = query.Where(s => s.Tier == tier);
+            }
+
             return await query
               .AsNoTracking()
               .Select(s => new SkillDto(

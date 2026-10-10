@@ -25,6 +25,8 @@ namespace Vault.Api
             string? subcategory,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             CancellationToken ct)
@@ -37,6 +39,8 @@ namespace Vault.Api
                 subcategory,
                 manufacturer,
                 dlc,
+                minLevel,
+                maxLevel,
                 unique,
                 rarity,
                 ct);

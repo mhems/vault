@@ -15,9 +15,13 @@ namespace Vault.Infrastructure
             string? @class,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
-            Guid? skillId,
+            string? prefix,
+            Guid? boostsSkillId,
+            int? boostsSkillBy,
             CancellationToken ct)
         {
             var query = db.ClassModItems.AsNoTracking();
@@ -38,7 +42,6 @@ namespace Vault.Infrastructure
                     m => string.Equals(m.Model.Name, name, StringComparison.InvariantCultureIgnoreCase));
             }
 
-
             if (!string.IsNullOrWhiteSpace(@class))
             {
                 query = query.Where(m => string.Equals(m.Model.SubCategory, @class, StringComparison.InvariantCultureIgnoreCase));
@@ -54,6 +57,16 @@ namespace Vault.Infrastructure
                 query = query.Where(m => m.Model.Dlc == dlc);
             }
 
+            if (minLevel != null)
+            {
+                query = query.Where(m => m.Level >= minLevel);
+            }
+
+            if (maxLevel != null)
+            {
+                query = query.Where(m => m.Level <= maxLevel);
+            }
+
             if (unique != null)
             {
                 query = query.Where(m => m.Model.Unique == unique);
@@ -64,9 +77,19 @@ namespace Vault.Infrastructure
                 query = query.Where(m => m.Rarity.Name.Equals(rarity, StringComparison.InvariantCultureIgnoreCase));
             }
 
-            if (skillId != null)
+            if (!string.IsNullOrWhiteSpace(prefix))
             {
-                query = query.Where(m => m.Boosts.Any(b => b.SkillId == skillId));
+                query = query.Where(m => m.Prefix.Equals(prefix, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (boostsSkillId != null)
+            {
+                query = query.Where(m => m.Boosts.Any(b => b.SkillId == boostsSkillId));
+            }
+
+            if (boostsSkillBy != null)
+            {
+                query = query.Where(m => m.Boosts.Any(b => b.Amount == boostsSkillBy));
             }
 
             return await query

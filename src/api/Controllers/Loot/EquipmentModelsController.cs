@@ -18,6 +18,7 @@ namespace Vault.Api
         #region queries
         [HttpGet(Name = GetEquipmentModelsRoute)]
         [ProducesResponseType(typeof(List<EquipmentModelResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<EquipmentModelResponse>>> GetEquipmentModels(
             string? name,
             Equipment? category,
@@ -27,9 +28,13 @@ namespace Vault.Api
             bool? unique,
             Guid? raritySetId,
             Guid? elementSetId,
+            string? canHaveRarity,
+            string? canHaveElement,
             CancellationToken ct)
         {
-            var equipmentModels = await api.GetEquipmentModelsAsync(
+            try
+            {
+                var equipmentModels = await api.GetEquipmentModelsAsync(
                 name,
                 category,
                 subcategory,
@@ -38,9 +43,16 @@ namespace Vault.Api
                 unique,
                 raritySetId,
                 elementSetId,
+                canHaveRarity,
+                canHaveElement,
                 ct);
-            var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
-            return Ok(linkedEquipmentModels);
+                var linkedEquipmentModels = equipmentModels.Select(ConvertEquipmentModel).ToList();
+                return Ok(linkedEquipmentModels);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}", Name = GetEquipmentModelRoute)]

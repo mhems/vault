@@ -19,9 +19,17 @@ namespace Vault.Api
         [ProducesResponseType(typeof(List<SkillResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<SkillResponse>>> GetSkills(
             string? @class,
+            string? tree,
+            bool? onePointMax,
+            int? tier,
             CancellationToken ct)
         {
-            var skills = await api.GetSkillsAsync(@class, ct);
+            var skills = await api.GetSkillsAsync(
+                @class,
+                tree,
+                onePointMax,
+                tier,
+                ct);
             var linkedSkills = skills.Select(ConvertSkill).ToList();
             return Ok(linkedSkills);
         }

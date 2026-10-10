@@ -25,9 +25,13 @@ namespace Vault.Api
             string? @class,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
-            Guid? skillId,
+            string? prefix,
+            Guid? boostsSkillId,
+            int? boostsSkillBy,
             CancellationToken ct)
         {
             var classMods = await api.GetClassModsAsync(
@@ -37,9 +41,13 @@ namespace Vault.Api
                 @class,
                 manufacturer,
                 dlc,
+                minLevel,
+                maxLevel,
                 unique,
                 rarity,
-                skillId,
+                prefix,
+                boostsSkillId,
+                boostsSkillBy,
                 ct);
             var linkedClassMods = classMods.Select(ConvertClassMod).ToList();
             return Ok(linkedClassMods);

@@ -4,6 +4,7 @@
     {
         public int Capacity { get; private init; }
         public int RechargeRate { get; private init; }
+        public double RechargeRatePercent => RechargeRate * 100 / Capacity;
         public double RechargeDelay { get; private init; }
 
         public string? Prefix { get; set; }

@@ -15,9 +15,12 @@ namespace Vault.Infrastructure
             GrenadeDelivery? delivery,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             string? element,
+            double? maxFuse,
             bool? sticky,
             CancellationToken ct)
         {
@@ -55,6 +58,16 @@ namespace Vault.Infrastructure
                 query = query.Where(m => m.Model.Dlc == dlc);
             }
 
+            if (minLevel != null)
+            {
+                query = query.Where(m => m.Level >= minLevel);
+            }
+
+            if (maxLevel != null)
+            {
+                query = query.Where(m => m.Level <= maxLevel);
+            }
+
             if (unique != null)
             {
                 query = query.Where(m => m.Model.Unique == unique);
@@ -75,11 +88,15 @@ namespace Vault.Infrastructure
                 );
             }
 
+            if (maxFuse != null)
+            {
+                query = query.Where(m => m.Fuse <= maxFuse);
+            }
+
             if (sticky != null)
             {
                 query = query.Where(m => m.Sticky == sticky);
             }
-
 
             return await query
                 .Select(e => new GrenadeItemDto(

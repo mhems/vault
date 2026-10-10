@@ -6,6 +6,7 @@
         public PlayerClass Class { get; private init; }
         public string Prefix { get; private init; }
         public List<SkillBoost> Boosts { get; private init; }
+        public int TotalBoostAmount => Boosts.Sum(b => b.Amount);
 
         private ClassModItem() : base() { }
         public ClassModItem(Player player,

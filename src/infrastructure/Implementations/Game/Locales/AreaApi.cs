@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,10 +8,42 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<AreaDto>> GetAreasAsync(CancellationToken ct)
+        public async Task<List<AreaDto>> GetAreasAsync(
+            Dlc? dlc,
+            Guid? canSpawnCharacterId,
+            bool? hasFastTravel,
+            bool? hasUTurn,
+            Guid? mapId,
+            CancellationToken ct)
         {
-            return await db.Areas
-              .AsNoTracking()
+            var query = db.Areas.AsNoTracking();
+
+            if (dlc != null)
+            {
+                query = query.Where(l => l.Dlc == dlc);
+            }
+
+            if (canSpawnCharacterId != null)
+            {
+                query = query.Where(l => l.Characters.Any(c => c.Id == canSpawnCharacterId));
+            }
+
+            if (hasFastTravel != null)
+            {
+                query = query.Where(l => l.HasFastTravel == hasFastTravel);
+            }
+
+            if (hasUTurn != null)
+            {
+                query = query.Where(l => l.HasUTurn == hasUTurn);
+            }
+
+            if (mapId != null)
+            {
+                query = query.Where(l => l.MapId == mapId);
+            }
+
+            return await query
               .Select(e => new AreaDto(
                   e.Id,
                   e.Name,

@@ -4,7 +4,11 @@
     {
         #region queries
         Task<PlayerDto> GetPlayerAsync(Guid id, CancellationToken ct);
-        Task<List<PlayerDto>> GetPlayersAsync(string? @class, CancellationToken ct);
+        Task<List<PlayerDto>> GetPlayersAsync(
+            Guid? accountId,
+            string? @class,
+            int? minLevel,
+            CancellationToken ct);
         Task<List<EquipmentItemDto>> GetPlayerItemsAsync(Guid id, CancellationToken ct);
         Task<List<GunItemDto>> GetPlayerGunsAsync(Guid id, CancellationToken ct);
         Task<List<GrenadeItemDto>> GetPlayerGrenadesAsync(Guid id, CancellationToken ct);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -16,9 +17,33 @@ namespace Vault.Api
 
         [HttpGet(Name = GetUniqueEnemiesRoute)]
         [ProducesResponseType(typeof(List<UniqueEnemyResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<UniqueEnemyResponse>>> GetUniqueEnemies(CancellationToken ct)
+        public async Task<ActionResult<List<UniqueEnemyResponse>>> GetUniqueEnemies(
+            Dlc? dlc,
+            string? species,
+            string? affiliation,
+            Guid? spawnLocationId,
+            bool? hasShield,
+            string? weakToElement,
+            string? resistsElement,
+            string? immuneToElement,
+            Guid? canDropModelId,
+            bool? boss,
+            bool? raidBoss,
+            CancellationToken ct)
         {
-            var enemies = await api.GetUniqueEnemiesAsync(ct);
+            var enemies = await api.GetUniqueEnemiesAsync(
+                dlc,
+                species,
+                affiliation,
+                spawnLocationId,
+                hasShield,
+                weakToElement,
+                resistsElement,
+                immuneToElement,
+                canDropModelId,
+                boss,
+                raidBoss,
+                ct);
             var linkedUniqueEnemies = enemies.Select(ConvertUniqueEnemy).ToList();
             return Ok(linkedUniqueEnemies);
         }

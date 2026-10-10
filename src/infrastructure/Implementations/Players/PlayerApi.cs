@@ -28,13 +28,29 @@ namespace Vault.Infrastructure
                 ?? throw new KeyNotFoundException($"no such player exists with ID {id}");
         }
 
-        public async Task<List<PlayerDto>> GetPlayersAsync(string? @class, CancellationToken ct)
+        public async Task<List<PlayerDto>> GetPlayersAsync(
+            Guid? accountId,
+            string? @class,
+            int? minLevel,
+            CancellationToken ct)
         {
             var query = db.Players.AsNoTracking();
+
+            if (accountId != null)
+            {
+                query = query.Where(p => p.AccountId == accountId);
+            }
+
             if (!string.IsNullOrWhiteSpace(@class))
             {
                 query = query.Where(p => p.Class.Name.Equals(@class, StringComparison.InvariantCultureIgnoreCase));
             }
+
+            if (minLevel != null)
+            {
+                query = query.Where(p => p.Level >= minLevel);
+            }
+
             return await query
                 .Select(player => new PlayerDto(
                     player.Id,

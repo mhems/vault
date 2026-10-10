@@ -3,6 +3,7 @@ namespace Vault.Domain
 {
     public class Player
     {
+        private const byte MAX_LEVEL = 90;
         public Guid Id { get; private init; } = Guid.NewGuid();
 
         public Guid PlayerClassId { get; private init; }
@@ -22,6 +23,9 @@ namespace Vault.Domain
         public List<EquipmentItem> Equipment { get; set; } = [];
         public HashSet<PlayerSkill> SkillTree { get; set; } = [];
 
+        private int TotalSkillPoints => Math.Min(80, (int)Level) - 5;
+        private int availableSkillPoints;
+
         private Player() { }
         public Player(Account account,
             PlayerClass @class,
@@ -38,25 +42,34 @@ namespace Vault.Domain
             Level = level ?? 1;
             Experience = experience;
             Money = money;
+            availableSkillPoints = TotalSkillPoints;
         }
 
         public void LevelUp()
         {
-            Level += 1;
+            if (Level < MAX_LEVEL)
+            {
+                Level++;
+                availableSkillPoints++;
+            }
+            else
+            {
+                throw new ArgumentException("already at max level");
+            }
         }
 
         public void SetLevel(int level)
         {
-            if (level < 0 || level > 90)
+            if (level < 0 || level > MAX_LEVEL)
             {
-                throw new ArgumentException("level must be between 0 and 90");
+                throw new ArgumentException($"level must be between 0 and {MAX_LEVEL}");
             }
 
             if (level < Level)
             {
                 throw new ArgumentException("cannot decrease level");
             }
-
+            availableSkillPoints += level - Level;
             Level = (byte)level;
         }
 
@@ -65,6 +78,11 @@ namespace Vault.Domain
             if (skill.PlayerClassId != PlayerClassId)
             {
                 throw new ArgumentException($"skill '{skill.Name}' does not belong to {Class.Name}", nameof(skill));
+            }
+
+            if (amount > availableSkillPoints)
+            {
+                throw new ArgumentException("insufficient skill points");
             }
 
             var playerSkill = SkillTree.FirstOrDefault(ps => ps.Skill.Id == skill.Id);
@@ -78,11 +96,13 @@ namespace Vault.Domain
             {
                 playerSkill.Invest(amount);
             }
+            availableSkillPoints -= amount;
         }
 
         public void ClearSkillTree()
         {
             SkillTree.Clear();
+            availableSkillPoints = TotalSkillPoints;
         }
 
         public void AddEquipment(EquipmentItem item)

@@ -11,6 +11,8 @@ namespace Vault.Application
             string? subcategory,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             CancellationToken ct);

@@ -26,9 +26,12 @@ namespace Vault.Api
             GrenadeDelivery? delivery,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             string? element,
+            double? maxFuse,
             bool? sticky,
             CancellationToken ct)
         {
@@ -39,9 +42,12 @@ namespace Vault.Api
                 delivery,
                 manufacturer,
                 dlc,
+                minLevel,
+                maxLevel,
                 unique,
                 rarity,
                 element,
+                maxFuse,
                 sticky,
                 ct);
             var linkedGrenades = grenades.Select(ConvertGrenade).ToList();

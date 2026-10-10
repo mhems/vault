@@ -15,11 +15,18 @@ namespace Vault.Infrastructure
             Gun? category,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             string? element,
+            double? minElementalEffectChance,
             string? prefix,
             bool? missionItem,
+            double? minAccuracy,
+            double? minFireRate,
+            int? minMagazineSize,
+            int? maxMagazineSize,
             Manufacturer? barrel,
             Manufacturer? stock,
             Manufacturer? grip,
@@ -61,6 +68,16 @@ namespace Vault.Infrastructure
                 query = query.Where(m => m.Model.Dlc == dlc);
             }
 
+            if (minLevel != null)
+            {
+                query = query.Where(m => m.Level >= minLevel);
+            }
+
+            if (maxLevel != null)
+            {
+                query = query.Where(m => m.Level <= maxLevel);
+            }
+
             if (unique != null)
             {
                 query = query.Where(m => m.Model.Unique == unique);
@@ -81,6 +98,11 @@ namespace Vault.Infrastructure
                 );
             }
 
+            if (minElementalEffectChance != null)
+            {
+                query = query.Where(m => m.ElementalChance != null && m.ElementalChance.Value >= minElementalEffectChance);
+            }
+
             if (!string.IsNullOrWhiteSpace(prefix))
             {
                 query = query.Where(m =>
@@ -91,6 +113,26 @@ namespace Vault.Infrastructure
             if (missionItem != null)
             {
                 query = query.Where(m => m.MissionItem == missionItem);
+            }
+
+            if (minAccuracy != null)
+            {
+                query = query.Where(m => m.Accuracy >= minAccuracy);
+            }
+
+            if (minFireRate != null)
+            {
+                query = query.Where(m => m.FireRate >= minFireRate);
+            }
+
+            if (minMagazineSize != null)
+            {
+                query = query.Where(m => m.MagazineSize >= minMagazineSize);
+            }
+
+            if (maxMagazineSize != null)
+            {
+                query = query.Where(m => m.MagazineSize <= maxMagazineSize);
             }
 
             if (barrel != null)

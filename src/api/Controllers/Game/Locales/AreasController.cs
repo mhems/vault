@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -16,9 +17,21 @@ namespace Vault.Api
 
         [HttpGet(Name = GetAreasRoute)]
         [ProducesResponseType(typeof(List<AreaResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<AreaResponse>>> GetAreas(CancellationToken ct)
+        public async Task<ActionResult<List<AreaResponse>>> GetAreas(
+            Dlc? dlc,
+            Guid? canSpawnCharacterId,
+            bool? hasFastTravel,
+            bool? hasUTurn,
+            Guid? mapId,
+            CancellationToken ct)
         {
-            var areas = await api.GetAreasAsync(ct);
+            var areas = await api.GetAreasAsync(
+                dlc,
+                canSpawnCharacterId,
+                hasFastTravel,
+                hasUTurn,
+                mapId,
+                ct);
             var linkedAreas = areas.Select(ConvertArea).ToList();
             return Ok(linkedAreas);
         }

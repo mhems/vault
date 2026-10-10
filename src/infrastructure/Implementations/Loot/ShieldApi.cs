@@ -15,9 +15,15 @@ namespace Vault.Infrastructure
             Shield? category,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             string? element,
+            int? minRechargeRatePercent,
+            int? maxRechargeRatePercent,
+            double? minRechargeDelay,
+            double? maxRechargeDelay,
             string? prefix,
             Element? immunity,
             Element? reduction,
@@ -60,6 +66,16 @@ namespace Vault.Infrastructure
                 query = query.Where(m => m.Model.Dlc == dlc);
             }
 
+            if (minLevel != null)
+            {
+                query = query.Where(m => m.Level >= minLevel);
+            }
+
+            if (maxLevel != null)
+            {
+                query = query.Where(m => m.Level <= maxLevel);
+            }
+
             if (unique != null)
             {
                 query = query.Where(m => m.Model.Unique == unique);
@@ -78,6 +94,26 @@ namespace Vault.Infrastructure
                     ? lookingForNonElemental
                     : m.ElementalDamage.Element.ToString().Equals(element, StringComparison.InvariantCultureIgnoreCase)
                 );
+            }
+
+            if (minRechargeRatePercent != null)
+            {
+                query = query.Where(m => m.RechargeRatePercent >= minRechargeRatePercent);
+            }
+
+            if (maxRechargeRatePercent != null)
+            {
+                query = query.Where(m => m.RechargeRatePercent <= maxRechargeRatePercent);
+            }
+
+            if (minRechargeDelay != null)
+            {
+                query = query.Where(m => m.RechargeDelay >= minRechargeDelay);
+            }
+
+            if (maxRechargeDelay != null)
+            {
+                query = query.Where(m => m.RechargeDelay <= maxRechargeDelay);
             }
 
             if (!string.IsNullOrWhiteSpace(prefix))

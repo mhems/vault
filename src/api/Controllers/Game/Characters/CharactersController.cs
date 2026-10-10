@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -16,9 +17,19 @@ namespace Vault.Api
 
         [HttpGet(Name = GetCharactersRoute)]
         [ProducesResponseType(typeof(List<NonPlayableCharacterResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<NonPlayableCharacterResponse>>> GetCharacters(CancellationToken ct)
+        public async Task<ActionResult<List<NonPlayableCharacterResponse>>> GetCharacters(
+            Dlc? dlc,
+            string? species,
+            string? affiliation,
+            Guid? spawnLocationId,
+            CancellationToken ct)
         {
-            var characters = await api.GetCharactersAsync(ct);
+            var characters = await api.GetCharactersAsync(
+                dlc,
+                species,
+                affiliation,
+                spawnLocationId,
+                ct);
             var linkedCharacters = characters.Select(ConvertCharacter).ToList();
             return Ok(linkedCharacters);
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,10 +8,24 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<LocationDto>> GetLocationsAsync(CancellationToken ct)
+        public async Task<List<LocationDto>> GetLocationsAsync(
+            Dlc? dlc,
+            Guid? canSpawnCharacterId,
+            CancellationToken ct)
         {
-            return await db.Locations
-              .AsNoTracking()
+            var query = db.Locations.AsNoTracking();
+
+            if (dlc != null)
+            {
+                query = query.Where(l => l.Dlc == dlc);
+            }
+
+            if (canSpawnCharacterId != null)
+            {
+                query = query.Where(l => l.Characters.Any(c => c.Id == canSpawnCharacterId));
+            }
+
+            return await query
               .Select(e => new LocationDto(
                   e.Id,
                   e.Name,

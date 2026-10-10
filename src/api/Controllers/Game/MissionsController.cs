@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Api
 {
@@ -16,9 +17,19 @@ namespace Vault.Api
 
         [HttpGet(Name = GetMissionsRoute)]
         [ProducesResponseType(typeof(List<MissionResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<MissionResponse>>> GetMissions(CancellationToken ct)
+        public async Task<ActionResult<List<MissionResponse>>> GetMissions(
+            Dlc? dlc,
+            bool? storyMission,
+            bool? hasMissionItem,
+            Guid? startAreaId,
+            CancellationToken ct)
         {
-            var missions = await api.GetMissionsAsync(ct);
+            var missions = await api.GetMissionsAsync(
+                dlc,
+                storyMission,
+                hasMissionItem,
+                startAreaId,
+                ct);
             var linkedMissions = missions.Select(ConvertMission).ToList();
             return Ok(linkedMissions);
         }

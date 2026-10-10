@@ -16,6 +16,8 @@ namespace Vault.Infrastructure
             string? subcategory,
             Manufacturer? manufacturer,
             Dlc? dlc,
+            int? minLevel,
+            int? maxLevel,
             bool? unique,
             string? rarity,
             CancellationToken ct)
@@ -57,6 +59,16 @@ namespace Vault.Infrastructure
             if (dlc != null)
             {
                 query = query.Where(m => m.Model.Dlc == dlc);
+            }
+
+            if (minLevel != null)
+            {
+                query = query.Where(m => m.Level >= minLevel);
+            }
+
+            if (maxLevel != null)
+            {
+                query = query.Where(m => m.Level <= maxLevel);
             }
 
             if (unique != null)

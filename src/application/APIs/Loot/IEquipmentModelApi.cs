@@ -13,6 +13,8 @@ namespace Vault.Application
             bool? unique,
             Guid? raritySetId,
             Guid? elementSetId,
+            string? canHaveRarity,
+            string? canHaveElement,
             CancellationToken ct);
 
         Task<EquipmentModelDto> GetEquipmentModelAsync(Guid id, CancellationToken ct);

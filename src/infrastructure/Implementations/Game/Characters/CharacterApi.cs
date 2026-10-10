@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Vault.Application;
+using Vault.Domain;
 
 namespace Vault.Infrastructure
 {
@@ -7,10 +8,42 @@ namespace Vault.Infrastructure
     {
         private readonly AppDbContext db = db;
 
-        public async Task<List<NonPlayableCharacterDto>> GetCharactersAsync(CancellationToken ct)
+        public async Task<List<NonPlayableCharacterDto>> GetCharactersAsync(
+            Dlc? dlc,
+            string? species,
+            string? affiliation,
+            Guid? spawnLocationId,
+            CancellationToken ct)
         {
-            return await db.Characters
-              .AsNoTracking()
+            var query = db.Characters.AsNoTracking();
+
+            if (dlc != null)
+            {
+                query = query.Where(c => c.Dlc == dlc);
+            }
+
+            if (!string.IsNullOrWhiteSpace(species))
+            {
+                query = query.Where(
+                    c =>
+                        !string.IsNullOrWhiteSpace(c.Species) &&
+                        c.Species.Equals(species, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(affiliation))
+            {
+                query = query.Where(
+                    c =>
+                        !string.IsNullOrWhiteSpace(c.Affiliation) &&
+                        c.Affiliation.Equals(affiliation, StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            if (spawnLocationId != null)
+            {
+                query = query.Where(c => c.Locations.Any(l => l.Id == spawnLocationId));
+            }
+
+            return await query
               .Select(e => new NonPlayableCharacterDto(
                   e.Id,
                   e.Name,

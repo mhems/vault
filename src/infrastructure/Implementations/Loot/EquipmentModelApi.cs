@@ -17,6 +17,8 @@ namespace Vault.Infrastructure
             bool? unique,
             Guid? raritySetId,
             Guid? elementSetId,
+            string? canHaveRarity,
+            string? canHaveElement,
             CancellationToken ct)
         {
             var query = db.EquipmentModels.AsNoTracking();
@@ -63,6 +65,37 @@ namespace Vault.Infrastructure
                 query = query.Where(
                     m => m.PossibleElementsId != null &&
                          m.PossibleElementsId == elementSetId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(canHaveRarity))
+            {
+                query = canHaveRarity.ToLower() switch
+                {
+                    "white" => query.Where(m => m.PossibleRarities.ComesInWhite),
+                    "green" => query.Where(m => m.PossibleRarities.ComesInGreen),
+                    "blue" => query.Where(m => m.PossibleRarities.ComesInBlue),
+                    "purple" => query.Where(m => m.PossibleRarities.ComesInPurple),
+                    "legendary" => query.Where(m => m.PossibleRarities.ComesInLegendary),
+                    "e-tech" or "etech" => query.Where(m => m.PossibleRarities.ComesInETech),
+                    "effervescent" => query.Where(m => m.PossibleRarities.ComesInEffervescent),
+                    "pearlescent" => query.Where(m => m.PossibleRarities.ComesInPearlescent),
+                    "seraph" => query.Where(m => m.PossibleRarities.ComesInSeraph),
+                    _ => throw new ArgumentException($"unknown rarity {canHaveRarity}")
+                };
+            }
+
+            if (!string.IsNullOrWhiteSpace(canHaveElement))
+            {
+                query = canHaveElement.ToLower() switch
+                {
+                    "none" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesWithoutElement),
+                    "incendiary" or "fire" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesInIncendiary),
+                    "shock" or "electricty" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesInShock),
+                    "corrosive" or "acid" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesInCorrosive),
+                    "slag" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesInSlag),
+                    "explosive" => query.Where(m => m.PossibleElements != null && m.PossibleElements.ComesInExplosive),
+                    _ => throw new ArgumentException($"unknown element {canHaveElement}")
+                };
             }
 
             return await query

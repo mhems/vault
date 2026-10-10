@@ -35,10 +35,16 @@ namespace Vault.Api
         [HttpGet(Name = GetPlayersRoute)]
         [ProducesResponseType(typeof(List<PlayerResponse>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<PlayerResponse>>> GetPlayers(
+            Guid? accountId,
             string? @class,
+            int? minLevel,
             CancellationToken ct)
         {
-            var players = await api.GetPlayersAsync(@class, ct);
+            var players = await api.GetPlayersAsync(
+                accountId,
+                @class,
+                minLevel,
+                ct);
             var linkedPlayers = players.Select(ConvertPlayer).ToList();
             return Ok(linkedPlayers);
         }
