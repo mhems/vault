@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Relics
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RelicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Relics{?dlc*,manufacturer*,modelId*,name*,playerId*,rarity*,subcategory*,unique*}", pathParameters)
+        public RelicsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Relics{?dlc*,manufacturer*,maxLevel*,minLevel*,modelId*,name*,playerId*,rarity*,subcategory*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Relics
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RelicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Relics{?dlc*,manufacturer*,modelId*,name*,playerId*,rarity*,subcategory*,unique*}", rawUrl)
+        public RelicsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Relics{?dlc*,manufacturer*,maxLevel*,minLevel*,modelId*,name*,playerId*,rarity*,subcategory*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.RelicResponse&gt;</returns>
@@ -140,6 +140,14 @@ namespace Vault.Client.Api.Relics
             #pragma warning disable CS1591
             [QueryParameter("manufacturer")]
             public global::Vault.Client.Models.Manufacturer? ManufacturerAsManufacturer { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxLevel")]
+            public int? MaxLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minLevel")]
+            public int? MinLevel { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("modelId")]

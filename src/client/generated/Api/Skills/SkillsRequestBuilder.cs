@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Skills
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SkillsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Skills{?class*}", pathParameters)
+        public SkillsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Skills{?class*,onePointMax*,tier*,tree*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Skills
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SkillsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Skills{?class*}", rawUrl)
+        public SkillsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Skills{?class*,onePointMax*,tier*,tree*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.SkillResponse&gt;</returns>
@@ -116,6 +116,27 @@ namespace Vault.Client.Api.Skills
             #pragma warning disable CS1591
             [QueryParameter("class")]
             public string Class { get; set; }
+            #pragma warning restore CS1591
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("onePointMax")]
+            public bool? OnePointMax { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("tier")]
+            public int? Tier { get; set; }
+            #pragma warning restore CS1591
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            #pragma warning disable CS1591
+            [QueryParameter("tree")]
+            public string? Tree { get; set; }
+            #pragma warning restore CS1591
+#nullable restore
+#else
+            #pragma warning disable CS1591
+            [QueryParameter("tree")]
+            public string Tree { get; set; }
             #pragma warning restore CS1591
 #endif
         }

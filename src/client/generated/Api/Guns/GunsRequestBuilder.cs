@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Guns
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GunsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Guns{?barrel*,body*,category*,dlc*,element*,grip*,manufacturer*,missionItem*,modelId*,name*,playerId*,prefix*,rarity*,scope*,stock*,unique*}", pathParameters)
+        public GunsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Guns{?barrel*,body*,category*,dlc*,element*,grip*,manufacturer*,maxLevel*,maxMagazineSize*,minAccuracy*,minElementalEffectChance*,minFireRate*,minLevel*,minMagazineSize*,missionItem*,modelId*,name*,playerId*,prefix*,rarity*,scope*,stock*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Guns
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GunsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Guns{?barrel*,body*,category*,dlc*,element*,grip*,manufacturer*,missionItem*,modelId*,name*,playerId*,prefix*,rarity*,scope*,stock*,unique*}", rawUrl)
+        public GunsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Guns{?barrel*,body*,category*,dlc*,element*,grip*,manufacturer*,maxLevel*,maxMagazineSize*,minAccuracy*,minElementalEffectChance*,minFireRate*,minLevel*,minMagazineSize*,missionItem*,modelId*,name*,playerId*,prefix*,rarity*,scope*,stock*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.GunResponse&gt;</returns>
@@ -225,6 +225,34 @@ namespace Vault.Client.Api.Guns
             #pragma warning disable CS1591
             [QueryParameter("manufacturer")]
             public global::Vault.Client.Models.Manufacturer? ManufacturerAsManufacturer { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxLevel")]
+            public int? MaxLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxMagazineSize")]
+            public int? MaxMagazineSize { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minAccuracy")]
+            public double? MinAccuracy { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minElementalEffectChance")]
+            public double? MinElementalEffectChance { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minFireRate")]
+            public double? MinFireRate { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minLevel")]
+            public int? MinLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minMagazineSize")]
+            public int? MinMagazineSize { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("missionItem")]

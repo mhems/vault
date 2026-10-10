@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Missions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MissionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Missions", pathParameters)
+        public MissionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Missions{?dlc*,hasMissionItem*,startAreaId*,storyMission*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Missions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public MissionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Missions", rawUrl)
+        public MissionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Missions{?dlc*,hasMissionItem*,startAreaId*,storyMission*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.MissionResponse&gt;</returns>
@@ -64,11 +64,11 @@ namespace Vault.Client.Api.Missions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::Vault.Client.Models.MissionResponse>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Vault.Client.Models.MissionResponse>?> GetAsync(Action<RequestConfiguration<global::Vault.Client.Api.Missions.MissionsRequestBuilder.MissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::Vault.Client.Models.MissionResponse>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Vault.Client.Models.MissionResponse>> GetAsync(Action<RequestConfiguration<global::Vault.Client.Api.Missions.MissionsRequestBuilder.MissionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -79,11 +79,11 @@ namespace Vault.Client.Api.Missions
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Vault.Client.Api.Missions.MissionsRequestBuilder.MissionsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Vault.Client.Api.Missions.MissionsRequestBuilder.MissionsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -100,12 +100,48 @@ namespace Vault.Client.Api.Missions
         {
             return new global::Vault.Client.Api.Missions.MissionsRequestBuilder(rawUrl, RequestAdapter);
         }
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        #pragma warning disable CS1591
+        public partial class MissionsRequestBuilderGetQueryParameters 
+        #pragma warning restore CS1591
+        {
+            [Obsolete("This property is deprecated, use DlcAsDlc instead")]
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            #pragma warning disable CS1591
+            [QueryParameter("dlc")]
+            public string? Dlc { get; set; }
+            #pragma warning restore CS1591
+#nullable restore
+#else
+            #pragma warning disable CS1591
+            [QueryParameter("dlc")]
+            public string Dlc { get; set; }
+            #pragma warning restore CS1591
+#endif
+            #pragma warning disable CS1591
+            [QueryParameter("dlc")]
+            public global::Vault.Client.Models.Dlc? DlcAsDlc { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("hasMissionItem")]
+            public bool? HasMissionItem { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("startAreaId")]
+            public Guid? StartAreaId { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("storyMission")]
+            public bool? StoryMission { get; set; }
+            #pragma warning restore CS1591
+        }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class MissionsRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class MissionsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::Vault.Client.Api.Missions.MissionsRequestBuilder.MissionsRequestBuilderGetQueryParameters>
         {
         }
     }

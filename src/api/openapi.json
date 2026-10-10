@@ -16,6 +16,37 @@
           "Characters"
         ],
         "operationId": "GetCharacters",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "affiliation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spawnLocationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -116,6 +147,73 @@
           "Enemies"
         ],
         "operationId": "GetEnemies",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "affiliation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spawnLocationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "hasShield",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "weakToElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resistsElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "immuneToElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canDropModelId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -216,6 +314,87 @@
           "UniqueEnemies"
         ],
         "operationId": "GetUniqueEnemies",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "affiliation",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "spawnLocationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "hasShield",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "weakToElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resistsElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "immuneToElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canDropModelId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "boss",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "raidBoss",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -316,6 +495,45 @@
           "Areas"
         ],
         "operationId": "GetAreas",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "canSpawnCharacterId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "hasFastTravel",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasUTurn",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "mapId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -416,6 +634,23 @@
           "Locations"
         ],
         "operationId": "GetLocations",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "canSpawnCharacterId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -516,6 +751,37 @@
           "Maps"
         ],
         "operationId": "GetMaps",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "canSpawnCharacterId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "hasFastTravel",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasMultipleConnections",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -726,6 +992,37 @@
           "Missions"
         ],
         "operationId": "GetMissions",
+        "parameters": [
+          {
+            "name": "dlc",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Dlc"
+            }
+          },
+          {
+            "name": "storyMission",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hasMissionItem",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "startAreaId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -872,6 +1169,22 @@
             }
           },
           {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "unique",
             "in": "query",
             "schema": {
@@ -886,11 +1199,26 @@
             }
           },
           {
-            "name": "skillId",
+            "name": "prefix",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "boostsSkillId",
             "in": "query",
             "schema": {
               "type": "string",
               "format": "uuid"
+            }
+          },
+          {
+            "name": "boostsSkillBy",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -1152,6 +1480,20 @@
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "canHaveRarity",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "canHaveElement",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1180,6 +1522,26 @@
                   "items": {
                     "$ref": "#/components/schemas/EquipmentModelResponse"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1300,6 +1662,22 @@
             }
           },
           {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "unique",
             "in": "query",
             "schema": {
@@ -1318,6 +1696,14 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "maxFuse",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
             }
           },
           {
@@ -1474,6 +1860,22 @@
             }
           },
           {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "unique",
             "in": "query",
             "schema": {
@@ -1495,6 +1897,14 @@
             }
           },
           {
+            "name": "minElementalEffectChance",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
             "name": "prefix",
             "in": "query",
             "schema": {
@@ -1506,6 +1916,38 @@
             "in": "query",
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "name": "minAccuracy",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "minFireRate",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "minMagazineSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxMagazineSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           },
           {
@@ -1890,6 +2332,22 @@
             }
           },
           {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "unique",
             "in": "query",
             "schema": {
@@ -2050,6 +2508,22 @@
             }
           },
           {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "name": "unique",
             "in": "query",
             "schema": {
@@ -2068,6 +2542,38 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "minRechargeRatePercent",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxRechargeRatePercent",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "minRechargeDelay",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxRechargeDelay",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
             }
           },
           {
@@ -2486,10 +2992,26 @@
         "operationId": "GetPlayers",
         "parameters": [
           {
+            "name": "accountId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
             "name": "class",
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "minLevel",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -3765,6 +4287,28 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "tree",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onePointMax",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "tier",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -5982,13 +6526,14 @@
         "enum": [
           "Standard",
           "Adaptive",
-          "Roid",
+          "Maylay",
           "Booster",
           "Amplify",
           "Spike",
           "Nova",
           "Turtle",
           "Absorb",
+          "Other",
           null
         ]
       },

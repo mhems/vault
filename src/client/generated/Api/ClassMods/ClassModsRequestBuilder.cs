@@ -48,7 +48,7 @@ namespace Vault.Client.Api.ClassMods
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ClassModsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/ClassMods{?class*,dlc*,manufacturer*,modelId*,name*,playerId*,rarity*,skillId*,unique*}", pathParameters)
+        public ClassModsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/ClassMods{?boostsSkillBy*,boostsSkillId*,class*,dlc*,manufacturer*,maxLevel*,minLevel*,modelId*,name*,playerId*,prefix*,rarity*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.ClassMods
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ClassModsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/ClassMods{?class*,dlc*,manufacturer*,modelId*,name*,playerId*,rarity*,skillId*,unique*}", rawUrl)
+        public ClassModsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/ClassMods{?boostsSkillBy*,boostsSkillId*,class*,dlc*,manufacturer*,maxLevel*,minLevel*,modelId*,name*,playerId*,prefix*,rarity*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.ClassModResponse&gt;</returns>
@@ -105,6 +105,14 @@ namespace Vault.Client.Api.ClassMods
         public partial class ClassModsRequestBuilderGetQueryParameters 
         #pragma warning restore CS1591
         {
+            #pragma warning disable CS1591
+            [QueryParameter("boostsSkillBy")]
+            public int? BoostsSkillBy { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("boostsSkillId")]
+            public Guid? BoostsSkillId { get; set; }
+            #pragma warning restore CS1591
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             #pragma warning disable CS1591
@@ -155,6 +163,14 @@ namespace Vault.Client.Api.ClassMods
             public global::Vault.Client.Models.Manufacturer? ManufacturerAsManufacturer { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
+            [QueryParameter("maxLevel")]
+            public int? MaxLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minLevel")]
+            public int? MinLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("modelId")]
             public Guid? ModelId { get; set; }
             #pragma warning restore CS1591
@@ -178,6 +194,19 @@ namespace Vault.Client.Api.ClassMods
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             #pragma warning disable CS1591
+            [QueryParameter("prefix")]
+            public string? Prefix { get; set; }
+            #pragma warning restore CS1591
+#nullable restore
+#else
+            #pragma warning disable CS1591
+            [QueryParameter("prefix")]
+            public string Prefix { get; set; }
+            #pragma warning restore CS1591
+#endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("rarity")]
             public string? Rarity { get; set; }
             #pragma warning restore CS1591
@@ -188,10 +217,6 @@ namespace Vault.Client.Api.ClassMods
             public string Rarity { get; set; }
             #pragma warning restore CS1591
 #endif
-            #pragma warning disable CS1591
-            [QueryParameter("skillId")]
-            public Guid? SkillId { get; set; }
-            #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("unique")]
             public bool? Unique { get; set; }

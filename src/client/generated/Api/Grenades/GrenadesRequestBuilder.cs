@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Grenades
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GrenadesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Grenades{?delivery*,dlc*,element*,manufacturer*,modelId*,name*,playerId*,rarity*,sticky*,unique*}", pathParameters)
+        public GrenadesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Grenades{?delivery*,dlc*,element*,manufacturer*,maxFuse*,maxLevel*,minLevel*,modelId*,name*,playerId*,rarity*,sticky*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Grenades
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public GrenadesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Grenades{?delivery*,dlc*,element*,manufacturer*,modelId*,name*,playerId*,rarity*,sticky*,unique*}", rawUrl)
+        public GrenadesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Grenades{?delivery*,dlc*,element*,manufacturer*,maxFuse*,maxLevel*,minLevel*,modelId*,name*,playerId*,rarity*,sticky*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.GrenadeResponse&gt;</returns>
@@ -171,6 +171,18 @@ namespace Vault.Client.Api.Grenades
             #pragma warning disable CS1591
             [QueryParameter("manufacturer")]
             public global::Vault.Client.Models.Manufacturer? ManufacturerAsManufacturer { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxFuse")]
+            public double? MaxFuse { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxLevel")]
+            public int? MaxLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minLevel")]
+            public int? MinLevel { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("modelId")]

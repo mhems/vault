@@ -48,7 +48,7 @@ namespace Vault.Client.Api.EquipmentModels
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EquipmentModelsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/EquipmentModels{?category*,dlc*,elementSetId*,manufacturer*,name*,raritySetId*,subcategory*,unique*}", pathParameters)
+        public EquipmentModelsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/EquipmentModels{?canHaveElement*,canHaveRarity*,category*,dlc*,elementSetId*,manufacturer*,name*,raritySetId*,subcategory*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,12 +56,13 @@ namespace Vault.Client.Api.EquipmentModels
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public EquipmentModelsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/EquipmentModels{?category*,dlc*,elementSetId*,manufacturer*,name*,raritySetId*,subcategory*,unique*}", rawUrl)
+        public EquipmentModelsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/EquipmentModels{?canHaveElement*,canHaveRarity*,category*,dlc*,elementSetId*,manufacturer*,name*,raritySetId*,subcategory*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.EquipmentModelResponse&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Vault.Client.Models.ProblemDetails">When receiving a 400 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<List<global::Vault.Client.Models.EquipmentModelResponse>?> GetAsync(Action<RequestConfiguration<global::Vault.Client.Api.EquipmentModels.EquipmentModelsRequestBuilder.EquipmentModelsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -72,7 +73,11 @@ namespace Vault.Client.Api.EquipmentModels
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Vault.Client.Models.EquipmentModelResponse>(requestInfo, global::Vault.Client.Models.EquipmentModelResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::Vault.Client.Models.ProblemDetails.CreateFromDiscriminatorValue },
+            };
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Vault.Client.Models.EquipmentModelResponse>(requestInfo, global::Vault.Client.Models.EquipmentModelResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -105,6 +110,32 @@ namespace Vault.Client.Api.EquipmentModels
         public partial class EquipmentModelsRequestBuilderGetQueryParameters 
         #pragma warning restore CS1591
         {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            #pragma warning disable CS1591
+            [QueryParameter("canHaveElement")]
+            public string? CanHaveElement { get; set; }
+            #pragma warning restore CS1591
+#nullable restore
+#else
+            #pragma warning disable CS1591
+            [QueryParameter("canHaveElement")]
+            public string CanHaveElement { get; set; }
+            #pragma warning restore CS1591
+#endif
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            #pragma warning disable CS1591
+            [QueryParameter("canHaveRarity")]
+            public string? CanHaveRarity { get; set; }
+            #pragma warning restore CS1591
+#nullable restore
+#else
+            #pragma warning disable CS1591
+            [QueryParameter("canHaveRarity")]
+            public string CanHaveRarity { get; set; }
+            #pragma warning restore CS1591
+#endif
             [Obsolete("This property is deprecated, use CategoryAsEquipment instead")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

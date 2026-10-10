@@ -16,9 +16,9 @@ namespace Vault.Client.Models
         #pragma warning disable CS1591
         Adaptive,
         #pragma warning restore CS1591
-        [EnumMember(Value = "Roid")]
+        [EnumMember(Value = "Maylay")]
         #pragma warning disable CS1591
-        Roid,
+        Maylay,
         #pragma warning restore CS1591
         [EnumMember(Value = "Booster")]
         #pragma warning disable CS1591
@@ -43,6 +43,10 @@ namespace Vault.Client.Models
         [EnumMember(Value = "Absorb")]
         #pragma warning disable CS1591
         Absorb,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "Other")]
+        #pragma warning disable CS1591
+        Other,
         #pragma warning restore CS1591
         [EnumMember(Value = "openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464")]
         #pragma warning disable CS1591

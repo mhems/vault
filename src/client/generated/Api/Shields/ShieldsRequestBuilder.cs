@@ -48,7 +48,7 @@ namespace Vault.Client.Api.Shields
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ShieldsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Shields{?battery*,body*,capacitor*,category*,dlc*,element*,immunity*,manufacturer*,modelId*,name*,playerId*,prefix*,rarity*,reduction*,unique*}", pathParameters)
+        public ShieldsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Shields{?battery*,body*,capacitor*,category*,dlc*,element*,immunity*,manufacturer*,maxLevel*,maxRechargeDelay*,maxRechargeRatePercent*,minLevel*,minRechargeDelay*,minRechargeRatePercent*,modelId*,name*,playerId*,prefix*,rarity*,reduction*,unique*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace Vault.Client.Api.Shields
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ShieldsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Shields{?battery*,body*,capacitor*,category*,dlc*,element*,immunity*,manufacturer*,modelId*,name*,playerId*,prefix*,rarity*,reduction*,unique*}", rawUrl)
+        public ShieldsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/api/Shields{?battery*,body*,capacitor*,category*,dlc*,element*,immunity*,manufacturer*,maxLevel*,maxRechargeDelay*,maxRechargeRatePercent*,minLevel*,minRechargeDelay*,minRechargeRatePercent*,modelId*,name*,playerId*,prefix*,rarity*,reduction*,unique*}", rawUrl)
         {
         }
         /// <returns>A List&lt;global::Vault.Client.Models.ShieldResponse&gt;</returns>
@@ -243,6 +243,30 @@ namespace Vault.Client.Api.Shields
             #pragma warning disable CS1591
             [QueryParameter("manufacturer")]
             public global::Vault.Client.Models.Manufacturer? ManufacturerAsManufacturer { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxLevel")]
+            public int? MaxLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxRechargeDelay")]
+            public double? MaxRechargeDelay { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("maxRechargeRatePercent")]
+            public int? MaxRechargeRatePercent { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minLevel")]
+            public int? MinLevel { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minRechargeDelay")]
+            public double? MinRechargeDelay { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("minRechargeRatePercent")]
+            public int? MinRechargeRatePercent { get; set; }
             #pragma warning restore CS1591
             #pragma warning disable CS1591
             [QueryParameter("modelId")]
