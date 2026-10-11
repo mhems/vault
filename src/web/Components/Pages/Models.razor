@@ -1,0 +1,191 @@
+﻿@page "/models"
+@rendermode InteractiveServer
+@inject VaultApiClient Client
+@inject RaritySetService RaritySetService
+@inject ElementSetService ElementSetService
+
+<PageTitle>Models</PageTitle>
+
+<div class="table-page">
+    <div class="table-page-toolbar">
+        <h1>Models</h1>
+                
+        <p>Showing @models.Count results</p>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <button class="sort-header" @onclick="() => SortBy(nameof(ModelRow.Name))"> Name @SortIndicator(nameof(ModelRow.Name)) </button>
+                    </th>
+                    <th>
+                        <button class="sort-header" @onclick="() => SortBy(nameof(ModelRow.Category))"> Category @SortIndicator(nameof(ModelRow.Category)) </button>
+
+                    </th>
+                    <th>Sub-Category</th>
+                    <th>
+                        <button class="sort-header" @onclick="() => SortBy(nameof(ModelRow.Manufacturer))"> Manufacturer @SortIndicator(nameof(ModelRow.Manufacturer)) </button>
+                    </th>
+                    <th>Rarities</th>
+                    <th>Elements</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var model in SortedModels)
+                {
+                    <tr>
+                        <td>@model.Name</td>
+                        <td>@model.Category</td>
+                        <td>@model.SubCategory</td>
+                        <td>@model.Manufacturer</td>
+                        <td>
+                            <div class="set-list">
+                                @foreach (var (rarity, func) in rarities.Zip(rarityFuncs))
+                                {
+                                    <div class="set-box rarity-@rarity">
+                                        @if (model.RaritySet != null && @func(@model.RaritySet) == true)
+                                        {
+                                            <span>✓</span>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            @if (model.Category != "Relic" && model.Category != "ClassMod")
+                            {
+                                <div class="set-list">
+                                    @foreach (var (element, func) in elements.Zip(elementFuncs))
+                                    {
+                                        <div class="set-box">
+                                            @if (model.ElementSet != null && @func(@model.ElementSet) == true)
+                                            {
+                                                <img src="@AddPng(element)" height="29" width="29"/>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    private List<ModelRow> models = [];
+    private string sortColumn = nameof(ModelRow.Name);
+    private bool ascending = true;
+    private readonly string[] rarities = { "common", "uncommon", "rare", "etech", "epic", "legendary", "seraph", "pearlescent", "effervescent" };
+    private readonly string[] elements = { "none", "incendiary", "shock", "corrosive", "slag", "explosive" };
+
+    private string AddPng(string s) => s + ".png";
+
+    private Func<RaritySetResponse, bool?>[] rarityFuncs =
+    {
+        (rs => rs.ComesInWhite),
+        (rs => rs.ComesInGreen),
+        (rs => rs.ComesInBlue),
+        (rs => rs.ComesInETech),
+        (rs => rs.ComesInPurple),
+        (rs => rs.ComesInLegendary),
+        (rs => rs.ComesInSeraph),
+        (rs => rs.ComesInPearlescent),
+        (rs => rs.ComesInEffervescent),
+    };
+    private Func<ElementSetResponse, bool?>[] elementFuncs =
+    {
+        (es => es.ComesWithoutElement),
+        (es => es.ComesInIncendiary),
+        (es => es.ComesInShock),
+        (es => es.ComesInCorrosive),
+        (es => es.ComesInSlag),
+        (es => es.ComesInExplosive),
+    };
+
+    private IEnumerable<ModelRow> SortedModels =>
+        sortColumn switch
+        {
+            nameof(ModelRow.Name) => ascending
+                ? models.OrderBy(a => a.Name)
+                : models.OrderByDescending(a => a.Name),
+
+            nameof(ModelRow.Category) => ascending
+                ? models.OrderBy(a => a.Category)
+                : models.OrderByDescending(a => a.Category),
+
+            nameof(ModelRow.Manufacturer) => ascending
+                ? models.OrderBy(a => a.Manufacturer)
+                : models.OrderByDescending(a => a.Manufacturer),
+
+            _ => models
+        };
+
+    private void SortBy(string column)
+    {
+        if (sortColumn == column)
+        {
+            ascending = !ascending;
+        }
+        else
+        { 
+            sortColumn = column;
+            ascending = true;
+        }
+    }
+
+    private string SortIndicator(string column)
+    {
+        if (sortColumn != column)
+            return "";
+        return ascending ? "▲" : "▼";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var responses = await Client.Api.EquipmentModels.GetAsync() ?? [];
+
+            foreach (var r in responses)
+            {
+                Console.WriteLine($"model {r.Self?.Id}");
+
+                Guid? raritySetId = r.RaritySet?.Id;
+                RaritySetResponse? raritySet = null;
+                if (raritySetId.HasValue)
+                {
+                    raritySet = await RaritySetService.GetAsync(raritySetId.Value);
+                }
+
+                Guid? elementSetId = r.ElementSet?.Id;
+                ElementSetResponse? elementSet = null;
+                if (elementSetId.HasValue)
+                {
+                    elementSet = await ElementSetService.GetAsync(elementSetId.Value);
+                }
+
+                var modelRow = new ModelRow(r.Name ?? string.Empty,
+                                            r.Category.ToString() ?? string.Empty,
+                                            r.SubCategory ?? string.Empty,
+                                            r.Manufacturer.ToString() ?? string.Empty,
+                                            raritySet,
+                                            elementSet);
+
+                models.Add(modelRow);
+            }
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+    }
+
+    private sealed record ModelRow(string Name, string Category, string SubCategory, string Manufacturer,
+        RaritySetResponse? RaritySet,
+        ElementSetResponse? ElementSet
+    );
+}

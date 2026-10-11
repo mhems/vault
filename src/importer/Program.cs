@@ -20,8 +20,12 @@ foreach (var map in CsvUtilities.ParseMaps())
 
 foreach (var rarity in CsvUtilities.ParseRarities())
 {
-    db.Rarities.Add(new Rarity(rarity.Name, rarity.Color, (rarity.Red, rarity.Green, rarity.Blue)));
+    var item = new Rarity(rarity.Name, rarity.Color, (rarity.Red, rarity.Green, rarity.Blue));
+    Console.WriteLine($"{rarity.Name} - #{rarity.Red:X2}{rarity.Green:X2}{rarity.Blue:X2}");
+    db.Rarities.Add(item);
 }
+
+return 0;
 
 Dictionary<string, PlayerClass> classMap = [];
 foreach (var playerClass in CsvUtilities.ParseClasses())
@@ -51,8 +55,8 @@ raritySetMap["purple"] = new RaritySet(false, false, false, true, false, false, 
 raritySetMap["legendary"] = new RaritySet(false, false, false, false, true, false, false, false, false);
 raritySetMap["effervescent"] = new RaritySet(false, false, false, false, false, true, false, false, false);
 raritySetMap["pearlescent"] = new RaritySet(false, false, false, false, false, false, true, false, false);
-raritySetMap["seraph"] = new RaritySet(false, false, false, false, true, false, false, true, false);
-raritySetMap["e-tech"] = new RaritySet(false, false, false, false, true, false, false, false, true);
+raritySetMap["seraph"] = new RaritySet(false, false, false, false, false, false, false, true, false);
+raritySetMap["e-tech"] = new RaritySet(false, false, false, false, false, false, false, false, true);
 
 foreach (var set in raritySetMap.Values)
 {

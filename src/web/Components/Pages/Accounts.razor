@@ -1,0 +1,56 @@
+﻿@page "/accounts"
+@rendermode InteractiveServer
+@inject VaultApiClient Client
+
+<PageTitle>Accounts</PageTitle>
+
+<h1>Accounts</h1>
+
+@if (accounts is null)
+{
+    <p>Loading accounts...</p>
+}
+else if (accounts.Count == 0)
+{
+    <p>No accounts found</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Badass Rank</th>
+                <th>Number of Vault Hunters</th>
+                <th>Equipment in Stash</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in accounts)
+            {
+                <tr>
+                    <td>@account.Name</td>
+                    <td>@account.BadassRank</td>
+                    <td>@account.Players?.Count</td>
+                    <td>@account.StashedEquipment?.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Vault.Client.Models.AccountResponse>? accounts = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            accounts = await Client.Api.Accounts.GetAsync();
+        }
+        catch(Exception)
+        {
+            
+        }
+    }
+}

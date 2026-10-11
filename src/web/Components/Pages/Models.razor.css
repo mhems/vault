@@ -1,0 +1,57 @@
+﻿.set-list {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.set-box {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #777;
+    border-radius: 3px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+    box-sizing: border-box;
+    color: #222;
+}
+
+.rarity-common {
+    background-color: #F0F0F0;
+}
+
+.rarity-uncommon {
+    background-color: #3AB713;
+}
+
+.rarity-rare {
+    background-color: #3B7AC7;
+}
+
+.rarity-etech {
+    background-color: #C20BA9;
+}
+
+.rarity-epic {
+    background-color: #9C4ABE;
+}
+
+.rarity-legendary {
+    background-color: #FCB620;
+}
+
+.rarity-seraph {
+    background-color: #D58095;
+}
+
+.rarity-pearlescent {
+    background-color: #3DE5E5;
+}
+
+.rarity-effervescent {
+    background: linear-gradient( to right, #77A978, #815378 );
+}
